@@ -151,8 +151,6 @@ const Analytics = () => {
             columns={columns}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
             showAction={true}
             onEditRow={handleEditRow}
             onDeleteRow={handleDeleteRow}
@@ -165,8 +163,6 @@ const Analytics = () => {
             columns={columns1}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
           />
         </Grid>
         <Grid item xs={12} md={6} mt={2}>
@@ -176,8 +172,6 @@ const Analytics = () => {
             columns={columns2}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
           />
         </Grid>
       </Grid>
