@@ -1,13 +1,9 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import PropTypes from "prop-types";
+import * as React from "react";
 import TeamManagement from "./TeamManagement";
-import Manageers from "./Manageers";
-import AssistantManagers from "./AssistantManagers";
-import TeamLead from "./TeamLead";
-import Executives from "./Executives";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,16 +50,16 @@ export default function Internals() {
           aria-label="basic tabs example"
         >
           <Tab label="Team Management" {...a11yProps(0)} />
-          <Tab label="Managers" {...a11yProps(1)} />
+          {/* <Tab label="Managers" {...a11yProps(1)} />
           <Tab label="Asistant Managers" {...a11yProps(2)} />
           <Tab label="Team Lead" {...a11yProps(2)} />
-          <Tab label="Executives" {...a11yProps(2)} />
+          <Tab label="Executives" {...a11yProps(2)} /> */}
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <TeamManagement />
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
+      {/* <CustomTabPanel value={value} index={1}>
         <Manageers />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
@@ -74,7 +70,7 @@ export default function Internals() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
         <Executives />
-      </CustomTabPanel>
+      </CustomTabPanel> */}
     </Box>
   );
 }

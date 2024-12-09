@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
   Button,
   Card,
@@ -9,16 +11,13 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
-  Client_columns,
-  CLIENT_DATA,
-  client_employeesColumns,
-  VENDORS_DATA,
+  VENDORS_DATA
 } from "../constants/dataConstant";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 const Vendors = () => {
+  const navigate = useNavigate();
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [tasksData, setTasksData] = useState([]);
   const [operationalCities, setOoperationalCities] = useState([]);
@@ -32,66 +31,39 @@ const Vendors = () => {
     setOoperationalCities(VENDORS_DATA[0].operationalCities);
   }, []);
 
-  const handleClientClick = (row) => {
+  const handleVendorClick = (row) => {
     const data = VENDORS_DATA.filter((e) => e.id === row.id);
 
     setTasksData(data[0].tasks);
     setOoperationalCities(data[0].operationalCities);
+    navigate({
+      pathname: "/vendor-details",
+      search: createSearchParams({
+        vendorId: row.id,
+      }).toString(),
+    });
   };
-
-  const taskColumnsVendors = [
-    { field: "id", headerName: "ID", width: 70, editable: false },
-    {
-      field: "taskName",
-      headerName: "Task Name",
-      width: 250,
-      editable: false,
-    },
-    {
-      field: "allocationDate",
-      headerName: "Allocation Date",
-      width: 190,
-      editable: false,
-    },
-    {
-      field: "deliveryDate",
-      headerName: "Delivery Date",
-      width: 130,
-      editable: false,
-    },
-  ];
-
-  const operationalVendors = [
-    { field: "id", headerName: "ID", width: 90, editable: false },
-    {
-      field: "name",
-      headerName: "City Name",
-      width: 230,
-      editable: false,
-    },
-  
-  ];
 
   const vendorsColumn = [
     { field: "id", headerName: "ID", width: 70, editable: false },
     {
       field: "name",
       headerName: "Vendor Name",
-      width: 130,
+      width: 170,
       editable: false,
     },
     {
       field: "address",
       headerName: "Address",
-      width: 130,
+      width: 250,
       editable: false,
     },
-    {
-      field: "companyName",
-      headerName: "Company Name",
-      width: 130,
-      editable: false,
-    },
+    // {
+    //   field: "companyName",
+    //   headerName: "Company Name",
+    //   width: 130,
+    //   editable: false,
+    // },
     {
       field: "telephone",
       headerName: "Telephone",
@@ -101,22 +73,22 @@ const Vendors = () => {
     {
       field: "email",
       headerName: "Email",
-      width: 130,
+      width: 200,
       editable: false,
     },
-    {
-      field: "categories",
-      headerName: "Categories",
-      width: 130,
-      editable: false,
-    },
+    // {
+    //   field: "categories",
+    //   headerName: "Categories",
+    //   width: 130,
+    //   editable: false,
+    // },
 
-    {
-      field: "workType",
-      headerName: "Work Type",
-      width: 150,
-      editable: false,
-    },
+    // {
+    //   field: "workType",
+    //   headerName: "Work Type",
+    //   width: 150,
+    //   editable: false,
+    // },
     {
       field: "headOffice",
       headerName: "Head Office",
@@ -139,15 +111,13 @@ const Vendors = () => {
 
           <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
             <CardContent>
-              {/* <Typography color="primary">Create Event</Typography> */}
               <Grid container spacing={2}>
                 <Grid item md={4} sm={4} xs={12}>
                   <TextField
                     required
                     fullWidth
                     id="outlined-required-1"
-                    label="Required Field 1"
-                    defaultValue="Hello World"
+                    label="Name"
                   />
                 </Grid>
 
@@ -156,8 +126,7 @@ const Vendors = () => {
                     required
                     fullWidth
                     id="outlined-required-2"
-                    label="Required Field 2"
-                    defaultValue="Hello World"
+                    label="Telephone"
                   />
                 </Grid>
 
@@ -166,28 +135,23 @@ const Vendors = () => {
                     required
                     fullWidth
                     id="outlined-required-3"
-                    label="Required Field 3"
-                    defaultValue="Hello World"
+                    label="Email"
                   />
                 </Grid>
-
                 <Grid item md={4} sm={4} xs={12}>
                   <TextField
                     required
                     fullWidth
                     id="outlined-required-4"
-                    label="Required Field 4"
-                    defaultValue="Hello World"
+                    label="Head Office"
                   />
                 </Grid>
-
                 <Grid item md={4} sm={4} xs={12}>
                   <TextField
                     required
                     fullWidth
-                    id="outlined-required-4"
-                    label="Required Field 4"
-                    defaultValue="Hello World"
+                    id="outlined-required-5"
+                    label="Address"
                   />
                 </Grid>
                 <Grid
@@ -210,14 +174,11 @@ const Vendors = () => {
           pageSize={10}
           label="Vendors"
           pageSizeOptions={[5, 10, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          onRowClick={handleClientClick}
-          defaultSelectedRow={VENDORS_DATA[0].id}
+          onRowClick={handleVendorClick}
           showAction={true}
         />
       </Grid>
-      <Grid md={8} sm={8} xs={12} mt={5} mb={2}>
+      {/* <Grid md={8} sm={8} xs={12} mt={5} mb={2}>
         <Grid container spacing={2}>
           <Grid item md={8}>
             <AppDataGrid
@@ -226,26 +187,22 @@ const Vendors = () => {
               pageSize={10}
               label="Task Allocated"
               pageSizeOptions={[5, 10, 20]}
-              checkboxSelection
-              disableRowSelectionOnClick
               showAction={true}
             />
           </Grid>
 
-          <Grid item md={4}>
+          <Grid item md={12}>
             <AppDataGrid
               rows={operationalCities}
               columns={operationalVendors}
               pageSize={10}
               label="Operational cities"
               pageSizeOptions={[5, 10, 20]}
-              checkboxSelection
-              disableRowSelectionOnClick
               showAction={true}
             />
           </Grid>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };

@@ -1,6 +1,11 @@
+import BadgeIcon from "@mui/icons-material/Badge";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import CorporateFareIcon from "@mui/icons-material/CorporateFare";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import MenuIcon from "@mui/icons-material/Menu";
+import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
+import StorefrontIcon from "@mui/icons-material/Storefront";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -14,23 +19,26 @@ import { styled, useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Analytics from "../features/Analytics";
 import Clients from "../features/Clients";
+import { EventDetails } from "../features/EventDetails";
 import Events from "../features/Events";
 import Internals from "../features/Internals";
 import Vendors from "../features/Vendors";
-import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
-import CorporateFareIcon from "@mui/icons-material/CorporateFare";
-import BadgeIcon from "@mui/icons-material/Badge";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import StorefrontIcon from "@mui/icons-material/Storefront";
+import { useMemo } from "react";
+import { useEffect } from "react";
+import { TeamView } from "../features/TeamView";
+import { ClientDetails } from "../features/CilientDetails";
+import { VendorView } from "../features/VendorView";
+
 const drawerWidth = 240;
 const pages = [
-  { label: "DashBoard", to: "/Vendors", icon: <SpaceDashboardIcon /> },
+  { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
   { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
   { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
-  { label: "Internals", to: "/Internals", icon: <BadgeIcon /> },
-  { label: "Vendors", to: "/Vendors", icon: <StorefrontIcon /> },
+  { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
+  { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
 ];
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -89,8 +97,21 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function AppDrawer() {
   const theme = useTheme();
+  const navigate = useNavigate();
+
   const [open, setOpen] = React.useState(true);
-  const [currentTab, setcurrentTab] = React.useState("DashBoard");
+
+  useEffect(() => {
+    if (location.pathname.length == 1) {
+      navigate("/analytics");
+    }
+  }, [navigate]);
+
+  const currentTab = useMemo(
+    () => location.pathname,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [location.pathname]
+  );
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,16 +121,8 @@ export default function AppDrawer() {
     setOpen(false);
   };
 
-  const getSectionAsPertab = () => {
-    const sections = {
-      DashBoard: <Analytics />,
-      Events: <Events />,
-      Clients: <Clients />,
-      Vendors: <Vendors />,
-      Internals: <Internals />,
-    };
-
-    return sections[currentTab] || <Analytics />;
+  const onItemClick = (e) => {
+    navigate(e.to);
   };
 
   return (
@@ -159,10 +172,10 @@ export default function AppDrawer() {
               key={e.title}
               disablePadding
               sx={{
-                backgroundColor: e.label === currentTab ? "#DC363B" : "",
-                color: e.label === currentTab ? "white" : "black",
+                backgroundColor: e.to === currentTab ? "#DC363B" : "",
+                color: e.to === currentTab ? "white" : "black",
               }}
-              onClick={() => setcurrentTab(e.label)}
+              onClick={() => onItemClick(e)}
             >
               <ListItemButton>
                 <ListItemText primary={e.label} />
@@ -174,7 +187,17 @@ export default function AppDrawer() {
       </Drawer>
       <Main open={open} sx={{ width: 100 }}>
         <DrawerHeader />
-        {getSectionAsPertab()}
+        <Routes>
+          <Route path="/events" element={<Events />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/vendors" element={<Vendors />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/internals" element={<Internals />} />
+          <Route path="/event-details" element={<EventDetails />} />
+          <Route path="/team-details" element={<TeamView />} />
+          <Route path="/client-details" element={<ClientDetails />} />
+          <Route path="/vendor-details" element={<VendorView />} />
+        </Routes>
       </Main>
     </Box>
   );

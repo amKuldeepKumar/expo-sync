@@ -28,6 +28,7 @@ const AppDataGrid = ({
   onDeleteRow = () => {},
   height = 350,
   defaultSelectedRow = "",
+  ...props
 }) => {
   const [enhancedColumns, setEnhancedColumns] = useState([]);
   const [selectedRow, setSelectedRow] = useState([]);
@@ -78,10 +79,12 @@ const AppDataGrid = ({
   };
 
   return (
-    <Box sx={{  height: height }}>
-      <Typography fontSize={15} fontWeight={700}>
-        {label}
-      </Typography>
+    <Box sx={{ height: height }}>
+      {label && (
+        <Typography fontSize={15} fontWeight={700}>
+          {label}
+        </Typography>
+      )}
       <DataGrid
         rows={rows}
         columns={enhancedColumns}
@@ -89,10 +92,11 @@ const AppDataGrid = ({
         pageSizeOptions={pageSizeOptions}
         checkboxSelection={showCheckBox}
         disableColumnSelector={true}
-        onSelectionModelChange={handleRowSelection} 
+        onSelectionModelChange={handleRowSelection}
         pagination
         rowSelectionModel={selectedRow1}
         onRowClick={handleRowClick}
+        {...props}
       />
     </Box>
   );

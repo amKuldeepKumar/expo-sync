@@ -1,34 +1,22 @@
 /* eslint-disable no-unused-vars */
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
   Button,
   Card,
   CardContent,
   Collapse,
   Grid,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
-import {
-  AssistantManagersColumns,
-  ExecutiveColumn,
-  ManagersColumns,
-  TeamLeadColumns,
-  TEAMS_DATA,
-} from "../constants/dataConstant";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import {
-  DatePicker,
-  DateTimePicker,
-  LocalizationProvider,
-} from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import DynmicFormGenerator from "../components/DynmicFormGenerator";
+import { ManagersColumns, TEAMS_DATA } from "../constants/dataConstant";
 
 const TeamManagement = () => {
+  const navigate = useNavigate();
+
   const [selectedManager, setSelectedManager] = useState(null);
   const [selectedAM, setSelectedAM] = useState(null);
   const [selectedTL, setSelectedTL] = useState(null);
@@ -52,11 +40,15 @@ const TeamManagement = () => {
     setTlData(allTls);
   };
 
-  const handleManagerClick = (manager) => {
-    console.log();
-
-    setSelectedManager(manager);
-    updateData(manager);
+  const handleManagerClick = (team) => {
+    navigate({
+      pathname: "/team-details",
+      search: createSearchParams({
+        teamId: team.id,
+      }).toString(),
+    });
+    setSelectedManager(team);
+    updateData(team);
   };
 
   const handleAMClick = (am) => {
@@ -101,30 +93,30 @@ const TeamManagement = () => {
   const assistantManagersRows = generateRows(amData, "manager");
   const teamLeadRows = generateRows(tlData, "am");
 
-  useEffect(() => {
-    handleManagerClick(teams[0]);
-  }, []);
+  // useEffect(() => {
+  //   handleManagerClick(teams[0]);
+  // }, []);
 
   const toggleCardVisibility = () => {
     setIsCardVisible(!isCardVisible);
   };
 
-  const createTeamColumns = [
-    { name: "name", label: "Full Name", type: "text" },
-    { name: "email", label: "Email", type: "text" },
-    { name: "mobile", label: "Mobile", type: "number" },
-    {
-      name: "designation",
-      label: "Designation",
-      type: "select",
-      options: [
-        { label: "Manager", value: "Manager" },
-        { label: "Assistant Manager", value: "AssistantManager" },
-        { label: "Team Lead", value: "TeamLead" },
-        { label: "Executive", value: "Executive" },
-      ],
-    },
-  ];
+  // const createTeamColumns = [
+  //   { name: "name", label: "Full Name", type: "text" },
+  //   { name: "email", label: "Email", type: "text" },
+  //   { name: "mobile", label: "Mobile", type: "number" },
+  //   {
+  //     name: "designation",
+  //     label: "Designation",
+  //     type: "select",
+  //     options: [
+  //       { label: "Manager", value: "Manager" },
+  //       { label: "Assistant Manager", value: "AssistantManager" },
+  //       { label: "Team Lead", value: "TeamLead" },
+  //       { label: "Executive", value: "Executive" },
+  //     ],
+  //   },
+  // ];
 
   const handelSave = (teamObj) => {
     console.log(teamObj);
@@ -141,10 +133,19 @@ const TeamManagement = () => {
 
             <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
               <CardContent>
-                <DynmicFormGenerator
+                {/* <DynmicFormGenerator
                   columns={createTeamColumns}
                   onSaveClick={handelSave}
-                />
+                /> */}
+                <TextField required label="Team Name" sx={{ mr: 2 }} />
+                <TextField required label="Description" />
+                <Grid
+                  item
+                  xs={12}
+                  sx={{ display: "flex", justifyContent: "end" }}
+                >
+                  <Button variant="contained">Create</Button>
+                </Grid>
               </CardContent>
             </Collapse>
           </Card>
@@ -152,10 +153,10 @@ const TeamManagement = () => {
         <Card>
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
+              <Grid item md={12}>
                 <AppDataGrid
                   rows={TEAMS_DATA}
-                  label="Managers"
+                  label="Teams"
                   columns={ManagersColumns}
                   onRowClick={handleManagerClick}
                   showAction={true}
@@ -163,7 +164,7 @@ const TeamManagement = () => {
                   height={280}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              {/* <Grid item xs={12} md={6}>
                 <AppDataGrid
                   rows={amData}
                   label="Assistant Managers"
@@ -191,7 +192,7 @@ const TeamManagement = () => {
                   onRowClick={() => {}}
                   height={280}
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
           </CardContent>
         </Card>
