@@ -21,6 +21,7 @@ export const VendorView = () => {
   const [searchParams] = useSearchParams();
 
   const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isCitiesVisible, setIsCitiesVisible] = useState(false);
 
   const vendorDetails = useMemo(() => {
     const id = searchParams.get("vendorId");
@@ -31,6 +32,10 @@ export const VendorView = () => {
 
   const toggleCardVisibility = () => {
     setIsCardVisible(!isCardVisible);
+  };
+
+  const toggleCitiesVisibility = () => {
+    setIsCitiesVisible(!isCitiesVisible);
   };
 
   const operationalVendors = [
@@ -225,15 +230,59 @@ export const VendorView = () => {
             showAction={true}
           />
         </Grid>
-        <Grid md={5} display="flex" justifyContent="center">
-          <AppDataGrid
-            rows={vendorDetails.operationalCities}
-            columns={operationalVendors}
-            pageSize={10}
-            label="Operational cities"
-            pageSizeOptions={[5, 10, 20]}
-            showAction={true}
-          />
+        <Grid
+          md={5}
+          display="flex"
+          justifyContent="flex-start"
+          flexDirection="column"
+          mt={2}
+        >
+          <Grid container>
+            <Grid item md={12}>
+              <Card sx={{ mb: 2 }}>
+                <Button onClick={toggleCitiesVisibility}>
+                  {isCitiesVisible ? (
+                    <ArrowDropUpIcon />
+                  ) : (
+                    <ArrowDropDownIcon />
+                  )}
+                  {!isCitiesVisible && "Add City"}
+                </Button>
+
+                <Collapse in={isCitiesVisible} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <Grid container spacing={2}>
+                      <Grid item md={4} sm={4} xs={12}>
+                        <TextField
+                          required
+                          id="outlined-required-5"
+                          label="City"
+                        />
+                      </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{ display: "flex", justifyContent: "end" }}
+                      >
+                        <Button variant="contained">Create</Button>
+                      </Grid>
+                    </Grid>
+                  </CardContent>
+                </Collapse>
+              </Card>
+            </Grid>
+            <Grid item md={12}>
+              <AppDataGrid
+                rows={vendorDetails.operationalCities}
+                columns={operationalVendors}
+                pageSize={10}
+                height={200}
+                label="Operational cities"
+                pageSizeOptions={[5, 10, 20]}
+                showAction={true}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Box>
