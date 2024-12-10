@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
+import DynamicFormGenerator from "../components/DynmicFormGenerator";
 import { ManagersColumns, TEAMS_DATA } from "../constants/dataConstant";
 
 const TeamManagement = () => {
@@ -101,26 +102,31 @@ const TeamManagement = () => {
     setIsCardVisible(!isCardVisible);
   };
 
-  // const createTeamColumns = [
-  //   { name: "name", label: "Full Name", type: "text" },
-  //   { name: "email", label: "Email", type: "text" },
-  //   { name: "mobile", label: "Mobile", type: "number" },
-  //   {
-  //     name: "designation",
-  //     label: "Designation",
-  //     type: "select",
-  //     options: [
-  //       { label: "Manager", value: "Manager" },
-  //       { label: "Assistant Manager", value: "AssistantManager" },
-  //       { label: "Team Lead", value: "TeamLead" },
-  //       { label: "Executive", value: "Executive" },
-  //     ],
-  //   },
-  // ];
+  const createTeamColumns = [
+    {
+      name: "role",
+      label: "Role",
+      type: "select",
+      options: ["Manager", "Team Lead", "Executive"],
+    },
+    {
+      name: "employees",
+      label: "Employees",
+      type: "select",
+      options: [
+        "member A",
+        "member B",
+        "member C",
+        "member D",
+        "member E",
+        "member F",
+        "member G",
+        "member H",
+        "member I",
+      ],
+    },
+  ];
 
-  const handelSave = (teamObj) => {
-    console.log(teamObj);
-  };
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} mt={0}>
@@ -133,12 +139,9 @@ const TeamManagement = () => {
 
             <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
               <CardContent>
-                {/* <DynmicFormGenerator
-                  columns={createTeamColumns}
-                  onSaveClick={handelSave}
-                /> */}
                 <TextField required label="Team Name" sx={{ mr: 2 }} />
-                <TextField required label="Description" />
+                <TextField required label="Description" sx={{ mb: 2 }} />
+                <DynamicFormGenerator columns={createTeamColumns} />
                 <Grid
                   item
                   xs={12}

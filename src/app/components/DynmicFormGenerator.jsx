@@ -1,27 +1,24 @@
 /* eslint-disable react/prop-types */
 
-import { useState } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  IconButton,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import {
   DatePicker,
   DateTimePicker,
   LocalizationProvider,
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useState } from "react";
 
-const DynamicFormGenerator = ({ columns = [], onSaveClick }) => {
+const DynamicFormGenerator = ({ columns = [] }) => {
   const [cards, setCards] = useState([{ id: 1, data: {} }]);
 
   const handleChange = (cardId, event) => {
@@ -37,12 +34,12 @@ const DynamicFormGenerator = ({ columns = [], onSaveClick }) => {
 
   const renderField = (col, card) => {
     const commonProps = {
-        fullWidth: true,
-        name: col.name,
-        label: col.label,
-        value: card.data[col.name] || "",
-        onChange: (event) => handleChange(card.id, event),
-        ...col,
+      fullWidth: true,
+      name: col.name,
+      label: col.label,
+      value: card.data[col.name] || "",
+      onChange: (event) => handleChange(card.id, event),
+      ...col,
     };
 
     switch (col.type) {
@@ -82,13 +79,12 @@ const DynamicFormGenerator = ({ columns = [], onSaveClick }) => {
 
       case "select":
         return (
-          <Select  {...commonProps}>
-            {col.options.map(({ value, label }) => (
-              <MenuItem key={value} value={value}>
-                {label}
-              </MenuItem>
-            ))}
-          </Select>
+          <Autocomplete
+            options={col.options}
+            renderInput={(params) => (
+              <TextField {...params} label={col.label} />
+            )}
+          />
         );
 
       default:
@@ -104,48 +100,35 @@ const DynamicFormGenerator = ({ columns = [], onSaveClick }) => {
     setCards((prev) => prev.filter((card) => card.id !== cardId));
   };
 
-  const handleSave = () => {
-
-   
-
-    onSaveClick(cards.map((card) => card.data));
-  };
-
   return (
     <Box>
-      <TextField sx={{mb:2 , ml:3}}  variant="standard" label="Team Name" required />
-      {cards.map((card, index) => (
-        <Card key={card.id} sx={{ marginBottom: 2 }}>
-          <CardContent>
-            <Grid container spacing={2} alignItems="center">
-              {columns.map((col, colIndex) => (
-                <Grid item key={colIndex} md={4} xs={12}>
-                  {renderField(col, card)}
-                </Grid>
-              ))}
-              <Grid item>
-                {index > 0 && (
-                  <IconButton color="error" onClick={() => removeCard(card.id)}>
-                    <DeleteIcon />
-                  </IconButton>
-                )}
+      <Grid container spacing={2}>
+        {cards.map((card, index) => (
+          <>
+            {columns.map((col, colIndex) => (
+              <Grid item key={colIndex} md={5} xs={5}>
+                {renderField(col, card)}
               </Grid>
+            ))}
+            <Grid item md={2} xs={2} display="flex" alignItems="center">
+              {index > 0 && (
+                <IconButton color="error" onClick={() => removeCard(card.id)}>
+                  <DeleteIcon />
+                </IconButton>
+              )}
+              {index == cards.length - 1 && (
+                <Button
+                  sx={{ mr: 2 }}
+                  color="primary"
+                  variant="outlined"
+                  onClick={addCard}
+                >
+                  <AddIcon />
+                </Button>
+              )}
             </Grid>
-          </CardContent>
-        </Card>
-      ))}
-      <Grid display="flex" justifyContent="flex-end" alignItems="center">
-        <Button
-          sx={{ mr: 2 }}
-          color="primary"
-          variant="outlined"
-          onClick={addCard}
-        >
-          <AddIcon />
-        </Button>
-        <Button variant="outlined" onClick={handleSave}>
-          Save
-        </Button>
+          </>
+        ))}
       </Grid>
     </Box>
   );

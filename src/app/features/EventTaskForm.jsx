@@ -65,10 +65,15 @@ export const EventTaskForm = ({
       options: ["Ongoing", "Not Started", "Completed", "Pending"],
     },
     {
-      label: "Assigned To",
+      label: formType === "event" ? "Assigned To" : "Add Vendor",
       options:
         formType === "event"
-          ? USER_ROWS.filter((u) => u.role !== "Executive").map((e) => e.name)
+          ? USER_ROWS.filter(
+              (u) =>
+                u.role !== "Executive" &&
+                u.role !== "Assistant Manager" &&
+                u.role !== "Team Lead"
+            ).map((e) => e.name)
           : VENDORS_DATA.map((v) => v.name),
     },
     {

@@ -7,18 +7,23 @@ import {
   Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
   CLIENT_DATA,
   EVENTS_DATA,
-  task_columns,
+  TASK_COLUMNS,
   TASK_DATA,
   USER_ROWS,
 } from "../constants/dataConstant";
 import { EventTaskForm } from "./EventTaskForm";
 
 export const EventDetails = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const [isCardVisible1, setIsCardVisible1] = useState(false);
@@ -28,6 +33,15 @@ export const EventDetails = () => {
     const data = EVENTS_DATA.find((e) => e.id == id);
     return data;
   }, [searchParams]);
+
+  const handleTaskClick = (row) => {
+    navigate({
+      pathname: "/task-details",
+      search: createSearchParams({
+        taskId: row.id,
+      }).toString(),
+    });
+  };
 
   return (
     <Box>
@@ -83,7 +97,9 @@ export const EventDetails = () => {
           alignItems="center"
           justifyContent="flex-start"
         >
-          <Button variant="contained" sx={{ ml: 2 }}>Assign Event</Button>
+          <Button variant="contained" sx={{ ml: 2 }}>
+            Assign Event
+          </Button>
         </Grid>
       </Grid>
 
@@ -101,7 +117,9 @@ export const EventDetails = () => {
           alignItems="center"
           justifyContent="flex-start"
         >
-          <Button variant="contained" sx={{ ml: 2 }}>Add Task</Button>
+          <Button variant="contained" sx={{ ml: 2 }}>
+            Add Task
+          </Button>
         </Grid>
       </Grid>
 
@@ -121,14 +139,13 @@ export const EventDetails = () => {
           alignItems="center"
           justifyContent="flex-start"
         >
-          <Button variant="contained" sx={{ ml: 2 }}>Add Client</Button>
+          <Button variant="contained" sx={{ ml: 2 }}>
+            Add Client
+          </Button>
         </Grid>
       </Grid>
 
-      <Typography fontSize={15} fontWeight={700} mt={3}>
-        Tasks
-      </Typography>
-      <Grid container>
+      <Grid container mt={2}>
         <Grid item md={12} sm={12}>
           <EventTaskForm
             isVisible={isCardVisible1}
@@ -140,11 +157,14 @@ export const EventDetails = () => {
 
         <Grid item md={12} sm={12} mt={2}>
           <AppDataGrid
-            rows={eventData?.task ?? []}
-            columns={task_columns}
+            showAction
+            rows={TASK_DATA}
+            columns={TASK_COLUMNS}
+            label="Tasks"
+            showSearching={true}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
-            showAction
+            onRowClick={handleTaskClick}
           />
         </Grid>
       </Grid>

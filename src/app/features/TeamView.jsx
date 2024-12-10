@@ -1,15 +1,13 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
+  Autocomplete,
   Box,
   Button,
   Card,
   CardContent,
   Collapse,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -83,7 +81,7 @@ export const TeamView = () => {
   const selectOptions = [
     {
       label: "Role",
-      options: ["Manager", "Assistant Manager", "Team Lead", "Executive"],
+      options: ["Manager", "Team Lead", "Executive"],
     },
     {
       label: "Employees",
@@ -123,19 +121,16 @@ export const TeamView = () => {
         <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
           <CardContent>
             <Grid container>
-              {selectOptions.map(({ label, options }, index) => (
-                <Grid key={index} item md={4} mr={2}>
-                  <InputLabel id="demo-simple-select-label">{label}</InputLabel>
-                  <Select fullWidth label={label} defaultValue={options[0]}>
-                    {options.map((option, i) => (
-                      <MenuItem key={i} value={i + 10}>
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </Select>
+              {selectOptions.map((o) => (
+                <Grid item key={o.label} md={4} mr={2}>
+                  <Autocomplete
+                    options={o.options}
+                    renderInput={(params) => (
+                      <TextField {...params} label={o.label} />
+                    )}
+                  />
                 </Grid>
               ))}
-
               <Grid md={3} display="flex" alignItems="center" mt={3}>
                 <Button variant="contained">Add</Button>
               </Grid>

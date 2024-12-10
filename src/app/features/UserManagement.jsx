@@ -51,12 +51,7 @@ export const UserManagement = () => {
               </Grid>
               <Grid item md={4} sm={4} xs={12}>
                 <Autocomplete
-                  options={[
-                    "Manager",
-                    "Assistant Manager",
-                    "Team Lead",
-                    "Executive",
-                  ]}
+                  options={["Manager", "Team Lead", "Executive"]}
                   renderInput={(params) => (
                     <TextField {...params} label="Role" />
                   )}

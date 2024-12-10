@@ -1,13 +1,12 @@
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import HelpCenterIcon from "@mui/icons-material/HelpCenter";
-import { Tooltip, Typography } from "@mui/material";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 export default function HelpDrawer() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [messages, setMessages] = useState([]);
@@ -83,14 +82,13 @@ export default function HelpDrawer() {
   return (
     <div>
       <Tooltip title="Help Center">
-        <Button
+        <IconButton
           sx={{ position: "absolute", top: "80px", right: "20px" }}
-          variant="text"
           color="primary"
           onClick={toggleDrawer(true)}
         >
           <HelpCenterIcon />
-        </Button>
+        </IconButton>
       </Tooltip>
       <SwipeableDrawer
         anchor="right"
@@ -119,7 +117,11 @@ export default function HelpDrawer() {
                     // textAlign={"center"}
                     fontSize={"14px"}
                   >
-                    <FiberManualRecordIcon fontSize="6px" sx={{mt:0.4,mr:0.6}} color="primary" />
+                    <FiberManualRecordIcon
+                      fontSize="6px"
+                      sx={{ mt: 0.4, mr: 0.6 }}
+                      color="primary"
+                    />
                     {message}
                   </Typography>
                 </ListItem>
