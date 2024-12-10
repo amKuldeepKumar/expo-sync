@@ -3,14 +3,12 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
+  Autocomplete,
   Button,
   Card,
   CardContent,
   Collapse,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import {
@@ -19,7 +17,11 @@ import {
   LocalizationProvider,
 } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TEAMS_DATA, VENDORS_DATA } from "../constants/dataConstant";
+import {
+  CLIENT_DATA,
+  USER_ROWS,
+  VENDORS_DATA,
+} from "../constants/dataConstant";
 
 // Reusable Form Component for Event/Task creation
 export const EventTaskForm = ({
@@ -66,8 +68,12 @@ export const EventTaskForm = ({
       label: "Assigned To",
       options:
         formType === "event"
-          ? TEAMS_DATA.map((e) => e.name)
+          ? USER_ROWS.filter((u) => u.role !== "Executive").map((e) => e.name)
           : VENDORS_DATA.map((v) => v.name),
+    },
+    {
+      label: "Add Client",
+      options: CLIENT_DATA.map((c) => c.company),
     },
   ];
 
@@ -90,21 +96,19 @@ export const EventTaskForm = ({
 
             {selectOptions.map(({ label, options }, index) => (
               <Grid key={index} item md={4} sm={4} xs={12}>
-                <InputLabel id="demo-simple-select-label">{label}</InputLabel>
-                <Select fullWidth label={label} defaultValue={options[0]}>
-                  {options.map((option, i) => (
-                    <MenuItem key={i} value={i + 10}>
-                      {option}
-                    </MenuItem>
-                  ))}
-                </Select>
+                <Autocomplete
+                  options={options}
+                  renderInput={(params) => (
+                    <TextField {...params} label={label} />
+                  )}
+                />
               </Grid>
             ))}
 
             {datePickers.map(({ label, Component }, index) => (
               <Grid key={index} item md={4} sm={4} xs={12}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <Component fullWidth label={label} />
+                  <Component label={label} sx={{ width: "100%" }} />
                 </LocalizationProvider>
               </Grid>
             ))}

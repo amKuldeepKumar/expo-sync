@@ -19,7 +19,6 @@ export const TeamLeadColumns = [
 ];
 
 export const ExecutiveColumn = [
-  { field: "id", headerName: "ID", width: 150 },
   { field: "name", headerName: "Name", width: 100 },
   { field: "teamLeadName", headerName: "Tl", width: 140 },
   { field: "amName", headerName: "Assistant Manager", width: 140 },

@@ -14,6 +14,7 @@ import {
 import { useState } from "react";
 import AppDataGrid from "../components/AppDataGrid";
 import {
+  EVENTS_DATA,
   TASK_COLUMNS,
   TASK_DATA,
   TEAMS_DATA,
@@ -79,6 +80,14 @@ export const Tasks = () => {
                   )}
                   renderInput={(params) => (
                     <TextField {...params} label="Team Member" />
+                  )}
+                />
+              </Grid>
+              <Grid item md={4} sm={4} xs={12}>
+                <Autocomplete
+                  options={EVENTS_DATA.map((e) => e.eventName)}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Assign To Event" />
                   )}
                 />
               </Grid>

@@ -36,7 +36,6 @@ export const VendorView = () => {
   };
 
   const taskColumnsVendors = [
-    { field: "id", headerName: "ID", width: 70, editable: false },
     {
       field: "taskName",
       headerName: "Task Name",
@@ -58,7 +57,6 @@ export const VendorView = () => {
   ];
 
   const employeesColumn = [
-    { field: "id", headerName: "ID", width: 70, editable: false },
     {
       field: "name",
       headerName: "Vendor Name",

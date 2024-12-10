@@ -30,7 +30,6 @@ const Manageers = () => {
   ];
 
   const ManagersColumns = [
-    { field: "id", headerName: "ID", width: 150 },
     { field: "manager", headerName: "Name", width: 130 },
     { field: "totalAm", headerName: "Total Am", width: 90 },
     { field: "totalTl", headerName: "Total Tl", width: 90 },

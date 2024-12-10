@@ -1,20 +1,20 @@
 import {
+  Autocomplete,
   Box,
   Button,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
+  TextField,
   Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
+  CLIENT_DATA,
   EVENTS_DATA,
   task_columns,
   TASK_DATA,
-  USER_ROWS
+  USER_ROWS,
 } from "../constants/dataConstant";
 import { EventTaskForm } from "./EventTaskForm";
 
@@ -67,18 +67,15 @@ export const EventDetails = () => {
 
       <Grid container>
         <Grid md={4}>
-          <InputLabel id="demo-simple-select-label">Assign Event To</InputLabel>
-          <Select
-            fullWidth
-            label="Assign Event To"
-            defaultValue={eventData.eventName}
-          >
-            {USER_ROWS.filter((e)=>e.role!=='Executive').map((e) => e.name).map((option, i) => (
-              <MenuItem key={i} value={i + 10}>
-                {option}
-              </MenuItem>
-            ))}
-          </Select>
+          <Autocomplete
+            defaultValue={USER_ROWS[0].name}
+            options={USER_ROWS.filter((e) => e.role !== "Executive").map(
+              (e) => e.name
+            )}
+            renderInput={(params) => (
+              <TextField {...params} label="Assign Event To" />
+            )}
+          />
         </Grid>
         <Grid
           md={8}
@@ -86,27 +83,17 @@ export const EventDetails = () => {
           alignItems="center"
           justifyContent="flex-start"
         >
-          <Button variant="contained" sx={{ mt: 3, ml: 2 }}>
-            Assign Event
-          </Button>
+          <Button variant="contained" sx={{ ml: 2 }}>Assign Event</Button>
         </Grid>
       </Grid>
 
-
-      <Grid container>
+      <Grid container my={2}>
         <Grid md={4}>
-          <InputLabel id="demo-simple-select-label">Add Task </InputLabel>
-          <Select
-            fullWidth
-            label="Add Task"
-            defaultValue={eventData.eventName}
-          >
-            {TASK_DATA.map((e) => e.taskName).map((option, i) => (
-              <MenuItem key={i} value={i + 10}>
-                {option}
-              </MenuItem>
-            ))}
-          </Select>
+          <Autocomplete
+            defaultValue={TASK_DATA[0].taskName}
+            options={TASK_DATA.map((e) => e.taskName)}
+            renderInput={(params) => <TextField {...params} label="Add Task" />}
+          />
         </Grid>
         <Grid
           md={8}
@@ -114,9 +101,27 @@ export const EventDetails = () => {
           alignItems="center"
           justifyContent="flex-start"
         >
-          <Button variant="contained" sx={{ mt: 3, ml: 2 }}>
-            Add Task
-          </Button>
+          <Button variant="contained" sx={{ ml: 2 }}>Add Task</Button>
+        </Grid>
+      </Grid>
+
+      <Grid container>
+        <Grid md={4}>
+          <Autocomplete
+            defaultValue={CLIENT_DATA[0].company}
+            options={CLIENT_DATA.map((c) => c.company)}
+            renderInput={(params) => (
+              <TextField {...params} label="Add Client" />
+            )}
+          />
+        </Grid>
+        <Grid
+          md={8}
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-start"
+        >
+          <Button variant="contained" sx={{ ml: 2 }}>Add Client</Button>
         </Grid>
       </Grid>
 

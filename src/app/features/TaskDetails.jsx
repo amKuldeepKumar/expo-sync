@@ -1,6 +1,7 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
+  Autocomplete,
   Box,
   Button,
   Card,
@@ -8,7 +9,7 @@ import {
   Collapse,
   Grid,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -16,7 +17,10 @@ import AppDataGrid from "../components/AppDataGrid";
 import {
   COMMENTS_COLUMNS,
   COMMENTS_ROWS,
+  EVENTS_DATA,
   TASK_DATA,
+  TEAMS_DATA,
+  VENDORS_DATA,
 } from "../constants/dataConstant";
 
 export const TaskDetails = () => {
@@ -62,6 +66,39 @@ export const TaskDetails = () => {
         </Grid>
       </Grid>
 
+      <Grid container spacing={2} mb={2}>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            options={TEAMS_DATA.map((t) => t.name)}
+            renderInput={(params) => <TextField {...params} label="Team" />}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            options={TEAMS_DATA[0].am[0].tl[0].executive.map((e) => e.name)}
+            renderInput={(params) => (
+              <TextField {...params} label="Assign Task To Team Member" />
+            )}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            options={EVENTS_DATA.map((e) => e.eventName)}
+            renderInput={(params) => (
+              <TextField {...params} label="Assign To Event" />
+            )}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            options={VENDORS_DATA.map((v) => v.name)}
+            renderInput={(params) => (
+              <TextField {...params} label="Assign Vendor" />
+            )}
+          />
+        </Grid>
+      </Grid>
+
       <Card sx={{ mb: 2 }}>
         <Button onClick={toggleCardVisibility}>
           {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}{" "}
@@ -81,7 +118,6 @@ export const TaskDetails = () => {
                   label="Comment"
                 />
               </Grid>
-
 
               <Grid
                 item
