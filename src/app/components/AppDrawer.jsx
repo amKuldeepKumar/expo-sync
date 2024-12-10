@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import BadgeIcon from "@mui/icons-material/Badge";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -40,11 +41,11 @@ import { TaskDetails } from "../features/TaskDetails";
 const drawerWidth = 240;
 const pages = [
   { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
-  { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
-  { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
   { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
-  { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
+  { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
+  { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
   { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
+  { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
 ];
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme }) => ({
@@ -111,11 +112,11 @@ export default function AppDrawer() {
     if (location.pathname.length == 1) {
       navigate("/analytics");
     }
-  }, [navigate]);
+  }, [location.pathname]);
 
   const currentTab = useMemo(
     () => location.pathname,
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     [location.pathname]
   );
 
@@ -144,7 +145,7 @@ export default function AppDrawer() {
   const logoutUser = () => {
     localStorage.removeItem("User");
     navigate("/auth");
-    window.location.reload()
+    window.location.reload();
   };
 
   return (
@@ -161,14 +162,15 @@ export default function AppDrawer() {
             <MenuIcon />
           </IconButton>
           {!open ? (
-            <Typography width={140} component="div">
-              Traingular Dots
-            </Typography>
+           
+              <Typography sx={{cursor:'pointer'}} onClick={() => navigate("/analytics")} width={140} component="div">
+                Traingular Dots
+              </Typography>
           ) : (
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={handleDrawerOpen}
+              onClick={() => navigate("/analytics")}
               edge="start"
             >
               <HomeIcon />
@@ -268,7 +270,7 @@ export default function AppDrawer() {
         </List>
       </Drawer>
       <Main open={open} sx={{ width: 100 }}>
-        <HelpDrawer/>
+        <HelpDrawer />
         <DrawerHeader />
         <Routes>
           <Route path="/events" element={<Events />} />

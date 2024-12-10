@@ -7,7 +7,7 @@ const Auth = () => {
   return (
     <Grid container spacing={0}>
       <Grid item md={8}>
-        <Box
+        <Box 
           className="image-custom"
           color="primary"
           sx={{

@@ -153,6 +153,7 @@ const Vendors = () => {
           columns={vendorsColumn}
           pageSize={10}
           label="Vendors"
+          showSearching={true}
           pageSizeOptions={[5, 10, 20]}
           onRowClick={handleVendorClick}
           showAction={true}

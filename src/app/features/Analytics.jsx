@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Container, Grid, Typography } from "@mui/material";
 import AppDataGrid from "../components/AppDataGrid";
 
@@ -133,11 +134,9 @@ const Analytics = () => {
   ];
 
   const handleEditRow = (row) => {
-    console.log("Edit row:", row);
   };
   
   const handleDeleteRow = (row) => {
-    console.log("Delete row:", row);
   };
 
   return (

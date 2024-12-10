@@ -160,6 +160,7 @@ const TeamManagement = () => {
                   columns={ManagersColumns}
                   onRowClick={handleManagerClick}
                   showAction={true}
+                  showSearching={true}
                   defaultSelectedRow={teams[0].id}
                   height={280}
                 />

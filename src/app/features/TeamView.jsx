@@ -137,7 +137,7 @@ export const TeamView = () => {
               ))}
 
               <Grid md={3} display="flex" alignItems="center" mt={3}>
-                <Button>Add +</Button>
+                <Button variant="contained">Add</Button>
               </Grid>
             </Grid>
           </CardContent>

@@ -15,7 +15,6 @@ function App() {
 
   };
 
-  console.log(isLoggedIn());
   
   return <Box>{isLoggedIn() ? <AppDrawer /> : (
   <Routes>

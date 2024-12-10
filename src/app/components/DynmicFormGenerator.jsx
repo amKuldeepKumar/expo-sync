@@ -105,7 +105,6 @@ const DynamicFormGenerator = ({ columns = [], onSaveClick }) => {
   };
 
   const handleSave = () => {
-    console.log(cards);
 
    
 

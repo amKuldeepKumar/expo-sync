@@ -25,10 +25,6 @@ export default function HelpDrawer() {
   };
 
   useEffect(() => {
-    console.log("Current URL:", location.pathname); // Current path
-    console.log("Search Params:", location.search); // Query string (e.g., ?id=123)
-    console.log("Hash:", location.hash);
-
     switch (location.pathname) {
       case "/vendors":
         setMessages([
@@ -118,12 +114,12 @@ export default function HelpDrawer() {
                   <Typography
                     display={"flex"}
                     justifyContent="center"
-                    alignItems={"center"}
+                    // alignItems={"center"}
                     fontWeight={"550"}
-                    textAlign={"center"}
+                    // textAlign={"center"}
                     fontSize={"14px"}
                   >
-                    <FiberManualRecordIcon fontSize="6px" color="primary" />
+                    <FiberManualRecordIcon fontSize="6px" sx={{mt:0.4,mr:0.6}} color="primary" />
                     {message}
                   </Typography>
                 </ListItem>

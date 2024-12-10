@@ -93,6 +93,7 @@ const Clients = () => {
           columns={Client_columns}
           pageSize={10}
           label="Clients"
+          showSearching={true}
           pageSizeOptions={[5, 10, 20]}
           onRowClick={handleClientClick}
           showAction={true}

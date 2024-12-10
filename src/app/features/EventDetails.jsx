@@ -13,7 +13,8 @@ import AppDataGrid from "../components/AppDataGrid";
 import {
   EVENTS_DATA,
   task_columns,
-  TEAMS_DATA,
+  TASK_DATA,
+  USER_ROWS
 } from "../constants/dataConstant";
 import { EventTaskForm } from "./EventTaskForm";
 
@@ -72,7 +73,7 @@ export const EventDetails = () => {
             label="Assign Event To"
             defaultValue={eventData.eventName}
           >
-            {TEAMS_DATA.map((e) => e.name).map((option, i) => (
+            {USER_ROWS.filter((e)=>e.role!=='Executive').map((e) => e.name).map((option, i) => (
               <MenuItem key={i} value={i + 10}>
                 {option}
               </MenuItem>
@@ -87,6 +88,34 @@ export const EventDetails = () => {
         >
           <Button variant="contained" sx={{ mt: 3, ml: 2 }}>
             Assign Event
+          </Button>
+        </Grid>
+      </Grid>
+
+
+      <Grid container>
+        <Grid md={4}>
+          <InputLabel id="demo-simple-select-label">Add Task </InputLabel>
+          <Select
+            fullWidth
+            label="Add Task"
+            defaultValue={eventData.eventName}
+          >
+            {TASK_DATA.map((e) => e.taskName).map((option, i) => (
+              <MenuItem key={i} value={i + 10}>
+                {option}
+              </MenuItem>
+            ))}
+          </Select>
+        </Grid>
+        <Grid
+          md={8}
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-start"
+        >
+          <Button variant="contained" sx={{ mt: 3, ml: 2 }}>
+            Add Task
           </Button>
         </Grid>
       </Grid>

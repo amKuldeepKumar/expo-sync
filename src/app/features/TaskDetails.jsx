@@ -1,24 +1,22 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    Collapse,
-    Grid,
-    TextField,
-    Typography
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Collapse,
+  Grid,
+  TextField,
+  Typography
 } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
-    COMMENTS_COLUMNS,
-    COMMENTS_ROWS,
-    TASK_DATA,
+  COMMENTS_COLUMNS,
+  COMMENTS_ROWS,
+  TASK_DATA,
 } from "../constants/dataConstant";
 
 export const TaskDetails = () => {
@@ -84,11 +82,7 @@ export const TaskDetails = () => {
                 />
               </Grid>
 
-              <Grid item md={4} sm={4} xs={12}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker label="Due Date" sx={{ width: "100%" }} />
-                </LocalizationProvider>
-              </Grid>
+
               <Grid
                 item
                 xs={12}

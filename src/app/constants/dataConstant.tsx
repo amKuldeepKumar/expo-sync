@@ -1,5 +1,4 @@
 export const ManagersColumns = [
-  { field: "id", headerName: "ID", width: 150 },
   { field: "name", headerName: "Team Name", width: 130 },
   { field: "manager", headerName: "Manager", width: 130 },
 

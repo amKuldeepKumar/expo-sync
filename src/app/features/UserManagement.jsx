@@ -80,6 +80,7 @@ export const UserManagement = () => {
         rows={USER_ROWS}
         pageSize={20}
         label="Users"
+        showSearching={true}
         height={650}
         pageSizeOptions={[5, 10, 20]}
       />

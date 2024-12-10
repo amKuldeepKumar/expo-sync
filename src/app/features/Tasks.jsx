@@ -44,7 +44,7 @@ export const Tasks = () => {
   return (
     <Box>
       <Typography fontWeight={700} fontSize={25} color="primary" mb={2}>
-        Clients
+        Tasks
       </Typography>
       <Card sx={{ mb: 2 }}>
         <Button onClick={toggleCardVisibility}>
@@ -126,6 +126,7 @@ export const Tasks = () => {
         rows={TASK_DATA}
         columns={TASK_COLUMNS}
         label="Tasks"
+        showSearching={true}
         pageSize={10}
         pageSizeOptions={[5, 10, 20]}
         onRowClick={handleTaskClick}

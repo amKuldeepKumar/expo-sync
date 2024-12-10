@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppBar from "@mui/material/AppBar";
@@ -54,7 +55,6 @@ function NavBar() {
 
   const onclickLink = (page) => {
     navigate(page.to);
-    console.log(page);
   };
 
   return (
