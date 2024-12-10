@@ -239,6 +239,7 @@ export default function AppDrawer() {
             height="60"
             src="./Logo_Final_PNG_Black-Text.png"
             alt="Paella dish"
+            style={{cursor:'pointer'}} onClick={() => navigate("/analytics")}
           ></img>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
