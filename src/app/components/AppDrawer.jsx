@@ -1,3 +1,4 @@
+import AssignmentIcon from "@mui/icons-material/Assignment";
 import BadgeIcon from "@mui/icons-material/Badge";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -33,10 +34,13 @@ import { TeamView } from "../features/TeamView";
 import Vendors from "../features/Vendors";
 import { VendorView } from "../features/VendorView";
 import HelpDrawer from "./HelpDrawer";
+import { Tasks } from "../features/Tasks";
+import { TaskDetails } from "../features/TaskDetails";
 
 const drawerWidth = 240;
 const pages = [
   { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
+  { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
   { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
   { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
   { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
@@ -254,7 +258,7 @@ export default function AppDrawer() {
         </List>
       </Drawer>
       <Main open={open} sx={{ width: 100 }}>
-        <HelpDrawer/>
+        <HelpDrawer />
         <DrawerHeader />
         <Routes>
           <Route path="/events" element={<Events />} />
@@ -262,10 +266,12 @@ export default function AppDrawer() {
           <Route path="/vendors" element={<Vendors />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/internals" element={<Internals />} />
+          <Route path="/tasks" element={<Tasks />} />
           <Route path="/event-details" element={<EventDetails />} />
           <Route path="/team-details" element={<TeamView />} />
           <Route path="/client-details" element={<ClientDetails />} />
           <Route path="/vendor-details" element={<VendorView />} />
+          <Route path="/task-details" element={<TaskDetails />} />
         </Routes>
       </Main>
     </Box>

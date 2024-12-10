@@ -45,7 +45,6 @@ const Vendors = () => {
   };
 
   const vendorsColumn = [
-    { field: "id", headerName: "ID", width: 70, editable: false },
     {
       field: "name",
       headerName: "Vendor Name",
@@ -58,12 +57,6 @@ const Vendors = () => {
       width: 250,
       editable: false,
     },
-    // {
-    //   field: "companyName",
-    //   headerName: "Company Name",
-    //   width: 130,
-    //   editable: false,
-    // },
     {
       field: "telephone",
       headerName: "Telephone",
@@ -76,19 +69,6 @@ const Vendors = () => {
       width: 200,
       editable: false,
     },
-    // {
-    //   field: "categories",
-    //   headerName: "Categories",
-    //   width: 130,
-    //   editable: false,
-    // },
-
-    // {
-    //   field: "workType",
-    //   headerName: "Work Type",
-    //   width: 150,
-    //   editable: false,
-    // },
     {
       field: "headOffice",
       headerName: "Head Office",

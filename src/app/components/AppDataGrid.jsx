@@ -124,7 +124,6 @@ const AppDataGrid = ({
         </Typography>
       )}
       {showSearching && (
-        
         <Box
           sx={{
             display: "flex",
@@ -161,6 +160,7 @@ const AppDataGrid = ({
       )}
       <DataGrid
         rows={filteredRows}
+        disableColumnFilter
         columns={enhancedColumns}
         pageSize={paginationModel.pageSize}
         pageSizeOptions={pageSizeOptions}
@@ -172,7 +172,6 @@ const AppDataGrid = ({
         onRowClick={handleRowClick}
         paginationModel={paginationModel}
         onPaginationModelChange={setPaginationModel}
-        disableColumnFilter={true}
         {...props}
       />
     </Box>

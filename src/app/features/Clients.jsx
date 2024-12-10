@@ -13,6 +13,7 @@ import { useState } from "react";
 import AppDataGrid from "../components/AppDataGrid";
 import { Client_columns, CLIENT_DATA } from "../constants/dataConstant";
 import { createSearchParams, useNavigate } from "react-router-dom";
+
 const Clients = () => {
   const navigate = useNavigate();
   const [isCardVisible, setIsCardVisible] = useState(false);
@@ -69,7 +70,7 @@ const Clients = () => {
                     required
                     fullWidth
                     id="outlined-required-3"
-                    label="Industry/Domain"
+                    label="Industry"
                   />
                 </Grid>
 

@@ -1,5 +1,6 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import EditIcon from "@mui/icons-material/Edit";
 import {
   Autocomplete,
   Box,
@@ -8,20 +9,20 @@ import {
   CardContent,
   Collapse,
   Grid,
+  IconButton,
   TextField,
   Typography,
 } from "@mui/material";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import { VENDORS_DATA } from "../constants/dataConstant";
-import { useState } from "react";
 
 export const VendorView = () => {
   const [searchParams] = useSearchParams();
 
   const [isCardVisible, setIsCardVisible] = useState(false);
-  const [isCitiesVisible, setIsCitiesVisible] = useState(false);
+  const [isEditCities, setIsEditCities] = useState(false);
 
   const vendorDetails = useMemo(() => {
     const id = searchParams.get("vendorId");
@@ -33,20 +34,6 @@ export const VendorView = () => {
   const toggleCardVisibility = () => {
     setIsCardVisible(!isCardVisible);
   };
-
-  const toggleCitiesVisibility = () => {
-    setIsCitiesVisible(!isCitiesVisible);
-  };
-
-  const operationalVendors = [
-    { field: "id", headerName: "ID", width: 90, editable: false },
-    {
-      field: "name",
-      headerName: "City Name",
-      width: 230,
-      editable: false,
-    },
-  ];
 
   const taskColumnsVendors = [
     { field: "id", headerName: "ID", width: 70, editable: false },
@@ -110,6 +97,31 @@ export const VendorView = () => {
     },
   ];
 
+  const operationalCities = [
+    "Mumbai",
+    "Delhi",
+    "Bangalore",
+    "Hyderabad",
+    "Chennai",
+    "Kolkata",
+    "Pune",
+    "Ahmedabad",
+    "Jaipur",
+    "Lucknow",
+    "Surat",
+    "Chandigarh",
+    "Gurgaon",
+    "Noida",
+    "Indore",
+    "Nashik",
+    "Nagpur",
+    "Baramulla",
+    "Kulgam",
+    "PehalGam",
+    "Ghaziabad",
+    "Faridabad",
+  ];
+
   return (
     <Box>
       <Typography variant="h2" mb={3}>
@@ -135,6 +147,48 @@ export const VendorView = () => {
         <Grid md={3}>
           <Typography fontWeight="bold">Vendor Head Office</Typography>
           <Typography>{vendorDetails.headOffice}</Typography>
+        </Grid>
+        <Grid md={4}>
+          {isEditCities ? (
+            <Box display="flex" alignItems="center">
+              <Autocomplete
+                multiple
+                options={operationalCities}
+                getOptionLabel={(option) => option}
+                defaultValue={vendorDetails.operationalCities.map(
+                  (c) => c.name
+                )}
+                renderInput={(params) => (
+                  <TextField {...params} label="Operational Cities" />
+                )}
+              />
+              <Button
+                color="secondary"
+                sx={{ mx: 1 }}
+                onClick={() => setIsEditCities(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                onClick={() => setIsEditCities(false)}
+              >
+                Save
+              </Button>
+            </Box>
+          ) : (
+            <>
+              <Typography fontWeight="bold">
+                Vendor Operational Cities{" "}
+                <IconButton onClick={() => setIsEditCities(true)}>
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </Typography>
+              <Typography>
+                {vendorDetails.operationalCities.map((c) => c.name).join(", ")}
+              </Typography>
+            </>
+          )}
         </Grid>
       </Grid>
 
@@ -220,7 +274,7 @@ export const VendorView = () => {
             showAction={true}
           />
         </Grid>
-        <Grid md={6}>
+        <Grid md={12}>
           <AppDataGrid
             rows={vendorDetails.tasks}
             columns={taskColumnsVendors}
@@ -229,60 +283,6 @@ export const VendorView = () => {
             pageSizeOptions={[5, 10, 20]}
             showAction={true}
           />
-        </Grid>
-        <Grid
-          md={5}
-          display="flex"
-          justifyContent="flex-start"
-          flexDirection="column"
-          mt={2}
-        >
-          <Grid container>
-            <Grid item md={12}>
-              <Card sx={{ mb: 2 }}>
-                <Button onClick={toggleCitiesVisibility}>
-                  {isCitiesVisible ? (
-                    <ArrowDropUpIcon />
-                  ) : (
-                    <ArrowDropDownIcon />
-                  )}
-                  {!isCitiesVisible && "Add City"}
-                </Button>
-
-                <Collapse in={isCitiesVisible} timeout="auto" unmountOnExit>
-                  <CardContent>
-                    <Grid container spacing={2}>
-                      <Grid item md={4} sm={4} xs={12}>
-                        <TextField
-                          required
-                          id="outlined-required-5"
-                          label="City"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={12}
-                        sx={{ display: "flex", justifyContent: "end" }}
-                      >
-                        <Button variant="contained">Create</Button>
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </Collapse>
-              </Card>
-            </Grid>
-            <Grid item md={12}>
-              <AppDataGrid
-                rows={vendorDetails.operationalCities}
-                columns={operationalVendors}
-                pageSize={10}
-                height={200}
-                label="Operational cities"
-                pageSizeOptions={[5, 10, 20]}
-                showAction={true}
-              />
-            </Grid>
-          </Grid>
         </Grid>
       </Grid>
     </Box>

@@ -9,13 +9,11 @@ export const ManagersColumns = [
 ];
 
 export const AssistantManagersColumns = [
-  { field: "id", headerName: "ID", width: 150 },
   { field: "name", headerName: "Name", width: 250 },
   { field: "managerName", headerName: "Manager", width: 170 },
 ];
 
 export const TeamLeadColumns = [
-  { field: "id", headerName: "ID", width: 150 },
   { field: "name", headerName: "Name", width: 160 },
   { field: "amName", headerName: "Assistant Manager", width: 180 },
   { field: "managerName", headerName: "Manager", width: 170 },
@@ -30,10 +28,9 @@ export const ExecutiveColumn = [
 ];
 
 export const TeamMembersColumns = [
-  { field: "id", headerName: "ID", width: 200 },
   { field: "name", headerName: "Name", width: 200 },
   { field: "role", headerName: "Role", width: 200 },
-].map((c) => ({ ...c, editable: c.field != "id" }));
+].map((c) => ({ ...c, editable: true }));
 
 export const TEAMS_DATA = [
   {
@@ -325,7 +322,6 @@ export const TEAMS_DATA = [
 ];
 
 export const Client_columns = [
-  { field: "id", headerName: "ID", width: 70, editable: false },
   {
     field: "company",
     headerName: "Company Name",
@@ -340,20 +336,13 @@ export const Client_columns = [
   },
   {
     field: "industry",
-    headerName: "Industry/Domain",
+    headerName: "Industry",
     width: 330,
     editable: false,
   },
 ];
 
 export const client_employeesColumns = [
-  { field: "id", headerName: "ID", width: 70, editable: false },
-  {
-    field: "company",
-    headerName: "Company Name",
-    width: 180,
-    editable: false,
-  },
   {
     field: "name",
     headerName: "Employee Name",
@@ -950,6 +939,8 @@ export const VENDORS_DATA = [
       { id: "0893u6", name: "Noida" },
       { id: "0893u7", name: "Ghaziabad" },
       { id: "0893u8", name: "Faridabad" },
+      { id: "0893u9", name: "Kolkata" },
+      { id: "0892u9", name: "Ahmedabad" },
     ],
     vendorEmployees: [
       {
@@ -1000,6 +991,7 @@ export const VENDORS_DATA = [
       { id: "0893u9", name: "Pune" },
       { id: "0893u10", name: "Nashik" },
       { id: "0893u11", name: "Nagpur" },
+      { id: "0088898", name: "Chennai" },
     ],
     vendorEmployees: [
       {
@@ -1021,5 +1013,135 @@ export const VENDORS_DATA = [
         workType: "Garments Manufacturing",
       },
     ],
+  },
+];
+
+export const TASK_COLUMNS = [
+  {
+    field: "taskName",
+    headerName: "Task Name",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "assignedTo",
+    headerName: "Assigned To",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "dueDate",
+    headerName: "Due Date",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "vendor",
+    headerName: "Vendor",
+    width: 180,
+    editable: true,
+  },
+];
+
+export const TASK_DATA = [
+  {
+    id: 101,
+    taskName: "Food Catering",
+    assignedTo: "Soravh Mishra",
+    dueDate: "05/15/24",
+    status: "In Progress",
+    vendor: "Ravi Sharma",
+  },
+  {
+    id: 102,
+    taskName: "AV Setup",
+    assignedTo: "John Smith",
+    dueDate: "05/16/24",
+    status: "Pending",
+    vendor: "Suresh Patil",
+  },
+  {
+    id: 103,
+    taskName: "Seating Arrangement",
+    assignedTo: "Alice Brown",
+    dueDate: "05/17/24",
+    status: "In Progress",
+    vendor: "Ajay Kumar",
+  },
+  {
+    id: 104,
+    taskName: "Guest Invitations",
+    assignedTo: "Bob White",
+    dueDate: "05/18/24",
+    status: "Not Started",
+    vendor: "Ramesh Verma",
+  },
+  {
+    id: 105,
+    taskName: "Event Documentation",
+    assignedTo: "Charlie Black",
+    dueDate: "05/19/24",
+    status: "Pending",
+    vendor: "Pooja Singh",
+  },
+];
+
+export const COMMENTS_COLUMNS = [
+  {
+    field: "details",
+    headerName: "Details",
+    width: 450,
+    editable: true,
+  },
+  {
+    field: "date",
+    headerName: "Date",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "postedBy",
+    headerName: "Posted By",
+    width: 180,
+    editable: true,
+  },
+];
+
+export const COMMENTS_ROWS = [
+  {
+    id: 1,
+    details: "The new feature works great!",
+    date: "2024-12-10",
+    postedBy: "Alice",
+  },
+  {
+    id: 2,
+    details: "Found a small bug in the UI.",
+    date: "2024-12-09",
+    postedBy: "Bob",
+  },
+  {
+    id: 3,
+    details: "Could we add more options to the dropdown?",
+    date: "2024-12-08",
+    postedBy: "Charlie",
+  },
+  {
+    id: 4,
+    details: "Documentation is clear and helpful.",
+    date: "2024-12-07",
+    postedBy: "Diana",
+  },
+  {
+    id: 5,
+    details: "Performance has improved significantly.",
+    date: "2024-12-06",
+    postedBy: "Eve",
   },
 ];
