@@ -163,7 +163,7 @@ export const ClientDetails = () => {
 
       <Card>
         <Button onClick={toggleCardVisibility}>
-          {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}{" "}
+          {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           {!isCardVisible && "Add Employee"}
         </Button>
 
