@@ -21,7 +21,7 @@ const AuthForm = () => {
   const signinButton = () => {
     if (data.email === "admin@gmail.com" && data.password === "password") {
       localStorage.setItem("User", JSON.stringify(data));
-      navigate("/events");
+      navigate("/");
       window.location.reload();
     } else {
       alert("password and email incorrect");
