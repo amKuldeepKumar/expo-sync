@@ -8,7 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import StorefrontIcon from "@mui/icons-material/Storefront";
-import { Avatar, Menu, MenuItem } from "@mui/material";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -141,6 +141,12 @@ export default function AppDrawer() {
     setAnchorElUser(null);
   };
 
+  const logoutUser = () => {
+    localStorage.removeItem("User");
+    navigate("/auth");
+    window.location.reload()
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" open={open}>
@@ -199,9 +205,13 @@ export default function AppDrawer() {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography sx={{ textAlign: "center" }}>
+                    <Button
+                      variant="text"
+                      onClick={() => setting === "Logout" && logoutUser()}
+                      sx={{ textAlign: "center" }}
+                    >
                       {setting}
-                    </Typography>
+                    </Button>
                   </MenuItem>
                 ))}
               </Menu>
@@ -258,7 +268,7 @@ export default function AppDrawer() {
         </List>
       </Drawer>
       <Main open={open} sx={{ width: 100 }}>
-        <HelpDrawer />
+        <HelpDrawer/>
         <DrawerHeader />
         <Routes>
           <Route path="/events" element={<Events />} />
