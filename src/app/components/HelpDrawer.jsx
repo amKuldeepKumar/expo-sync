@@ -80,7 +80,7 @@ export default function HelpDrawer() {
   }, [location]);
 
   return (
-    <div>
+    <Box sx={{ position: "relative" }}>
       <Tooltip title="Help Center">
         <IconButton
           sx={{ position: "absolute", top: "80px", right: "20px" }}
@@ -130,6 +130,6 @@ export default function HelpDrawer() {
           </Box>
         </Box>
       </SwipeableDrawer>
-    </div>
+    </Box>
   );
 }
