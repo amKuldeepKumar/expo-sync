@@ -36,6 +36,7 @@ const AuthForm = () => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        
       >
         <Grid container spacing={2}>
           <Grid item md={12} sm={12} xs={12}>
