@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
   InputAdornment,
+  Link,
   TextField,
   Typography,
 } from "@mui/material";
@@ -119,7 +120,9 @@ const AppDataGrid = ({
           {label}
 
           {moreLink && (
-            <Button onClick={() => naviGate(moreLink)}>View More</Button>
+            <Link sx={{ cursor: "pointer" }} onClick={() => naviGate(moreLink)}>
+              View More
+            </Link>
           )}
         </Typography>
       )}

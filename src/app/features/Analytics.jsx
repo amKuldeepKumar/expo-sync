@@ -56,7 +56,7 @@ const Analytics = () => {
       width: 110,
     },
     { field: "location", headerName: "Location", width: 150 },
-    { field: "organizer", headerName: "Organizer", width:150 },
+    { field: "organizer", headerName: "Client", width: 150 },
   ];
 
   const rows = [
@@ -133,11 +133,9 @@ const Analytics = () => {
     // Add more rows as needed...
   ];
 
-  const handleEditRow = (row) => {
-  };
-  
-  const handleDeleteRow = (row) => {
-  };
+  const handleEditRow = (row) => {};
+
+  const handleDeleteRow = (row) => {};
 
   return (
     <Container maxWidth="xl" sx={{ mt: 4 }}>
@@ -148,24 +146,23 @@ const Analytics = () => {
         <Grid item xs={12} md={6} mt={3}>
           <AppDataGrid
             rows={rows}
-            label="Upcoming events"
+            label="Upcoming Events"
             columns={columns}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
             showAction={true}
             onEditRow={handleEditRow}
-            moreLink={'/events'}
+            moreLink={"/events"}
             onDeleteRow={handleDeleteRow}
           />
         </Grid>
         <Grid item xs={12} md={6} mt={3}>
           <AppDataGrid
             rows={rows1}
-            label="Pending tasks"
+            label="Pending Tasks"
             columns={columns1}
             pageSize={10}
-            moreLink={'/tasks'}
-
+            moreLink={"/tasks"}
             pageSizeOptions={[5, 10, 20]}
           />
         </Grid>
@@ -175,8 +172,7 @@ const Analytics = () => {
             rows={rows2}
             columns={columns2}
             pageSize={10}
-            moreLink={'/clients'}
-
+            moreLink={"/clients"}
             pageSizeOptions={[5, 10, 20]}
           />
         </Grid>
