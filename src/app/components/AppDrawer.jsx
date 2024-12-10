@@ -3,9 +3,11 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import { Avatar, Menu, MenuItem } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -19,18 +21,18 @@ import { styled, useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useEffect, useMemo } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Analytics from "../features/Analytics";
+import { ClientDetails } from "../features/CilientDetails";
 import Clients from "../features/Clients";
 import { EventDetails } from "../features/EventDetails";
 import Events from "../features/Events";
 import Internals from "../features/Internals";
-import Vendors from "../features/Vendors";
-import { useMemo } from "react";
-import { useEffect } from "react";
 import { TeamView } from "../features/TeamView";
-import { ClientDetails } from "../features/CilientDetails";
+import Vendors from "../features/Vendors";
 import { VendorView } from "../features/VendorView";
+import HelpDrawer from "./HelpDrawer";
 
 const drawerWidth = 240;
 const pages = [
@@ -40,7 +42,6 @@ const pages = [
   { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
   { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
 ];
-
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme }) => ({
     flexGrow: 1,
@@ -97,6 +98,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function AppDrawer() {
   const theme = useTheme();
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 
   const [open, setOpen] = React.useState(true);
@@ -125,6 +127,16 @@ export default function AppDrawer() {
     navigate(e.to);
   };
 
+  const settings = ["Profile", "Logout"];
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar position="fixed" open={open}>
@@ -138,9 +150,59 @@ export default function AppDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            ExpoSync
-          </Typography>
+          {!open ? (
+            <Typography width={140} component="div">
+              Traingular Dots
+            </Typography>
+          ) : (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+            >
+              <HomeIcon />
+            </IconButton>
+          )}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Admin Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography sx={{ textAlign: "center" }}>
+                      {setting}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -157,6 +219,11 @@ export default function AppDrawer() {
         open={open}
       >
         <DrawerHeader>
+          <img
+            height="60"
+            src="./Logo_Final_PNG_Black-Text.png"
+            alt="Paella dish"
+          ></img>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
@@ -165,6 +232,7 @@ export default function AppDrawer() {
             )}
           </IconButton>
         </DrawerHeader>
+
         <Divider />
         <List>
           {pages.map((e) => (
@@ -186,6 +254,7 @@ export default function AppDrawer() {
         </List>
       </Drawer>
       <Main open={open} sx={{ width: 100 }}>
+        <HelpDrawer/>
         <DrawerHeader />
         <Routes>
           <Route path="/events" element={<Events />} />

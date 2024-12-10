@@ -54,6 +54,7 @@ const Events = () => {
           columns={events_columns}
           label="Events"
           pageSize={10}
+          showSearching={true}
           pageSizeOptions={[5, 10, 20]}
           showAction
           disableRowSelectionOnClick

@@ -46,14 +46,16 @@ const Analytics = () => {
       field: "eventName",
       headerName: "Event Name",
       editable: true,
+      width: 170,
     },
     {
       field: "eventDate",
       headerName: "Event Date",
       type: "string",
+      width: 110,
     },
-    { field: "location", headerName: "Location", width: 70 },
-    { field: "organizer", headerName: "Organizer", width: 70 },
+    { field: "location", headerName: "Location", width: 150 },
+    { field: "organizer", headerName: "Organizer", width:150 },
   ];
 
   const rows = [
@@ -144,33 +146,38 @@ const Analytics = () => {
         DashBoard
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} mt={2}>
+        <Grid item xs={12} md={6} mt={3}>
           <AppDataGrid
             rows={rows}
-            label="Assigned Events"
+            label="Upcoming events"
             columns={columns}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
             showAction={true}
             onEditRow={handleEditRow}
+            moreLink={'/events'}
             onDeleteRow={handleDeleteRow}
           />
         </Grid>
-        <Grid item xs={12} md={6} mt={2}>
+        <Grid item xs={12} md={6} mt={3}>
           <AppDataGrid
             rows={rows1}
-            label="Assigned Tasks"
+            label="Pending tasks"
             columns={columns1}
             pageSize={10}
+            moreLink={'/tasks'}
+
             pageSizeOptions={[5, 10, 20]}
           />
         </Grid>
-        <Grid item xs={12} md={6} mt={2}>
+        <Grid item xs={12} md={6} mt={4}>
           <AppDataGrid
-            label="Assigned POC"
+            label="Follow-ups"
             rows={rows2}
             columns={columns2}
             pageSize={10}
+            moreLink={'/clients'}
+
             pageSizeOptions={[5, 10, 20]}
           />
         </Grid>
