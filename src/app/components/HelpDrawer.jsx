@@ -25,7 +25,6 @@ export default function HelpDrawer() {
   const hasTips = HELP_DRAWER_TIPS[location.pathname]?.length > 0;
   const defaultTip = "Role of the user can only be updated if the user is not a part of any team.";
   const currentTips = HELP_DRAWER_TIPS[location.pathname] || [];
-  const tipsWithDefault = [...currentTips, defaultTip];
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -62,8 +61,27 @@ export default function HelpDrawer() {
             >
               Helpful Tips
             </Typography>
-            <List sx={{ maxHeight: "calc(100vh - 130px)", overflow: "auto" }}>
-              {tipsWithDefault.map((message, index) => (
+
+            {/* Static Default Tip */}
+            <Box sx={{ mb: 2 }}>
+              <Typography
+                display={"flex"}
+                justifyContent="center"
+                fontWeight={"100"}
+                fontSize={"14px"}
+              >
+                <FiberManualRecordIcon
+                  fontSize="6px"
+                  sx={{ mt: 0.4, mr: 0.6 }}
+                  color="primary"
+                />
+                {defaultTip}
+              </Typography>
+            </Box>
+
+            {/* Scrollable List for Dynamic Tips */}
+            <List sx={{ maxHeight: "calc(100vh - 190px)", overflowY: "auto" }}>
+              {currentTips.map((message, index) => (
                 <ListItem key={index} sx={{ mt: 1 }}>
                   <Typography
                     display={"flex"}
