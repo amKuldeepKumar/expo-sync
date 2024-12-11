@@ -44,7 +44,7 @@ export default function Internals() {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider", width: "95%" }}>
         <Tabs
           value={value}
           onChange={handleChange}
