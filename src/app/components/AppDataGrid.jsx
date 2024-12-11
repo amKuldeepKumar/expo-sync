@@ -120,7 +120,11 @@ const AppDataGrid = ({
           {label}
 
           {moreLink && (
-            <Link sx={{ cursor: "pointer" }} onClick={() => naviGate(moreLink)}>
+            <Link
+              underline="hover"
+              sx={{ cursor: "pointer" }}
+              onClick={() => naviGate(moreLink)}
+            >
               View More
             </Link>
           )}
