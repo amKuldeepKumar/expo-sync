@@ -1394,3 +1394,41 @@ export const USER_ROWS = [
     designation: "Executive",
   },
 ];
+
+export const HELP_DRAWER_TIPS = {
+  "/vendors": [
+    "Manage your list of vendors and their details here.",
+    "Click on a vendor to see their products, services, and agreements.",
+    "You can add, update, or remove vendor information as needed.",
+    "Select a vendor to view contact details and past transactions.",
+    "This page helps you maintain a reliable vendor network and manage partnerships.",
+  ],
+  "/events": [
+    "View and manage all upcoming events in this section.",
+    "Click on an event to see detailed information and updates.",
+    "You can create new events or modify existing ones here.",
+    "Select an event to view participant details, schedule, and status.",
+    "Use this page to track event progress and manage logistics.",
+  ],
+  "/analytics": [
+    "View all upcoming events in the first data grid, with dates and details.",
+    "Check your pending tasks in the second data grid to stay on track with deadlines.",
+    "The third data grid shows follow-ups, so you never miss important tasks or communications.",
+    "Each data grid can be filtered to show relevant events, tasks, and follow-ups for efficient tracking.",
+    "Use the dashboard to get a quick overview of what's upcoming, what's pending, and what needs follow-up.",
+  ],
+  "/clients": [
+    "You can view all clients in this section.",
+    "Click on a client to view their detailed information.",
+    "This page allows you to manage and view client details.",
+    "Select a client to redirect to their profile and see more details.",
+    "You can navigate back to the client list from any client's detail page.",
+  ],
+  "/internals": [
+    "Manage internal operations and processes here.",
+    "View employee-related information and tasks in this section.",
+    "You can assign roles, track activities, and monitor performance internally.",
+    "Select an internal task to view detailed status and updates.",
+    "This section helps you organize and manage your internal workflow efficiently.",
+  ],
+};

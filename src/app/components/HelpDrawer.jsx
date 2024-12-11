@@ -5,11 +5,11 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
+import { HELP_DRAWER_TIPS } from "../constants/dataConstant";
 export default function HelpDrawer() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [messages, setMessages] = useState([]);
   const location = useLocation();
 
   const toggleDrawer = (open) => (event) => {
@@ -22,62 +22,6 @@ export default function HelpDrawer() {
     }
     setIsOpen(open);
   };
-
-  useEffect(() => {
-    switch (location.pathname) {
-      case "/vendors":
-        setMessages([
-          "Manage your list of vendors and their details here.",
-          "Click on a vendor to see their products, services, and agreements.",
-          "You can add, update, or remove vendor information as needed.",
-          "Select a vendor to view contact details and past transactions.",
-          "This page helps you maintain a reliable vendor network and manage partnerships.",
-        ]);
-        break;
-
-      case "/events":
-        setMessages([
-          "View and manage all upcoming events in this section.",
-          "Click on an event to see detailed information and updates.",
-          "You can create new events or modify existing ones here.",
-          "Select an event to view participant details, schedule, and status.",
-          "Use this page to track event progress and manage logistics.",
-        ]);
-        break;
-
-      case "/analytics":
-        setMessages([
-          "View all upcoming events in the first data grid, with dates and details.",
-          "Check your pending tasks in the second data grid to stay on track with deadlines.",
-          "The third data grid shows follow-ups, so you never miss important tasks or communications.",
-          "Each data grid can be filtered to show relevant events, tasks, and follow-ups for efficient tracking.",
-          "Use the dashboard to get a quick overview of what's upcoming, what's pending, and what needs follow-up.",
-        ]);
-        break;
-
-      case "/clients":
-        setMessages([
-          "You can view all clients in this section.",
-          "Click on a client to view their detailed information.",
-          "This page allows you to manage and view client details.",
-          "Select a client to redirect to their profile and see more details.",
-          "You can navigate back to the client list from any client's detail page.",
-        ]);
-        break;
-
-      case "/internals":
-        setMessages([
-          "Manage internal operations and processes here.",
-          "View employee-related information and tasks in this section.",
-          "You can assign roles, track activities, and monitor performance internally.",
-          "Select an internal task to view detailed status and updates.",
-          "This section helps you organize and manage your internal workflow efficiently.",
-        ]);
-        break;
-      default:
-        break;
-    }
-  }, [location]);
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -104,17 +48,15 @@ export default function HelpDrawer() {
         >
           <Box sx={{ m: 5 }}>
             <Typography color="primary" fontWeight={"600"} textAlign={"center"}>
-              Helpful Tips{" "}
+              Helpful Tips
             </Typography>
             <List>
-              {messages.map((message, index) => (
+              {HELP_DRAWER_TIPS[location.pathname]?.map((message, index) => (
                 <ListItem key={index} sx={{ mt: 1 }}>
                   <Typography
                     display={"flex"}
                     justifyContent="center"
-                    // alignItems={"center"}
                     fontWeight={"550"}
-                    // textAlign={"center"}
                     fontSize={"14px"}
                   >
                     <FiberManualRecordIcon
