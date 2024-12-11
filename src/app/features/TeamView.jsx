@@ -130,7 +130,7 @@ export const TeamView = () => {
                   />
                 </Grid>
               ))}
-              <Grid md={3} display="flex" alignItems="center" mt={3}>
+              <Grid md={3} display="flex" alignItems="center">
                 <Button variant="contained">Add</Button>
               </Grid>
             </Grid>
