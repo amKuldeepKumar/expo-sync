@@ -2,11 +2,14 @@
 /* eslint-disable react/prop-types */
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import CommentIcon from "@mui/icons-material/Comment";
 import {
+  Badge,
   Box,
   Button,
   Card,
   CardContent,
+  IconButton,
   InputAdornment,
   Link,
   TextField,
@@ -16,6 +19,17 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import styled from "@emotion/styled";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: 3,
+    top: 6,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
+
 /**
  * DataGridComponent - A reusable DataGrid component with search and pagination.
  * @param {Array} rows - The data rows to display.
@@ -36,9 +50,11 @@ const AppDataGrid = ({
   showAction = false,
   onEditRow = () => {},
   onDeleteRow = () => {},
-  height = 350,
+  height = 250,
   defaultSelectedRow = "",
   showSearching = false,
+  newButton = false,
+  commentIcon = false,
   moreLink = "",
   ...props
 }) => {
@@ -60,22 +76,29 @@ const AppDataGrid = ({
     sortable: false,
     renderCell: (params) => (
       <Box>
-        <Button
+        <IconButton
           size="small"
           variant="text"
           color="primary"
           onClick={() => onEditRow(params.row)}
         >
           <EditIcon fontSize="small" />
-        </Button>
-        <Button
+        </IconButton>
+        <IconButton
           size="small"
           variant="text"
           color="secondary"
           onClick={() => onDeleteRow(params.row)}
         >
           <DeleteIcon fontSize="small" />
-        </Button>
+        </IconButton>
+        {commentIcon && (
+          <StyledBadge badgeContent={5} color="primary">
+            <IconButton size="small" variant="text" color="secondary">
+              <CommentIcon fontSize="small" />
+            </IconButton>
+          </StyledBadge>
+        )}
       </Box>
     ),
   };
@@ -83,6 +106,7 @@ const AppDataGrid = ({
   useEffect(() => {
     setEnhancedColumns(showAction ? [...columns, actionColumn] : columns);
     setSelectedRow1(defaultSelectedRow);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns, showAction]);
 
   useEffect(() => {
@@ -110,26 +134,6 @@ const AppDataGrid = ({
 
   return (
     <Box sx={{ height: height }}>
-      {label && (
-        <Typography
-          fontSize={15}
-          display={"flex"}
-          justifyContent={"space-between"}
-          fontWeight={700}
-        >
-          {label}
-
-          {moreLink && (
-            <Link
-              underline="hover"
-              sx={{ cursor: "pointer" }}
-              onClick={() => naviGate(moreLink)}
-            >
-              View More
-            </Link>
-          )}
-        </Typography>
-      )}
       {showSearching && (
         <Box
           sx={{
@@ -165,12 +169,39 @@ const AppDataGrid = ({
           />
         </Box>
       )}
+      <Box display="flex" justifyContent="space-between">
+        {label && (
+          <Typography
+            fontSize={15}
+            display={"flex"}
+            justifyContent={"space-between"}
+            fontWeight={700}
+          >
+            {label}
+          </Typography>
+        )}
+        {moreLink && (
+          <Link
+            underline="hover"
+            sx={{ cursor: "pointer", fontWeight: 700, fontSize: 15 }}
+            onClick={() => naviGate(moreLink)}
+          >
+            View More
+          </Link>
+        )}
+        {newButton && (
+          <Button size="small" sx={{ p: 0, fontWeight: "bold" }}>
+            New +
+          </Button>
+        )}
+      </Box>
       <DataGrid
+        density="compact"
         rows={filteredRows}
         disableColumnFilter
         columns={enhancedColumns}
         pageSize={paginationModel.pageSize}
-        pageSizeOptions={pageSizeOptions}
+        // pageSizeOptions={pageSizeOptions}
         pagination
         checkboxSelection={showCheckBox}
         disableColumnSelector={true}

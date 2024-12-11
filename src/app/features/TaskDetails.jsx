@@ -11,15 +11,17 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
   COMMENTS_COLUMNS,
   COMMENTS_ROWS,
-  EVENTS_DATA,
   TASK_DATA,
-  TEAMS_DATA,
+  USER_ROWS,
   VENDORS_DATA,
 } from "../constants/dataConstant";
 
@@ -43,58 +45,66 @@ export const TaskDetails = () => {
       <Typography variant="h2" mb={2}>
         Task Details
       </Typography>
-      <Grid container gap={1} mb={3}>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Task</Typography>
-          <Typography>{taskDetails.taskName}</Typography>
-        </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Assigned To</Typography>
-          <Typography>{taskDetails.assignedTo}</Typography>
-        </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Due Date</Typography>
-          <Typography>{taskDetails.dueDate}</Typography>
-        </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Status</Typography>
-          <Typography>{taskDetails.status}</Typography>
-        </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Vendor</Typography>
-          <Typography>{taskDetails.vendor}</Typography>
-        </Grid>
-      </Grid>
 
-      <Grid container spacing={2} mb={2}>
+      <Grid container spacing={2} my={2}>
         <Grid item md={4} sm={4} xs={12}>
-          <Autocomplete
-            options={TEAMS_DATA.map((t) => t.name)}
-            renderInput={(params) => <TextField {...params} label="Team" />}
+          <TextField
+            required
+            fullWidth
+            id="outlined-required-1"
+            label="Task"
+            defaultValue={taskDetails.taskName}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            fullWidth
+            disabled
+            id="outlined-required-1"
+            label="Client"
+            defaultValue={taskDetails.client}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            disabled
+            fullWidth
+            id="outlined-required-1"
+            label="Event"
+            defaultValue={taskDetails.event}
           />
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
-            options={TEAMS_DATA[0].am[0].tl[0].executive.map((e) => e.name)}
+            defaultValue={taskDetails.assignedTo}
+            options={USER_ROWS.map((u) => u.name)}
             renderInput={(params) => (
-              <TextField {...params} label="Assign Task To Team Member" />
+              <TextField {...params} label="Assigned To" />
             )}
           />
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Due Date"
+              sx={{ width: "100%" }}
+              defaultValue={dayjs(taskDetails.dueDate)}
+            />
+          </LocalizationProvider>
+        </Grid>
+
+        <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
-            options={EVENTS_DATA.map((e) => e.eventName)}
-            renderInput={(params) => (
-              <TextField {...params} label="Assign To Event" />
-            )}
+            defaultValue={taskDetails.status}
+            options={["Ongoing", "Not Started", "Completed", "Pending"]}
+            renderInput={(params) => <TextField {...params} label="Status" />}
           />
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
-            options={VENDORS_DATA.map((v) => v.name)}
-            renderInput={(params) => (
-              <TextField {...params} label="Assign Vendor" />
-            )}
+            defaultValue={taskDetails.vendor}
+            options={VENDORS_DATA.map((v) => v.companyName)}
+            renderInput={(params) => <TextField {...params} label="Vendor" />}
           />
         </Grid>
       </Grid>
@@ -136,6 +146,7 @@ export const TaskDetails = () => {
         columns={COMMENTS_COLUMNS}
         label="Tasks Comments"
         pageSize={10}
+        height={350}
         pageSizeOptions={[5, 10, 20]}
       />
     </Box>

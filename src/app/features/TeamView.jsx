@@ -12,7 +12,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
   events_columns,
@@ -22,8 +26,9 @@ import {
 } from "../constants/dataConstant";
 
 export const TeamView = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  // const [rowModesModel, setRowModel] = useState(null);
+
   const [rows, setRows] = useState([]);
   const [isCardVisible, setIsCardVisible] = useState(false);
 
@@ -43,12 +48,6 @@ export const TeamView = () => {
     ];
 
     teamData.am.forEach((a) => {
-      const assMngr = {
-        id: a.id + a.name,
-        name: a.name,
-        role: "Assistent Manager",
-      };
-      rowsData.push(assMngr);
       a.tl.forEach((l) => {
         const leader = {
           id: l.id + l.name,
@@ -151,13 +150,20 @@ export const TeamView = () => {
         </Grid>
         <Grid md={12}>
           <AppDataGrid
+            showAction
             rows={EVENTS_DATA}
             columns={events_columns}
             label="Team Events"
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
-            showAction
-            disableRowSelectionOnClick
+            onRowClick={(row) =>
+              navigate({
+                pathname: "/events-details",
+                search: createSearchParams({
+                  eventId: row.id,
+                }).toString(),
+              })
+            }
           />
         </Grid>
       </Grid>

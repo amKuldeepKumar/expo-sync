@@ -43,7 +43,7 @@ const TeamManagement = () => {
 
   const handleManagerClick = (team) => {
     navigate({
-      pathname: "/team-details",
+      pathname: "/internals-teams-details",
       search: createSearchParams({
         teamId: team.id,
       }).toString(),

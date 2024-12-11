@@ -24,7 +24,7 @@ const Clients = () => {
 
   const handleClientClick = (row) => {
     navigate({
-      pathname: "/client-details",
+      pathname: "/clients-details",
       search: createSearchParams({
         clientId: row.id,
       }).toString(),
@@ -92,6 +92,7 @@ const Clients = () => {
           rows={CLIENT_DATA}
           columns={Client_columns}
           pageSize={10}
+          height={500}
           label="Clients"
           showSearching={true}
           pageSizeOptions={[5, 10, 20]}

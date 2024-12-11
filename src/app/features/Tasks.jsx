@@ -35,7 +35,7 @@ export const Tasks = () => {
 
   const handleTaskClick = (row) => {
     navigate({
-      pathname: "/task-details",
+      pathname: "/tasks-details",
       search: createSearchParams({
         taskId: row.id,
       }).toString(),
@@ -64,22 +64,13 @@ export const Tasks = () => {
                   label="Name"
                 />
               </Grid>
-
-              <Grid item md={4} sm={4} xs={12}>
-                <Autocomplete
-                  options={TEAMS_DATA.map((t) => t.name)}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Team" />
-                  )}
-                />
-              </Grid>
               <Grid item md={4} sm={4} xs={12}>
                 <Autocomplete
                   options={TEAMS_DATA[0].am[0].tl[0].executive.map(
                     (e) => e.name
                   )}
                   renderInput={(params) => (
-                    <TextField {...params} label="Team Member" />
+                    <TextField {...params} label="Assign To" />
                   )}
                 />
               </Grid>
@@ -137,6 +128,7 @@ export const Tasks = () => {
         label="Tasks"
         showSearching={true}
         pageSize={10}
+        height={500}
         pageSizeOptions={[5, 10, 20]}
         onRowClick={handleTaskClick}
       />

@@ -14,13 +14,15 @@ import {
 } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
-  CLIENT_DATA,
   EVENTS_DATA,
   TASK_COLUMNS,
   TASK_DATA,
   USER_ROWS,
 } from "../constants/dataConstant";
 import { EventTaskForm } from "./EventTaskForm";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 
 export const EventDetails = () => {
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export const EventDetails = () => {
 
   const handleTaskClick = (row) => {
     navigate({
-      pathname: "/task-details",
+      pathname: "/tasks-details",
       search: createSearchParams({
         taskId: row.id,
       }).toString(),
@@ -48,39 +50,85 @@ export const EventDetails = () => {
       <Typography variant="h2" mb={3}>
         Event Details
       </Typography>
-      <Grid container mb={3} gap={2}>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event Name</Typography>
-          <Typography>{eventData.eventName}</Typography>
+      <Grid container spacing={2}>
+        <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="outlined-required-1"
+            label="Name"
+            defaultValue={eventData.eventName}
+          />
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event Date</Typography>
-          <Typography>{eventData.eventDate}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Event Date"
+              sx={{ width: "100%" }}
+              defaultValue={dayjs(eventData.eventDate)}
+            />
+          </LocalizationProvider>
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Client</Typography>
-          <Typography>{eventData.organizer}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            disabled
+            fullWidth
+            id="outlined-required-1"
+            label="Client"
+            defaultValue={eventData.organizer}
+          />
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event Location</Typography>
-          <Typography>{eventData.location}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="outlined-required-1"
+            label="Location"
+            defaultValue={eventData.location}
+          />
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event Type</Typography>
-          <Typography>{eventData.type}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            defaultValue={eventData.type}
+            options={[
+              "Meetings",
+              "Conferences",
+              "Seminars/Workshops",
+              "Weddings",
+              "Concerts",
+              "Exhibitions",
+            ]}
+            renderInput={(params) => (
+              <TextField {...params} label="Event Type" />
+            )}
+          />
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event Start Date</Typography>
-          <Typography>{eventData.beginDate}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            defaultValue={eventData.status}
+            options={["Ongoing", "Not Started", "Completed", "Pending"]}
+            renderInput={(params) => <TextField {...params} label="Status" />}
+          />
         </Grid>
-        <Grid md={2}>
-          <Typography fontWeight="bold">Event End Date</Typography>
-          <Typography>{eventData.endDate}</Typography>
+        <Grid item md={4} sm={4} xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="Start Date"
+              sx={{ width: "100%" }}
+              defaultValue={dayjs(eventData.beginDate)}
+            />
+          </LocalizationProvider>
         </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid md={4}>
+        <Grid item md={4} sm={4} xs={12}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label="End Date"
+              sx={{ width: "100%" }}
+              defaultValue={dayjs(eventData.endDate)}
+            />
+          </LocalizationProvider>
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
             defaultValue={USER_ROWS[0].name}
             options={USER_ROWS.filter((e) => e.role !== "Executive").map(
@@ -91,57 +139,9 @@ export const EventDetails = () => {
             )}
           />
         </Grid>
-        <Grid
-          md={8}
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <Button variant="contained" sx={{ ml: 2 }}>
-            Assign Event
-          </Button>
-        </Grid>
-      </Grid>
 
-      <Grid container my={2}>
-        <Grid md={4}>
-          <Autocomplete
-            defaultValue={TASK_DATA[0].taskName}
-            options={TASK_DATA.map((e) => e.taskName)}
-            renderInput={(params) => <TextField {...params} label="Add Task" />}
-          />
-        </Grid>
-        <Grid
-          md={8}
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <Button variant="contained" sx={{ ml: 2 }}>
-            Add Task
-          </Button>
-        </Grid>
-      </Grid>
-
-      <Grid container>
-        <Grid md={4}>
-          <Autocomplete
-            defaultValue={CLIENT_DATA[0].company}
-            options={CLIENT_DATA.map((c) => c.company)}
-            renderInput={(params) => (
-              <TextField {...params} label="Add Client" />
-            )}
-          />
-        </Grid>
-        <Grid
-          md={8}
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <Button variant="contained" sx={{ ml: 2 }}>
-            Add Client
-          </Button>
+        <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }}>
+          <Button variant="contained">Save</Button>
         </Grid>
       </Grid>
 
@@ -158,6 +158,7 @@ export const EventDetails = () => {
         <Grid item md={12} sm={12} mt={2}>
           <AppDataGrid
             showAction
+            commentIcon
             rows={TASK_DATA}
             columns={TASK_COLUMNS}
             label="Tasks"

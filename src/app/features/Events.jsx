@@ -24,7 +24,7 @@ const Events = () => {
 
   const handleEventClick = (row) => {
     navigate({
-      pathname: "/event-details",
+      pathname: "/events-details",
       search: createSearchParams({
         eventId: row.id,
       }).toString(),
@@ -55,6 +55,7 @@ const Events = () => {
           label="Events"
           pageSize={10}
           showSearching={true}
+          height={500}
           pageSizeOptions={[5, 10, 20]}
           showAction
           disableRowSelectionOnClick

@@ -162,10 +162,14 @@ export default function AppDrawer() {
             <MenuIcon />
           </IconButton>
           {!open ? (
-           
-              <Typography sx={{cursor:'pointer'}} onClick={() => navigate("/analytics")} width={140} component="div">
-                Traingular Dots
-              </Typography>
+            <Typography
+              sx={{ cursor: "pointer" }}
+              onClick={() => navigate("/analytics")}
+              width={140}
+              component="div"
+            >
+              Traingular Dots
+            </Typography>
           ) : (
             <IconButton
               color="inherit"
@@ -239,7 +243,8 @@ export default function AppDrawer() {
             height="60"
             src="./Logo_Final_PNG_Black-Text.png"
             alt="Paella dish"
-            style={{cursor:'pointer'}} onClick={() => navigate("/analytics")}
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/analytics")}
           ></img>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -257,8 +262,8 @@ export default function AppDrawer() {
               key={e.title}
               disablePadding
               sx={{
-                backgroundColor: e.to === currentTab ? "#f16064" : "",
-                color: e.to === currentTab ? "white" : "black",
+                backgroundColor: currentTab.includes(e.to) ? "#ED3237" : "",
+                color: currentTab.includes(e.to) ? "white" : "black",
               }}
               onClick={() => onItemClick(e)}
             >
@@ -280,11 +285,11 @@ export default function AppDrawer() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/internals" element={<Internals />} />
           <Route path="/tasks" element={<Tasks />} />
-          <Route path="/event-details" element={<EventDetails />} />
-          <Route path="/team-details" element={<TeamView />} />
-          <Route path="/client-details" element={<ClientDetails />} />
-          <Route path="/vendor-details" element={<VendorView />} />
-          <Route path="/task-details" element={<TaskDetails />} />
+          <Route path="/events-details" element={<EventDetails />} />
+          <Route path="/internals-teams-details" element={<TeamView />} />
+          <Route path="/clients-details" element={<ClientDetails />} />
+          <Route path="/vendors-details" element={<VendorView />} />
+          <Route path="/tasks-details" element={<TaskDetails />} />
         </Routes>
       </Main>
     </Box>

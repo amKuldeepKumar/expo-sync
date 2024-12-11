@@ -39,7 +39,6 @@ export const EventTaskForm = ({
       label: `${formType === "event" ? "Event" : "Task"} Description`,
       required: true,
     },
-    { label: "Remarks", required: true },
   ];
 
   const datePickers = [

@@ -13,9 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
-import {
-  VENDORS_DATA
-} from "../constants/dataConstant";
+import { VENDORS_DATA } from "../constants/dataConstant";
 const Vendors = () => {
   const navigate = useNavigate();
   const [isCardVisible, setIsCardVisible] = useState(false);
@@ -37,7 +35,7 @@ const Vendors = () => {
     setTasksData(data[0].tasks);
     setOoperationalCities(data[0].operationalCities);
     navigate({
-      pathname: "/vendor-details",
+      pathname: "/vendors-details",
       search: createSearchParams({
         vendorId: row.id,
       }).toString(),
@@ -152,6 +150,7 @@ const Vendors = () => {
           rows={VENDORS_DATA}
           columns={vendorsColumn}
           pageSize={10}
+          height={500}
           label="Vendors"
           showSearching={true}
           pageSizeOptions={[5, 10, 20]}
@@ -159,31 +158,6 @@ const Vendors = () => {
           showAction={true}
         />
       </Grid>
-      {/* <Grid md={8} sm={8} xs={12} mt={5} mb={2}>
-        <Grid container spacing={2}>
-          <Grid item md={8}>
-            <AppDataGrid
-              rows={tasksData}
-              columns={taskColumnsVendors}
-              pageSize={10}
-              label="Task Allocated"
-              pageSizeOptions={[5, 10, 20]}
-              showAction={true}
-            />
-          </Grid>
-
-          <Grid item md={12}>
-            <AppDataGrid
-              rows={operationalCities}
-              columns={operationalVendors}
-              pageSize={10}
-              label="Operational cities"
-              pageSizeOptions={[5, 10, 20]}
-              showAction={true}
-            />
-          </Grid>
-        </Grid>
-      </Grid> */}
     </Grid>
   );
 };

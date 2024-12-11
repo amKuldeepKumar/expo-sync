@@ -37,7 +37,6 @@ const eventColumns = [
     width: 110,
   },
   { field: "location", headerName: "Location", width: 120 },
-  { field: "client", headerName: "Client Name", width: 120 },
 ];
 
 const taskColumns = [
@@ -59,7 +58,6 @@ const taskColumns = [
     type: "string",
     width: 110,
   },
-  { field: "organizer", headerName: "Client Name", width: 110 },
 ];
 
 const eventRows = [
@@ -100,18 +98,18 @@ const eventRows = [
 
 const taskRows = [
   {
-    id: 1,
-    taskName: "Music System",
+    id: 101,
+    taskName: "Food Catering",
+    organizer: "Godrej",
     eventName: "Annual Meeting",
-    eventDate: "2024-01-10",
-    organizer: "John Doe",
+    eventDate: "05/15/24",
   },
   {
-    id: 2,
-    taskName: "Te-Shirts",
-    eventName: "Tech Conference",
-    eventDate: "2024-02-15",
-    organizer: "Jane Smith",
+    id: 102,
+    taskName: "AV Setup",
+    organizer: "Godrej",
+    eventDate: "05/16/24",
+    eventName: "",
   },
 ];
 
@@ -134,7 +132,7 @@ export const ClientDetails = () => {
 
   const handleEventClick = (row) => {
     navigate({
-      pathname: "/event-details",
+      pathname: "/events-details",
       search: createSearchParams({
         eventId: row.id,
       }).toString(),
@@ -146,116 +144,155 @@ export const ClientDetails = () => {
       <Typography variant="h2" mb={2}>
         Client Details
       </Typography>
-      <Grid container mb={3}>
-        <Grid md={4}>
-          <Typography fontWeight="bold">Client Name</Typography>
-          <Typography>{clientsEmployeeData.company}</Typography>
+      <Grid container spacing={2}>
+        <Grid item md={3}>
+          <Grid container spacing={3} direction="column" mt={4}>
+            <Grid item md={4} sm={4} xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="outlined-required-1"
+                label="Name"
+                defaultValue={clientsEmployeeData.company}
+              />
+            </Grid>
+
+            <Grid item md={4} sm={4} xs={12}>
+              <TextField
+                required
+                fullWidth
+                multiline
+                maxRows={5}
+                id="outlined-required-3"
+                label="Address"
+                defaultValue={clientsEmployeeData.address}
+              />
+            </Grid>
+            <Grid item md={4} sm={4} xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="outlined-required-3"
+                label="Industry"
+                defaultValue={clientsEmployeeData.industry}
+              />
+            </Grid>
+
+            <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }}>
+              <Button variant="contained">Update</Button>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid md={4}>
-          <Typography fontWeight="bold">Client Address</Typography>
-          <Typography>{clientsEmployeeData.address}</Typography>
-        </Grid>
-        <Grid md={4}>
-          <Typography fontWeight="bold">Client Industry/Domain</Typography>
-          <Typography>{clientsEmployeeData.industry}</Typography>
+
+        <Grid item md={9}>
+          <Card>
+            <Button onClick={toggleCardVisibility}>
+              {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+              {!isCardVisible && "Add Employee"}
+            </Button>
+
+            <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
+              <CardContent>
+                <Grid container spacing={2}>
+                  <Grid item md={4} sm={4} xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="outlined-required-1"
+                      label="Name"
+                    />
+                  </Grid>
+
+                  <Grid item md={4} sm={4} xs={12}>
+                    <Autocomplete
+                      options={["Designation 1", "Designation 2"]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Designation" />
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item md={4} sm={4} xs={12}>
+                    <Autocomplete
+                      options={["Department 1", "Department 2"]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Department" />
+                      )}
+                    />
+                  </Grid>
+                  <Grid item md={4} sm={4} xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="outlined-required-3"
+                      label="Email"
+                    />
+                  </Grid>
+                  <Grid item md={4} sm={4} xs={12}>
+                    <TextField
+                      required
+                      fullWidth
+                      id="outlined-required-3"
+                      label="Contact"
+                    />
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: "end" }}
+                  >
+                    <Button variant="contained">Create</Button>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Collapse>
+          </Card>
+
+          <Box mt={2}>
+            <AppDataGrid
+              rows={clientsEmployeeData.employees}
+              columns={client_employeesColumns}
+              pageSize={10}
+              label="Employees"
+              pageSizeOptions={[5, 10, 20]}
+              showAction={true}
+            />
+          </Box>
         </Grid>
       </Grid>
-
-      <Card>
-        <Button onClick={toggleCardVisibility}>
-          {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-          {!isCardVisible && "Add Employee"}
-        </Button>
-
-        <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Grid container spacing={2}>
-              <Grid item md={4} sm={4} xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-required-1"
-                  label="Name"
-                />
-              </Grid>
-
-              <Grid item md={4} sm={4} xs={12}>
-                <Autocomplete
-                  options={["Designation 1", "Designation 2"]}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Designation" />
-                  )}
-                />
-              </Grid>
-
-              <Grid item md={4} sm={4} xs={12}>
-                <Autocomplete
-                  options={["Department 1", "Department 2"]}
-                  renderInput={(params) => (
-                    <TextField {...params} label="Department" />
-                  )}
-                />
-              </Grid>
-              <Grid item md={4} sm={4} xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-required-3"
-                  label="Email"
-                />
-              </Grid>
-              <Grid item md={4} sm={4} xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="outlined-required-3"
-                  label="Contact"
-                />
-              </Grid>
-
-              <Grid
-                item
-                xs={12}
-                sx={{ display: "flex", justifyContent: "end" }}
-              >
-                <Button variant="contained">Create</Button>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Collapse>
-      </Card>
-
-      <Box mt={2}>
-        <AppDataGrid
-          rows={clientsEmployeeData.employees}
-          columns={client_employeesColumns}
-          pageSize={10}
-          label="Client's Employee"
-          pageSizeOptions={[5, 10, 20]}
-          showAction={true}
-        />
-      </Box>
 
       <Grid container spacing={1} mt={4}>
         <Grid item md={6}>
           <AppDataGrid
             showAction
-            rows={eventRows}
-            columns={eventColumns}
+            newButton
+            commentIcon
+            rows={taskRows}
+            columns={taskColumns}
             pageSize={10}
-            label="Client Events"
+            label="Tasks"
             pageSizeOptions={[5, 10, 20]}
-            onRowClick={handleEventClick}
+            onRowClick={(row) =>
+              navigate({
+                pathname: "/tasks-details",
+                search: createSearchParams({
+                  taskId: row.id,
+                }).toString(),
+              })
+            }
           />
         </Grid>
         <Grid item md={6}>
           <AppDataGrid
             showAction
-            rows={taskRows}
-            columns={taskColumns}
+            newButton
+            rows={eventRows}
+            columns={eventColumns}
             pageSize={10}
-            label="Client Tasks"
+            label="Events"
             pageSizeOptions={[5, 10, 20]}
+            onRowClick={handleEventClick}
           />
         </Grid>
       </Grid>
