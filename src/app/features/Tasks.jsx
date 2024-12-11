@@ -123,6 +123,7 @@ export const Tasks = () => {
       </Card>
       <AppDataGrid
         showAction
+        commentIcon
         rows={TASK_DATA}
         columns={TASK_COLUMNS}
         label="Tasks"
