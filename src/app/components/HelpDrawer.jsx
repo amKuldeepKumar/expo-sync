@@ -22,18 +22,22 @@ export default function HelpDrawer() {
     }
     setIsOpen(open);
   };
+  const hasTips =  HELP_DRAWER_TIPS[location.pathname]?.length> 0;
 
   return (
     <Box sx={{ position: "relative" }}>
-      <Tooltip title="Help Center">
-        <IconButton
-          sx={{ position: "absolute", top: "80px", right: "20px" }}
-          color="primary"
-          onClick={toggleDrawer(true)}
-        >
-          <HelpCenterIcon />
-        </IconButton>
-      </Tooltip>
+      {/* Only show IconButton if there are messages */}
+      {hasTips && (
+        <Tooltip title="Help Center">
+          <IconButton
+            sx={{ position: "absolute", top: "80px", right: "20px" }}
+            color="primary"
+            onClick={toggleDrawer(true)}
+          >
+            <HelpCenterIcon />
+          </IconButton>
+        </Tooltip>
+      )}
       <SwipeableDrawer
         anchor="right"
         open={isOpen}
