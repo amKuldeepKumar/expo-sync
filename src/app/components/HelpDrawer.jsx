@@ -50,11 +50,16 @@ export default function HelpDrawer() {
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
         >
-          <Box sx={{ my: 5,mx: 2 }}>
-            <Typography color="primary" fontWeight={"600"} textAlign={"center"} mb={2}>
+          <Box sx={{ my: 5, mx: 2 }}>
+            <Typography
+              color="primary"
+              fontWeight={"600"}
+              textAlign={"center"}
+              mb={2}
+            >
               Helpful Tips
             </Typography>
-            <List sx={{ maxHeight: "88vh", overflow: "auto" }}>
+            <List sx={{ maxHeight: "calc(100vh - 130px)", overflow: "auto" }}>
               {HELP_DRAWER_TIPS[location.pathname]?.map((message, index) => (
                 <ListItem key={index} sx={{ mt: 1 }}>
                   <Typography
