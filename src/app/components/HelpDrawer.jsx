@@ -5,9 +5,13 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import React from "react";
+import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { HELP_DRAWER_TIPS } from "../constants/dataConstant";
+
+const defaultTip =
+  "Role of the user can only be updated if the user is not a part of any team.";
+
 export default function HelpDrawer() {
   const [isOpen, setIsOpen] = React.useState(false);
   const location = useLocation();
@@ -22,14 +26,15 @@ export default function HelpDrawer() {
     }
     setIsOpen(open);
   };
-  const hasTips = HELP_DRAWER_TIPS[location.pathname]?.length > 0;
-  const defaultTip = "Role of the user can only be updated if the user is not a part of any team.";
-  const currentTips = HELP_DRAWER_TIPS[location.pathname] || [];
+
+  const currentTips = useMemo(
+    () => HELP_DRAWER_TIPS[location.pathname] ?? [],
+    [location.pathname]
+  );
 
   return (
     <Box sx={{ position: "relative" }}>
-      {/* Only show IconButton if there are messages */}
-      {hasTips && (
+      {!!currentTips.length && (
         <Tooltip title="Help Center">
           <IconButton
             sx={{ position: "absolute", top: "80px", right: "20px" }}
@@ -62,31 +67,27 @@ export default function HelpDrawer() {
               Helpful Tips
             </Typography>
 
-            {/* Static Default Tip */}
-            <Box sx={{ mb: 2 }}>
-              <Typography
-                display={"flex"}
-                justifyContent="center"
-                fontWeight={"100"}
-                fontSize={"14px"}
-              >
-                <FiberManualRecordIcon
-                  fontSize="6px"
-                  sx={{ mt: 0.4, mr: 0.6 }}
-                  color="primary"
-                />
-                {defaultTip}
-              </Typography>
-            </Box>
+            <Typography
+              display={"flex"}
+              justifyContent="center"
+              fontWeight="bold"
+              fontSize={"14px"}
+              ml={2}
+            >
+              <FiberManualRecordIcon
+                fontSize="6px"
+                sx={{ mt: 0.4, mr: 0.6 }}
+                color="primary"
+              />
+              {defaultTip}
+            </Typography>
 
-            {/* Scrollable List for Dynamic Tips */}
-            <List sx={{ maxHeight: "calc(100vh - 190px)", overflowY: "auto" }}>
+            <List sx={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
               {currentTips.map((message, index) => (
                 <ListItem key={index} sx={{ mt: 1 }}>
                   <Typography
                     display={"flex"}
                     justifyContent="center"
-                    fontWeight={"100"}
                     fontSize={"14px"}
                   >
                     <FiberManualRecordIcon
