@@ -41,9 +41,9 @@ import { TaskDetails } from "../features/TaskDetails";
 const drawerWidth = 240;
 const pages = [
   { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
-  { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
-  { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
   { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
+  { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
+  { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
   { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
   { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
 ];
