@@ -50,7 +50,7 @@ export default function HelpDrawer() {
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
         >
-          <Box sx={{ m: 5 }}>
+          <Box sx={{ my: 5,mx: 2 }}>
             <Typography color="primary" fontWeight={"600"} textAlign={"center"} mb={2}>
               Helpful Tips
             </Typography>
