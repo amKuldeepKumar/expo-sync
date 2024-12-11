@@ -22,7 +22,7 @@ export default function HelpDrawer() {
     }
     setIsOpen(open);
   };
-  const hasTips =  HELP_DRAWER_TIPS[location.pathname]?.length> 0;
+  const hasTips = HELP_DRAWER_TIPS[location.pathname]?.length > 0;
 
   return (
     <Box sx={{ position: "relative" }}>
@@ -51,10 +51,10 @@ export default function HelpDrawer() {
           onKeyDown={toggleDrawer(false)}
         >
           <Box sx={{ m: 5 }}>
-            <Typography color="primary" fontWeight={"600"} textAlign={"center"}>
+            <Typography color="primary" fontWeight={"600"} textAlign={"center"} mb={2}>
               Helpful Tips
             </Typography>
-            <List>
+            <List sx={{ maxHeight: "88vh", overflow: "auto" }}>
               {HELP_DRAWER_TIPS[location.pathname]?.map((message, index) => (
                 <ListItem key={index} sx={{ mt: 1 }}>
                   <Typography

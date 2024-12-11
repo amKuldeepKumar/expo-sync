@@ -132,7 +132,7 @@ export default function AppDrawer() {
     navigate(e.to);
   };
 
-  const settings = ["Profile", "Logout"];
+  const settings = ["Profile", "Change Password", "Logout"];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);

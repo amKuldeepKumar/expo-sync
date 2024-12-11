@@ -1482,7 +1482,7 @@ export const HELP_DRAWER_TIPS = {
   ],
   "/clients": [
     "The Clients section allows you to manage all your clients.",
-    "To add a new client, click on the 'Add Client' toggle button, which opens a form to add the client's details.",
+    "To add a new client, click on the 'Add' toggle button, which opens a form to add the client's details.",
     "Once the client details are entered and submitted, the new client will be added to the client list below.",
     "In the client list table, you can view all the clients you have added.",
     "Each client record in the list can be edited or deleted as needed.",
