@@ -63,7 +63,7 @@ export default function HelpDrawer() {
             </Typography>
 
             {/* Static Default Tip */}
-            <Box sx={{ mb: 2 }}>
+            <Box sx={{ mb: 2, width: '85%' }}>
               <Typography
                 display={"flex"}
                 justifyContent="center"
@@ -72,7 +72,7 @@ export default function HelpDrawer() {
               >
                 <FiberManualRecordIcon
                   fontSize="6px"
-                  sx={{ mt: 0.4, mr: 0.6 }}
+                  sx={{ mt: 0.4,ml:2.0}}
                   color="primary"
                 />
                 {defaultTip}
