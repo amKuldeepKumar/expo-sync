@@ -63,7 +63,7 @@ export default function HelpDrawer() {
             </Typography>
 
             {/* Static Default Tip */}
-            <Box sx={{ mb: 2, width: '85%' }}>
+            <Box sx={{ width: '85%' }}>
               <Typography
                 display={"flex"}
                 justifyContent="center"
