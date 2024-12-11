@@ -79,7 +79,7 @@ const Clients = () => {
                   xs={12}
                   sx={{ display: "flex", justifyContent: "end" }}
                 >
-                  <Button variant="contained">Create</Button>
+                  <Button variant="contained">Add</Button>
                 </Grid>
               </Grid>
             </CardContent>
