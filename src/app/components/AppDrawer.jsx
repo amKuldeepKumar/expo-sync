@@ -257,7 +257,7 @@ export default function AppDrawer() {
               key={e.title}
               disablePadding
               sx={{
-                backgroundColor: e.to === currentTab ? "#DC363B" : "",
+                backgroundColor: e.to === currentTab ? "#f16064" : "",
                 color: e.to === currentTab ? "white" : "black",
               }}
               onClick={() => onItemClick(e)}
