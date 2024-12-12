@@ -30,19 +30,61 @@ const eventColumns = [
     editable: true,
     width: 170,
   },
+  { field: "location", headerName: "Location", width: 120 },
+  {
+    field: "assignTo",
+    headerName: "Assign To",
+    type: "string",
+    width: 110,
+  },
+  {
+    field: "type",
+    headerName: "Type",
+    type: "string",
+    width: 110,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    type: "string",
+    width: 110,
+  },
+  {
+    field: "startDate",
+    headerName: "Start Date",
+    type: "string",
+    width: 110,
+  },
+  {
+    field: "endDate",
+    headerName: "End Date",
+    type: "string",
+    width: 110,
+  },
   {
     field: "eventDate",
     headerName: "Event Date",
     type: "string",
     width: 110,
   },
-  { field: "location", headerName: "Location", width: 120 },
 ];
 
 const taskColumns = [
   {
     field: "taskName",
     headerName: "Task Name",
+    editable: true,
+    width: 170,
+  },
+  {
+    field: "status",
+    headerName: "Status",
+    editable: true,
+    width: 170,
+  },
+  {
+    field: "assignTo",
+    headerName: "Assign To",
     editable: true,
     width: 170,
   },

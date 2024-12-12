@@ -19,8 +19,8 @@ import {
 } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import {
-  events_columns,
-  EVENTS_DATA,
+  TASK_COLUMNS,
+  TASK_DATA,
   TeamMembersColumns,
   TEAMS_DATA,
 } from "../constants/dataConstant";
@@ -151,9 +151,9 @@ export const TeamView = () => {
         <Grid md={12}>
           <AppDataGrid
             showAction
-            rows={EVENTS_DATA}
-            columns={events_columns}
-            label="Team Events"
+            rows={TASK_DATA}
+            columns={TASK_COLUMNS}
+            label="Task"
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>

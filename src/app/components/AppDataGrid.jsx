@@ -191,7 +191,7 @@ const AppDataGrid = ({
           </Link>
         )}
         {newButton && (
-          <Button size="small" sx={{ p: 0, fontWeight: "bold" }}>
+          <Button size="small" sx={{ p: 0, fontWeight: "bold" }} onClick={()=>alert("Add the field")}>
             New +
           </Button>
         )}
