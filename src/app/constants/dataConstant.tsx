@@ -1052,7 +1052,7 @@ export const VENDORS_DATA = [
     email: "evergreenpack@gmail.com",
     categories: "Packaging",
     workType: "Box Packaging",
-    headOffice: "",
+    headOffice: "Delhi",
     tasks: [
       {
         id: 101,
