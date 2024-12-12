@@ -1019,7 +1019,6 @@ export const VENDORS_DATA = [
       },
     ],
     operationalCities: [
-      { id: "0893u2", name: "Baramulla" },
       { id: "0893u4", name: "Kulgam" },
       { id: "0893u5", name: "PehalGam" },
     ],
@@ -1070,9 +1069,6 @@ export const VENDORS_DATA = [
     operationalCities: [
       { id: "0893u6", name: "Noida" },
       { id: "0893u7", name: "Ghaziabad" },
-      { id: "0893u8", name: "Faridabad" },
-      { id: "0893u9", name: "Kolkata" },
-      { id: "0892u9", name: "Ahmedabad" },
     ],
     vendorEmployees: [
       {
@@ -1121,8 +1117,6 @@ export const VENDORS_DATA = [
     operationalCities: [
       { id: "0893u9", name: "Pune" },
       { id: "0893u10", name: "Nashik" },
-      { id: "0893u11", name: "Nagpur" },
-      { id: "0088898", name: "Chennai" },
     ],
     vendorEmployees: [
       {

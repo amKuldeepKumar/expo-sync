@@ -209,7 +209,7 @@ const AppDataGrid = ({
           <Button
             size="small"
             sx={{ p: 0, fontWeight: "bold" }}
-            onClick={() => alert("Add new field")}
+            onClick={() => alert("Popup will be open to add new record.")}
           >
             New +
           </Button>
