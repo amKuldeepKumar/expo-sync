@@ -1598,7 +1598,6 @@ export const HELP_DRAWER_TIPS = {
     "In the Team Management tab, you can create, manage, and edit teams.",
     "In the Users tab, you can add, edit, and delete users.",
     "In Team Management, you have the option to create a team by clicking on the Create Team toggle button.",
-    "When creating a team, you will be prompted to select the number of employees for the team and assign roles (e.g., Manager, Team Lead, etc.).",
     "Once you create a team, it will appear in the Teams Table below, where you can edit or delete existing teams.",
     "To edit and delete a team, click on the 'Edit' or 'Delete' icon next to the team record.",
     "Clicking on any team record will redirect you to the Team Details page, where you can manage further details.",
@@ -1665,13 +1664,12 @@ export const HELP_DRAWER_TIPS = {
   ],
   "/internals-teams-details": [
     "You are viewing the details for the selected team.",
-    "Through the 'Add Team Member' toggle button it open the add team member form, where you can assign roles such as Manager, Team Lead, or Executor to the team member.",
-    "Select an employee from the list and assign them a role, then click 'Add' to add them to the team.",
-    "The Team Members table below shows all team members assigned to the current team.",
+    "you can also edit the details of the team through the form that provided",
+    "The Team Members table at right shows all team members assigned to the current team.",
     "You can edit or remove any team member from this table.",
-    "Below the team members table, you will find the Team Events table.",
-    "In the Team Events table, you can see all events related to the team.",
-    "You can edit or delete any event from the Team Events table.",
+    "Below the team members table, you will find the Task table.",
+    "In the Task table, you can see all Task related to the team.",
+    "You can edit or delete any Task from the Task table.",
   ],
 };
 
