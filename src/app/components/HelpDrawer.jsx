@@ -7,10 +7,10 @@ import ListItem from "@mui/material/ListItem";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { HELP_DRAWER_TIPS } from "../constants/dataConstant";
-
-const defaultTip =
-  "Role of the user can only be updated if the user is not a part of any team.";
+import {
+  HELP_DRAWER_TIPS,
+  SPECIAL_CASES_TIPS,
+} from "../constants/dataConstant";
 
 export default function HelpDrawer() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -67,20 +67,24 @@ export default function HelpDrawer() {
               Helpful Tips
             </Typography>
 
-            <Typography
-              display={"flex"}
-              justifyContent="center"
-              fontWeight="bold"
-              fontSize={"14px"}
-              ml={2}
-            >
-              <FiberManualRecordIcon
-                fontSize="6px"
-                sx={{ mt: 0.4, mr: 0.6 }}
-                color="primary"
-              />
-              {defaultTip}
-            </Typography>
+            {!!SPECIAL_CASES_TIPS[location.pathname]?.length &&
+              SPECIAL_CASES_TIPS[location.pathname].map((message, i) => (
+                <Typography
+                  key={message + i}
+                  display={"flex"}
+                  justifyContent="center"
+                  fontWeight="bold"
+                  fontSize={"14px"}
+                  ml={2}
+                >
+                  <FiberManualRecordIcon
+                    fontSize="6px"
+                    sx={{ mt: 0.4, mr: 0.6 }}
+                    color="primary"
+                  />
+                  {message}
+                </Typography>
+              ))}
 
             <List sx={{ maxHeight: "calc(100vh - 200px)", overflowY: "auto" }}>
               {currentTips.map((message, index) => (

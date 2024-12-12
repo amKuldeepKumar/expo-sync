@@ -1,9 +1,8 @@
 export const ManagersColumns = [
   { field: "name", headerName: "Team Name", width: 130 },
+  { field: "desc", headerName: "Description", width: 130 },
   { field: "manager", headerName: "Manager", width: 130 },
-
-  { field: "totalAm", headerName: "Total Am", width: 90 },
-  { field: "totalTl", headerName: "Total Tl", width: 90 },
+  { field: "totalTl", headerName: "Total TL", width: 90 },
   { field: "totalExecutive", headerName: "Total Executive", width: 120 },
 ];
 
@@ -34,7 +33,8 @@ export const TEAMS_DATA = [
   {
     id: "1jkkbd234232131",
     name: "Team A",
-    manager: "Pardeep Kumar",
+    manager: "Chris Evans",
+    desc: "DEV Team",
     totalAm: 2,
     totalTl: 4,
     totalExecutive: 14,
@@ -192,9 +192,10 @@ export const TEAMS_DATA = [
   {
     id: "1jkkbd234232132",
     name: "Team B",
-    manager: "Hardeep Kumar",
+    manager: "Lucas Harris",
     totalAm: 1,
     totalTl: 2,
+    desc: "QA Team",
     totalExecutive: 8,
     am: [
       {
@@ -279,13 +280,13 @@ export const TEAMS_DATA = [
       },
     ],
   },
-  // Added more managers below
   {
     id: "1jkkbd234232133",
     name: "Team C",
-    manager: "Sandeep Kumar",
+    manager: "William Phillips",
     totalAm: 1,
     totalTl: 2,
+    desc: "PROD Team",
     totalExecutive: 0,
     am: [
       {
@@ -634,7 +635,7 @@ export const events_columns = [
     width: 180,
     editable: true,
   },
-  
+
   { field: "organizer", headerName: "Client", width: 150 },
   { field: "location", headerName: "Location", width: 150 },
   { field: "type", headerName: "Type", width: 120 },
@@ -670,7 +671,8 @@ export const EVENTS_DATA = [
   {
     id: 1,
     eventName: "Annual Meeting",
-    eventDetails: 'This is the annual meeting of the organization to discuss the year\'s progress and future goals.',
+    eventDetails:
+      "This is the annual meeting of the organization to discuss the year's progress and future goals.",
     eventDate: "2024-01-10",
     location: "New York",
     organizer: "Godrej",
@@ -678,7 +680,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-01-18",
     endDate: "2024-01-19",
     status: "Pending",
-    assignedTo:"Chris Evans",
+    assignedTo: "Chris Evans",
     task: [
       { id: 101, taskName: "Food Catering", assignedTo: "Soravh Mishra" },
       { id: 102, taskName: "AV Setup", assignedTo: "John Smith" },
@@ -690,7 +692,8 @@ export const EVENTS_DATA = [
   {
     id: 2,
     eventName: "Tech Conference",
-    eventDetails: 'A conference showcasing the latest developments in technology, bringing together industry leaders and innovators.',
+    eventDetails:
+      "A conference showcasing the latest developments in technology, bringing together industry leaders and innovators.",
     eventDate: "2024-02-15",
     location: "San Francisco",
     organizer: "Capita Tech",
@@ -698,9 +701,13 @@ export const EVENTS_DATA = [
     beginDate: "2024-01-19",
     endDate: "2024-01-20",
     status: "Ongoing",
-    assignedTo:"Lucas Harris",
+    assignedTo: "Lucas Harris",
     task: [
-      { id: 201, taskName: "Speaker Coordination", assignedTo: "Pardeep Singh" },
+      {
+        id: 201,
+        taskName: "Speaker Coordination",
+        assignedTo: "Pardeep Singh",
+      },
       { id: 202, taskName: "Tech Setup", assignedTo: "Ravi Kumar" },
       { id: 203, taskName: "Catering", assignedTo: "Shivani Gupta" },
       { id: 204, taskName: "Venue Decoration", assignedTo: "Sandeep Yadav" },
@@ -710,7 +717,8 @@ export const EVENTS_DATA = [
   {
     id: 3,
     eventName: "Charity Gala",
-    eventDetails: 'A fundraising event featuring a lavish dinner and entertainment to support various charitable causes.',
+    eventDetails:
+      "A fundraising event featuring a lavish dinner and entertainment to support various charitable causes.",
     eventDate: "2024-03-20",
     location: "Chicago",
     organizer: "Videocon",
@@ -718,9 +726,13 @@ export const EVENTS_DATA = [
     beginDate: "2024-03-15",
     endDate: "2024-03-16",
     status: "Not Started",
-    assignedTo:"William Phillips",
+    assignedTo: "William Phillips",
     task: [
-      { id: 301, taskName: "Sponsorship Management", assignedTo: "Ellen Green" },
+      {
+        id: 301,
+        taskName: "Sponsorship Management",
+        assignedTo: "Ellen Green",
+      },
       { id: 302, taskName: "Auction Setup", assignedTo: "George King" },
       { id: 303, taskName: "Guest Registration", assignedTo: "Linda Carter" },
       { id: 304, taskName: "Food Catering", assignedTo: "Simon Powell" },
@@ -730,7 +742,8 @@ export const EVENTS_DATA = [
   {
     id: 4,
     eventName: "Sports Day",
-    eventDetails: 'A day of outdoor sports and friendly competition designed to boost team spirit and fitness.',
+    eventDetails:
+      "A day of outdoor sports and friendly competition designed to boost team spirit and fitness.",
     eventDate: "2024-04-25",
     location: "Los Angeles",
     organizer: "Intel",
@@ -738,19 +751,24 @@ export const EVENTS_DATA = [
     beginDate: "2024-04-20",
     endDate: "2024-04-22",
     status: "Pending",
-    assignedTo:"Sophia Miller",
+    assignedTo: "Sophia Miller",
     task: [
       { id: 401, taskName: "Team Registration", assignedTo: "Nancy Davis" },
       { id: 402, taskName: "Equipment Setup", assignedTo: "Mike Taylor" },
       { id: 403, taskName: "Food and Drinks", assignedTo: "Rachel Moore" },
       { id: 404, taskName: "Crowd Control", assignedTo: "Tom Harris" },
-      { id: 405, taskName: "Scoreboard Management", assignedTo: "Daniel Foster" },
+      {
+        id: 405,
+        taskName: "Scoreboard Management",
+        assignedTo: "Daniel Foster",
+      },
     ],
   },
   {
     id: 5,
     eventName: "Product Launch",
-    eventDetails: 'A highly anticipated product launch event to unveil a new groundbreaking product to the market.',
+    eventDetails:
+      "A highly anticipated product launch event to unveil a new groundbreaking product to the market.",
     eventDate: "2024-05-05",
     location: "Boston",
     organizer: "AMD",
@@ -758,10 +776,14 @@ export const EVENTS_DATA = [
     beginDate: "2024-05-01",
     endDate: "2024-05-03",
     status: "Not Started",
-    assignedTo:"William Phillips",
+    assignedTo: "William Phillips",
     task: [
       { id: 501, taskName: "Product Demo", assignedTo: "Harry Collins" },
-      { id: 502, taskName: "Social Media Promotion", assignedTo: "Sophie Scott" },
+      {
+        id: 502,
+        taskName: "Social Media Promotion",
+        assignedTo: "Sophie Scott",
+      },
       { id: 503, taskName: "Venue Setup", assignedTo: "Liam Martin" },
       { id: 504, taskName: "Guest Invitations", assignedTo: "Olivia Harris" },
       { id: 505, taskName: "Logistics", assignedTo: "Lucas Young" },
@@ -770,7 +792,8 @@ export const EVENTS_DATA = [
   {
     id: 6,
     eventName: "Annual Awards Ceremony",
-    eventDetails: 'A prestigious event recognizing the achievements of employees and celebrating the year\'s successes.',
+    eventDetails:
+      "A prestigious event recognizing the achievements of employees and celebrating the year's successes.",
     eventDate: "2024-06-15",
     location: "Los Angeles",
     organizer: "Tech Mahindra",
@@ -778,7 +801,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-06-10",
     endDate: "2024-06-12",
     status: "Pending",
-    assignedTo:"Lucas Harris",
+    assignedTo: "Lucas Harris",
     task: [
       { id: 601, taskName: "Award Trophies", assignedTo: "Kevin Clark" },
       { id: 602, taskName: "Red Carpet", assignedTo: "Sandra Wilson" },
@@ -790,7 +813,8 @@ export const EVENTS_DATA = [
   {
     id: 7,
     eventName: "Team Building Retreat",
-    eventDetails: 'A retreat designed for team bonding, with activities that promote collaboration and communication.',
+    eventDetails:
+      "A retreat designed for team bonding, with activities that promote collaboration and communication.",
     eventDate: "2024-07-20",
     location: "Miami",
     organizer: "Capita Tech",
@@ -798,7 +822,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-07-18",
     endDate: "2024-07-19",
     status: "Not Started",
-    assignedTo:"Charlotte Lee",
+    assignedTo: "Charlotte Lee",
     task: [
       { id: 701, taskName: "Outdoor Activities", assignedTo: "Andrew King" },
       { id: 702, taskName: "Lodging Arrangements", assignedTo: "Monica Bell" },
@@ -810,7 +834,8 @@ export const EVENTS_DATA = [
   {
     id: 8,
     eventName: "Fashion Show",
-    eventDetails: 'An exciting fashion event where top designers showcase their latest collections.',
+    eventDetails:
+      "An exciting fashion event where top designers showcase their latest collections.",
     eventDate: "2024-08-10",
     location: "Paris",
     organizer: "AMD",
@@ -818,7 +843,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-08-05",
     endDate: "2024-08-07",
     status: "Not Started",
-    assignedTo:"William Phillips",
+    assignedTo: "William Phillips",
     task: [
       { id: 801, taskName: "Model Selection", assignedTo: "Olivia Martin" },
       { id: 802, taskName: "Runway Setup", assignedTo: "Isabella Thomas" },
@@ -830,7 +855,8 @@ export const EVENTS_DATA = [
   {
     id: 9,
     eventName: "Charity Auction",
-    eventDetails: 'An event where attendees can bid on exclusive items, with proceeds going to charity.',
+    eventDetails:
+      "An event where attendees can bid on exclusive items, with proceeds going to charity.",
     eventDate: "2024-09-05",
     location: "London",
     organizer: "Tach Mahindra",
@@ -838,7 +864,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-09-01",
     endDate: "2024-09-03",
     status: "Not Started",
-    assignedTo:"Lucas Harris",
+    assignedTo: "Lucas Harris",
     task: [
       { id: 901, taskName: "Item Collection", assignedTo: "Chloe Brown" },
       { id: 902, taskName: "Bid Management", assignedTo: "David White" },
@@ -850,7 +876,8 @@ export const EVENTS_DATA = [
   {
     id: 10,
     eventName: "Film Premiere",
-    eventDetails: 'A glamorous premiere event to showcase a newly released film.',
+    eventDetails:
+      "A glamorous premiere event to showcase a newly released film.",
     eventDate: "2024-10-15",
     location: "Hollywood",
     organizer: "Videocon",
@@ -869,7 +896,8 @@ export const EVENTS_DATA = [
   {
     id: 11,
     eventName: "Marketing Summit",
-    eventDetails: 'A summit focusing on the latest trends and strategies in digital marketing.',
+    eventDetails:
+      "A summit focusing on the latest trends and strategies in digital marketing.",
     eventDate: "2024-11-10",
     location: "New York",
     organizer: "Tech Innovators",
@@ -878,17 +906,30 @@ export const EVENTS_DATA = [
     endDate: "2024-11-07",
     status: "Not Started",
     task: [
-      { id: 1101, taskName: "Keynote Speaker Coordination", assignedTo: "Alice White" },
+      {
+        id: 1101,
+        taskName: "Keynote Speaker Coordination",
+        assignedTo: "Alice White",
+      },
       { id: 1102, taskName: "Venue Booking", assignedTo: "John Green" },
-      { id: 1103, taskName: "Marketing Collateral", assignedTo: "Samantha Black" },
+      {
+        id: 1103,
+        taskName: "Marketing Collateral",
+        assignedTo: "Samantha Black",
+      },
       { id: 1104, taskName: "Audience Engagement", assignedTo: "David Brown" },
-      { id: 1105, taskName: "Live Streaming Setup", assignedTo: "Olivia Smith" },
+      {
+        id: 1105,
+        taskName: "Live Streaming Setup",
+        assignedTo: "Olivia Smith",
+      },
     ],
   },
   {
     id: 12,
     eventName: "Music Festival",
-    eventDetails: 'A multi-day music festival featuring performances from popular artists.',
+    eventDetails:
+      "A multi-day music festival featuring performances from popular artists.",
     eventDate: "2024-12-05",
     location: "Austin",
     organizer: "Soundwaves",
@@ -897,7 +938,11 @@ export const EVENTS_DATA = [
     endDate: "2024-12-04",
     status: "Not Started",
     task: [
-      { id: 1201, taskName: "Artist Coordination", assignedTo: "Emily Johnson" },
+      {
+        id: 1201,
+        taskName: "Artist Coordination",
+        assignedTo: "Emily Johnson",
+      },
       { id: 1202, taskName: "Stage Setup", assignedTo: "Liam Davis" },
       { id: 1203, taskName: "Ticketing", assignedTo: "Robert Lee" },
       { id: 1204, taskName: "Security", assignedTo: "Grace Martinez" },
@@ -907,7 +952,8 @@ export const EVENTS_DATA = [
   {
     id: 13,
     eventName: "Gala Dinner",
-    eventDetails: 'A formal dinner with entertainment, where key individuals are honored for their contributions.',
+    eventDetails:
+      "A formal dinner with entertainment, where key individuals are honored for their contributions.",
     eventDate: "2024-11-25",
     location: "London",
     organizer: "Royal Events",
@@ -915,7 +961,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-11-20",
     endDate: "2024-11-22",
     status: "Ongoing",
-    assignedTo:"Lucas Harris",
+    assignedTo: "Lucas Harris",
     task: [
       { id: 1301, taskName: "Invitations", assignedTo: "Oliver King" },
       { id: 1302, taskName: "Venue Decoration", assignedTo: "Sophia Taylor" },
@@ -923,7 +969,7 @@ export const EVENTS_DATA = [
       { id: 1304, taskName: "Entertainment", assignedTo: "Michael Harris" },
       { id: 1305, taskName: "Guest Speakers", assignedTo: "Lucy Walker" },
     ],
-  }
+  },
 ];
 
 export const VENDORS_DATA = [
@@ -1589,7 +1635,7 @@ export const HELP_DRAWER_TIPS = {
     "In the Client Tasks section, you can manage tasks, edit them, and delete as needed.",
     "Click on an any task to view its detailed page with full information about the task.",
     "Click on an any event to view its detailed page with full information about the event.",
-    "At the Top-right of the table of the Tasks and Events we have option of 'New' through this we can add new task and event"
+    "At the Top-right of the table of the Tasks and Events we have option of 'New' through this we can add new task and event",
   ],
   "/events-details": [
     "You are viewing details for the selected event.",
@@ -1611,7 +1657,7 @@ export const HELP_DRAWER_TIPS = {
     "In the Task Comments table, you can edit or delete any comment for better task tracking.",
   ],
   "/vendors-details": [
-   "The Vendor Details page allows you to view and manage information related to a specific vendor.",
+    "The Vendor Details page allows you to view and manage information related to a specific vendor.",
     "You can update the vendor’s details through the vendor details form at the top of the page.",
     "Below the vendor details, you'll find the Add Employee toggle button.",
     "Clicking on the Add Employee toggle will open a form that allows you to add employees to the vendor.",
@@ -1632,5 +1678,11 @@ export const HELP_DRAWER_TIPS = {
     "Below the team members table, you will find the Team Events table.",
     "In the Team Events table, you can see all events related to the team.",
     "You can edit or delete any event from the Team Events table.",
+  ],
+};
+
+export const SPECIAL_CASES_TIPS = {
+  "/internals": [
+    "Role of the user can only be updated if the user is not a part of any team.",
   ],
 };

@@ -160,6 +160,7 @@ const Analytics = () => {
                 }).toString(),
               })
             }
+            height={300}
             moreLink={"/events"}
             onDeleteRow={handleDeleteRow}
           />
@@ -169,6 +170,7 @@ const Analytics = () => {
             rows={rows1}
             label="Pending Tasks"
             columns={columns1}
+            height={300}
             pageSize={10}
             moreLink={"/tasks"}
             pageSizeOptions={[5, 10, 20]}
@@ -188,6 +190,7 @@ const Analytics = () => {
             rows={rows2}
             columns={columns2}
             pageSize={10}
+            height={300}
             moreLink={"/clients"}
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>

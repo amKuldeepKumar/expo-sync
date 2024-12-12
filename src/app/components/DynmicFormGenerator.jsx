@@ -18,7 +18,7 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
 
-const DynamicFormGenerator = ({ columns = [] }) => {
+const DynamicFormGenerator = ({ columns = [], fieldGridSize = 4 }) => {
   const [cards, setCards] = useState([{ id: 1, data: {} }]);
 
   const handleChange = (cardId, event) => {
@@ -106,7 +106,7 @@ const DynamicFormGenerator = ({ columns = [] }) => {
         {cards.map((card, index) => (
           <>
             {columns.map((col, colIndex) => (
-              <Grid item key={colIndex} md={5} xs={5}>
+              <Grid item key={colIndex} md={fieldGridSize} xs={fieldGridSize}>
                 {renderField(col, card)}
               </Grid>
             ))}
@@ -127,6 +127,7 @@ const DynamicFormGenerator = ({ columns = [] }) => {
                 </Button>
               )}
             </Grid>
+            <Grid item md={6} xs={6} />
           </>
         ))}
       </Grid>

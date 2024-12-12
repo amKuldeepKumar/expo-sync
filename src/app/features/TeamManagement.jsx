@@ -2,6 +2,7 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
+  Autocomplete,
   Button,
   Card,
   CardContent,
@@ -13,7 +14,11 @@ import { useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import DynamicFormGenerator from "../components/DynmicFormGenerator";
-import { ManagersColumns, TEAMS_DATA } from "../constants/dataConstant";
+import {
+  ManagersColumns,
+  TEAMS_DATA,
+  USER_ROWS,
+} from "../constants/dataConstant";
 
 const TeamManagement = () => {
   const navigate = useNavigate();
@@ -104,26 +109,15 @@ const TeamManagement = () => {
 
   const createTeamColumns = [
     {
-      name: "role",
-      label: "Role",
+      name: "executive",
+      label: "Executive",
       type: "select",
-      options: ["Manager", "Team Lead", "Executive"],
-    },
-    {
-      name: "employees",
-      label: "Employees",
-      type: "select",
-      options: [
-        "member A",
-        "member B",
-        "member C",
-        "member D",
-        "member E",
-        "member F",
-        "member G",
-        "member H",
-        "member I",
-      ],
+      options: USER_ROWS.filter(
+        (u) =>
+          u.role != "Manager" &&
+          u.role != "Team Lead" &&
+          u.role != "Assistent Manager"
+      ).map((f) => f.name),
     },
   ];
 
@@ -138,68 +132,79 @@ const TeamManagement = () => {
             </Button>
 
             <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
-              <CardContent>
-                <TextField required label="Team Name" sx={{ mr: 2 }} />
-                <TextField required label="Description" sx={{ mb: 2 }} />
-                <DynamicFormGenerator columns={createTeamColumns} />
-                <Grid
-                  item
-                  xs={12}
-                  sx={{ display: "flex", justifyContent: "end" }}
-                >
-                  <Button variant="contained">Save</Button>
+              <CardContent sx={{ maxHeight: "40vh", overflow: "auto" }}>
+                <Grid container spacing={2}>
+                  <Grid item md={4}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Team Name"
+                      sx={{ mr: 2 }}
+                    />
+                  </Grid>
+                  <Grid item md={4}>
+                    <TextField
+                      fullWidth
+                      required
+                      label="Description"
+                      sx={{ mb: 2 }}
+                    />
+                  </Grid>
+                  <Grid item md={4}>
+                    <Autocomplete
+                      options={[
+                        "Chris Evans",
+                        "Lucas Harris",
+                        "William Phillips",
+                      ]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Manager" />
+                      )}
+                    />
+                  </Grid>
+                  <Grid item md={4}>
+                    <Autocomplete
+                      options={["Mason Martinez", "Benjamin Adamss"]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Team Lead" />
+                      )}
+                    />
+                  </Grid>
+                  <Grid item md={12} mt={2}>
+                    <DynamicFormGenerator columns={createTeamColumns} />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "end",
+                      position: "sticky",
+                      bottom: 0,
+                      right: 0,
+                    }}
+                  >
+                    <Button variant="contained">Save</Button>
+                  </Grid>
                 </Grid>
               </CardContent>
             </Collapse>
           </Card>
         </Grid>
-        <Card>
-          <CardContent>
-            <Grid container spacing={2}>
-              <Grid item md={12}>
-                <AppDataGrid
-                  rows={TEAMS_DATA}
-                  label="Teams"
-                  columns={ManagersColumns}
-                  onRowClick={handleManagerClick}
-                  showAction={true}
-                  showSearching={true}
-                  defaultSelectedRow={teams[0].id}
-                  height={280}
-                />
-              </Grid>
-              {/* <Grid item xs={12} md={6}>
-                <AppDataGrid
-                  rows={amData}
-                  label="Assistant Managers"
-                  columns={AssistantManagersColumns}
-                  defaultSelectedRow={teams[0].am[0].id}
-                  onRowClick={handleAMClick}
-                  height={280}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} mt={2}>
-                <AppDataGrid
-                  rows={tlData}
-                  label="Team Leads"
-                  columns={TeamLeadColumns}
-                  defaultSelectedRow={teams[0].am[0].tl[0].id}
-                  onRowClick={handleTLClick}
-                  height={280}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} mt={2}>
-                <AppDataGrid
-                  rows={executiveData}
-                  label="Executives"
-                  columns={ExecutiveColumn}
-                  onRowClick={() => {}}
-                  height={280}
-                />
-              </Grid> */}
-            </Grid>
-          </CardContent>
-        </Card>
+        <Grid container spacing={2} mt={2}>
+          <Grid item md={12}>
+            <AppDataGrid
+              rows={TEAMS_DATA}
+              label="Teams"
+              columns={ManagersColumns}
+              onRowClick={handleManagerClick}
+              showAction={true}
+              showSearching={true}
+              defaultSelectedRow={teams[0].id}
+              height={300}
+            />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -93,7 +93,14 @@ const AppDataGrid = ({
           <DeleteIcon fontSize="small" />
         </IconButton>
         {commentIcon && (
-          <StyledBadge badgeContent={Math.floor(Math.random() * 20) < 2 ? 0 : Math.floor(Math.random() * 10)} color="primary">
+          <StyledBadge
+            badgeContent={
+              Math.floor(Math.random() * 20) < 2
+                ? 0
+                : Math.floor(Math.random() * 10)
+            }
+            color="primary"
+          >
             <IconButton size="small" variant="text" color="secondary">
               <CommentIcon fontSize="small" />
             </IconButton>
@@ -187,14 +194,23 @@ const AppDataGrid = ({
         {moreLink && (
           <Link
             underline="hover"
-            sx={{ cursor: "pointer", fontWeight: 700, fontSize: 15 }}
+            sx={{
+              cursor: "pointer",
+              fontWeight: 700,
+              fontSize: 15,
+              fontFamily: "'Noto Sans', sans-serif",
+            }}
             onClick={() => naviGate(moreLink)}
           >
             View More
           </Link>
         )}
         {newButton && (
-          <Button size="small" sx={{ p: 0, fontWeight: "bold" }} onClick={()=>alert("Add new field")}>
+          <Button
+            size="small"
+            sx={{ p: 0, fontWeight: "bold" }}
+            onClick={() => alert("Add new field")}
+          >
             New +
           </Button>
         )}

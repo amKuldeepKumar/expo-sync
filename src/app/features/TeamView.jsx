@@ -1,12 +1,7 @@
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
   Autocomplete,
   Box,
   Button,
-  Card,
-  CardContent,
-  Collapse,
   Grid,
   TextField,
   Typography,
@@ -18,11 +13,13 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
+import DynamicFormGenerator from "../components/DynmicFormGenerator";
 import {
   TASK_COLUMNS,
   TASK_DATA,
   TeamMembersColumns,
   TEAMS_DATA,
+  USER_ROWS,
 } from "../constants/dataConstant";
 
 export const TeamView = () => {
@@ -30,7 +27,6 @@ export const TeamView = () => {
   const [searchParams] = useSearchParams();
 
   const [rows, setRows] = useState([]);
-  const [isCardVisible, setIsCardVisible] = useState(false);
 
   const teamData = useMemo(() => {
     const teamId = searchParams.get("teamId");
@@ -65,36 +61,17 @@ export const TeamView = () => {
     setRows([...rowsData]);
   }, [teamData]);
 
-  // const handleNewClick = () => {
-  //   const id = (rows.length + 1).toString();
-  //   setRows([{ id: id, name: "", role: "" }, ...rows]);
-  //   setRowModel({
-  //     [id]: { mode: GridRowModes.Edit, fieldToFocus: "name" },
-  //   });
-  // };
-
-  const toggleCardVisibility = () => {
-    setIsCardVisible(!isCardVisible);
-  };
-
-  const selectOptions = [
+  const createTeamColumns = [
     {
-      label: "Role",
-      options: ["Manager", "Team Lead", "Executive"],
-    },
-    {
-      label: "Employees",
-      options: [
-        "member A",
-        "member B",
-        "member C",
-        "member D",
-        "member E",
-        "member F",
-        "member G",
-        "member H",
-        "member I",
-      ],
+      name: "executive",
+      label: "Executive",
+      type: "select",
+      options: USER_ROWS.filter(
+        (u) =>
+          u.role != "Manager" &&
+          u.role != "Team Lead" &&
+          u.role != "Assistent Manager"
+      ).map((f) => f.name),
     },
   ];
 
@@ -103,51 +80,82 @@ export const TeamView = () => {
       <Typography variant="h2" mb={2}>
         Team Details
       </Typography>
-      <TextField
-        required
-        label="Team Name"
-        defaultValue={teamData.name}
-        sx={{ mr: 2 }}
-      />
-      <TextField required label="Description" sx={{ mb: 2 }} />
-
-      <Card>
-        <Button onClick={toggleCardVisibility}>
-          {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}{" "}
-          {!isCardVisible && "Add Team Member"}
-        </Button>
-
-        <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Grid container>
-              {selectOptions.map((o) => (
-                <Grid item key={o.label} md={4} mr={2}>
-                  <Autocomplete
-                    options={o.options}
-                    renderInput={(params) => (
-                      <TextField {...params} label={o.label} />
-                    )}
-                  />
-                </Grid>
-              ))}
-              <Grid md={3} display="flex" alignItems="center">
-                <Button variant="contained">Add</Button>
+      <Grid container spacing={2}>
+        <Grid item md={5}>
+          <Box
+            sx={{
+              maxHeight: "45vh",
+              overflowY: "auto",
+              overflowX: "hidden",
+              position: "relative",
+            }}
+          >
+            <Grid container spacing={2} mt={1}>
+              <Grid item md={12}>
+                <TextField
+                  fullWidth
+                  required
+                  defaultValue={teamData.name}
+                  label="Team Name"
+                  sx={{ mr: 2 }}
+                />
+              </Grid>
+              <Grid item md={12}>
+                <TextField
+                  fullWidth
+                  required
+                  defaultValue={teamData.desc}
+                  label="Description"
+                />
+              </Grid>
+              <Grid item md={12}>
+                <Autocomplete
+                  options={["Chris Evans", "Lucas Harris", "William Phillips"]}
+                  defaultValue={teamData.manager}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Manager" />
+                  )}
+                />
+              </Grid>
+              <Grid item md={12}>
+                <Autocomplete
+                  options={["Mason Martinez", "Benjamin Adamss"]}
+                  defaultValue={"Mason Martinez"}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Team Lead" />
+                  )}
+                />
+              </Grid>
+              <Grid item md={12}>
+                <DynamicFormGenerator
+                  columns={createTeamColumns}
+                  fieldGridSize={8}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sx={{ display: "flex", justifyContent: "end", position: "sticky", bottom: 0, right: 0, background: "white" }}
+              >
+                <Button variant="contained">Save</Button>
               </Grid>
             </Grid>
-          </CardContent>
-        </Collapse>
-      </Card>
-      <Grid container gap={4} mt={2}>
-        <Grid md={12} mb={2}>
+          </Box>
+        </Grid>
+
+        <Grid item md={7}>
           <AppDataGrid
             rows={rows}
             editMode="row"
             label="Team Members"
             columns={TeamMembersColumns}
             showAction={true}
-            height={400}
+            height={300}
           />
         </Grid>
+      </Grid>
+
+      <Grid container mt={2}>
         <Grid md={12}>
           <AppDataGrid
             showAction
@@ -155,12 +163,13 @@ export const TeamView = () => {
             columns={TASK_COLUMNS}
             label="Task"
             pageSize={10}
+            height={350}
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>
               navigate({
-                pathname: "/events-details",
+                pathname: "/tasks-details",
                 search: createSearchParams({
-                  eventId: row.id,
+                  taskId: row.id,
                 }).toString(),
               })
             }
