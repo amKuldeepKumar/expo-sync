@@ -12,16 +12,40 @@ export const theme = createTheme({
       default: "#f4f4f4",
     },
   },
-  typography: {
-    fontFamily: '"Roboto", sans-serif',
-    h1: {
-      fontSize: "2rem",
-      fontWeight: 500,
+  spacing: 8,
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          fontFamily: '"Noto Sans", sans-serif',
+        },
+      },
     },
-    h2: {
-      fontSize: "1.8rem",
-      fontWeight: 400,
+    MuiTypography: {
+      fontFamily: '"Noto Sans", sans-serif',
+      styleOverrides: {
+        h1: {
+          fontSize: "2rem",
+          fontWeight: 500,
+        },
+        h2: {
+          fontSize: "1.8rem",
+          fontWeight: 400,
+        },
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        columnHeader: {
+          background: "#4b4a4b",
+          "&:focus, &:active, &:focus-within": {
+            outline: "none",
+          },
+        },
+        columnHeaderTitle: {
+          color: "whitesmoke",
+        },
+      },
     },
   },
-  spacing: 8,
 });

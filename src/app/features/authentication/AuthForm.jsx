@@ -6,9 +6,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import logo from "../../../../public/Logo_Final_PNG_Black-Text.png";
+import logo from "../../../assets/Logo_Final_PNG_Black-Text.png";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const AuthForm = () => {
   const [data, setData] = useState({});
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ const AuthForm = () => {
         <Grid container spacing={2}>
           <Grid item md={12} sm={12} xs={12}>
             <Box
-              sx={{ height: "100%", display: { md: "none", xs: "flex" } }}
+              sx={{ height: "100%", display: { md: "flex", xs: "flex" } }}
               p={3}
               display={"flex"}
               justifyContent={"center"}
@@ -58,12 +60,15 @@ const AuthForm = () => {
               />
             </Box>
           </Grid>
-          <Grid item md={12} sm={12} xs={12}>
-            <Typography>
-              {" "}
-              <b>Welcome to The Traingular Dots </b>
-              <br /> <p style={{ fontSize: "12px" }}>Event Management.</p>
-            </Typography>
+          <Grid
+            item
+            md={12}
+            sm={12}
+            xs={12}
+            display="flex"
+            justifyContent="center"
+          >
+            <Typography fontSize={30} fontWeight={500}>Login</Typography>
           </Grid>
           <Grid item md={12} sm={12} xs={12}>
             <Box>

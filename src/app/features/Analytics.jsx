@@ -8,16 +8,14 @@ const columns = [
     field: "eventName",
     headerName: "Event Name",
     editable: true,
-    width: 170,
   },
   {
     field: "eventDate",
     headerName: "Event Date",
     type: "string",
-    width: 110,
   },
-  { field: "location", headerName: "Location", width: 120 },
-  { field: "client", headerName: "Client", width: 120 },
+  { field: "location", headerName: "Location" },
+  { field: "client", headerName: "Client" },
 ];
 
 const columns1 = [
@@ -25,21 +23,18 @@ const columns1 = [
     field: "taskName",
     headerName: "Task Name",
     editable: true,
-    width: 170,
   },
   {
     field: "eventName",
     headerName: "Event Name",
     editable: true,
-    width: 170,
   },
   {
     field: "eventDate",
     headerName: "Event Date",
     type: "string",
-    width: 110,
   },
-  { field: "organizer", headerName: "Client", width: 170 },
+  { field: "organizer", headerName: "Client" },
 ];
 
 const columns2 = [
@@ -47,16 +42,14 @@ const columns2 = [
     field: "eventName",
     headerName: "Event Name",
     editable: true,
-    width: 170,
   },
   {
     field: "eventDate",
     headerName: "Event Date",
     type: "string",
-    width: 110,
   },
-  { field: "location", headerName: "Location", width: 150 },
-  { field: "organizer", headerName: "Client", width: 150 },
+  { field: "location", headerName: "Location" },
+  { field: "organizer", headerName: "Client" },
 ];
 
 const rows = [
@@ -145,8 +138,8 @@ const Analytics = () => {
   const handleDeleteRow = (row) => {};
 
   return (
-    <Container maxWidth="xl" sx={{ mt: 4 }}>
-      <Typography fontSize={20} fontWeight={700} sx={{ mb: 2 }}>
+    <Container maxWidth="100%" sx={{ mt: 4 }}>
+      <Typography fontWeight={700} fontSize={25} color="primary">
         DashBoard
       </Typography>
       <Grid container spacing={2}>

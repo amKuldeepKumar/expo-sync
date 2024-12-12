@@ -9,7 +9,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import StorefrontIcon from "@mui/icons-material/Storefront";
-import { Avatar, Button, Menu, MenuItem } from "@mui/material";
+import { Avatar, Menu, MenuItem } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -25,18 +25,20 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useEffect, useMemo } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import logo from "../../assets/Logo_Final_PNG_Black-Text.png";
 import Analytics from "../features/Analytics";
 import { ClientDetails } from "../features/CilientDetails";
 import Clients from "../features/Clients";
 import { EventDetails } from "../features/EventDetails";
 import Events from "../features/Events";
 import Internals from "../features/Internals";
+import { TaskDetails } from "../features/TaskDetails";
+import { Tasks } from "../features/Tasks";
 import { TeamView } from "../features/TeamView";
 import Vendors from "../features/Vendors";
 import { VendorView } from "../features/VendorView";
 import HelpDrawer from "./HelpDrawer";
-import { Tasks } from "../features/Tasks";
-import { TaskDetails } from "../features/TaskDetails";
+import { Footer } from "./Footer";
 
 const drawerWidth = 240;
 const pages = [
@@ -210,14 +212,15 @@ export default function AppDrawer() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Button
-                      variant="text"
-                      onClick={() => setting === "Logout" && logoutUser()}
-                      sx={{ textAlign: "center" }}
-                    >
-                      {setting}
-                    </Button>
+                  <MenuItem
+                    key={setting}
+                    onClick={() =>
+                      setting === "Logout"
+                        ? logoutUser()
+                        : handleCloseUserMenu()
+                    }
+                  >
+                    {setting}
                   </MenuItem>
                 ))}
               </Menu>
@@ -241,7 +244,7 @@ export default function AppDrawer() {
         <DrawerHeader>
           <img
             height="60"
-            src="./Logo_Final_PNG_Black-Text.png"
+            src={logo}
             alt="Paella dish"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/analytics")}
@@ -292,6 +295,7 @@ export default function AppDrawer() {
           <Route path="/tasks-details" element={<TaskDetails />} />
         </Routes>
       </Main>
+      <Footer />
     </Box>
   );
 }

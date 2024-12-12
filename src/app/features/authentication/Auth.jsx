@@ -1,13 +1,13 @@
-import { Box, CardMedia, Grid, Typography } from "@mui/material";
-import logo from "../../../../public/Logo_Final_PNG_Black-Text.png";
+import { Box, Grid, Typography } from "@mui/material";
+import backgroundImage from "../../../assets/TD_007.jpg";
 import AuthForm from "./AuthForm";
-import backgroundImage from "../../../../public/TD_007.jpg";
+import { Footer } from "../../components/Footer";
 
 const Auth = () => {
   return (
     <Grid container spacing={0}>
       <Grid item md={8}>
-        <Box 
+        <Box
           className="image-custom"
           color="primary"
           sx={{
@@ -30,36 +30,29 @@ const Auth = () => {
             justifyContent={"center"}
             alignItems={"center"}
           >
-            <Grid container spacing={2} p={2}>
-              <Grid
-                item
-                md={12}
-                sm={12}
-                xs={12}
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <CardMedia
-                  src={logo}
-                  alt="logo"
-                  component="img"
-                  style={{
-                    height: "150px",
-                    width: "355px",
-                    objectFit: "contain",
-                    objectPosition: "center top",
-                  }}
-                />
-              </Grid>
-
+            <Grid container spacing={2} p={5} mt={40}>
               <Grid>
                 <Grid item md={12} sm={12} xs={12}>
-                  <Typography p={3} fontWeight={"550"} flexWrap={"wrap"}>
-                    event management tool allows users to create teams, assign
-                    tasks, and manage vendors, streamlining event planning and
-                    execution. It enhances team coordination and simplifies
-                    vendor coordination for successful event outcomes.
+                  <Typography
+                    color="white"
+                    width="50%"
+                    mb={1}
+                    fontWeight={"500"}
+                    flexWrap={"wrap"}
+                    fontSize={22}
+                  >
+                    Streamline your event operations with ease. Manage
+                    logistics, teams, and tasks from one powerful platform.
+                  </Typography>
+                  <Typography
+                    color="white"
+                    width="50%"
+                    fontWeight={"500"}
+                    flexWrap={"wrap"}
+                    fontSize={22}
+                  >
+                    Empower your back-office team to work smarter. Simplify
+                    processes and ensure flawless event execution.
                   </Typography>
                 </Grid>
               </Grid>
@@ -70,6 +63,7 @@ const Auth = () => {
       <Grid item md={4} xs={12}>
         <AuthForm />
       </Grid>
+      <Footer />
     </Grid>
   );
 };

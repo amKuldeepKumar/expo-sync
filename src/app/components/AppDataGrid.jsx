@@ -104,7 +104,10 @@ const AppDataGrid = ({
   };
 
   useEffect(() => {
-    setEnhancedColumns(showAction ? [...columns, actionColumn] : columns);
+    const columnsWithActions = showAction
+      ? [...columns, actionColumn]
+      : columns;
+    setEnhancedColumns(columnsWithActions.map((c) => ({ ...c, flex: 1 })));
     setSelectedRow1(defaultSelectedRow);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns, showAction]);
