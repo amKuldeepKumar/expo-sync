@@ -61,6 +61,15 @@ export const EventDetails = () => {
           />
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="outlined-required-1"
+            label="Event Detail"
+            defaultValue={eventData.eventDetails}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               label="Event Date"
@@ -130,7 +139,7 @@ export const EventDetails = () => {
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
-            defaultValue={USER_ROWS[0].name}
+            defaultValue={eventData.assignedTo}
             options={USER_ROWS.filter((e) => e.role !== "Executive").map(
               (e) => e.name
             )}

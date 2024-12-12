@@ -678,6 +678,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-01-18",
     endDate: "2024-01-19",
     status: "Pending",
+    assignedTo:"Chris Evans",
     task: [
       { id: 101, taskName: "Food Catering", assignedTo: "Soravh Mishra" },
       { id: 102, taskName: "AV Setup", assignedTo: "John Smith" },
@@ -697,6 +698,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-01-19",
     endDate: "2024-01-20",
     status: "Ongoing",
+    assignedTo:"Lucas Harris",
     task: [
       { id: 201, taskName: "Speaker Coordination", assignedTo: "Pardeep Singh" },
       { id: 202, taskName: "Tech Setup", assignedTo: "Ravi Kumar" },
@@ -716,6 +718,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-03-15",
     endDate: "2024-03-16",
     status: "Not Started",
+    assignedTo:"William Phillips",
     task: [
       { id: 301, taskName: "Sponsorship Management", assignedTo: "Ellen Green" },
       { id: 302, taskName: "Auction Setup", assignedTo: "George King" },
@@ -754,6 +757,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-05-01",
     endDate: "2024-05-03",
     status: "Not Started",
+    assignedTo:"William Phillips",
     task: [
       { id: 501, taskName: "Product Demo", assignedTo: "Harry Collins" },
       { id: 502, taskName: "Social Media Promotion", assignedTo: "Sophie Scott" },
@@ -773,6 +777,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-06-10",
     endDate: "2024-06-12",
     status: "Pending",
+    assignedTo:"Lucas Harris",
     task: [
       { id: 601, taskName: "Award Trophies", assignedTo: "Kevin Clark" },
       { id: 602, taskName: "Red Carpet", assignedTo: "Sandra Wilson" },
@@ -792,6 +797,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-07-18",
     endDate: "2024-07-19",
     status: "Not Started",
+    assignedTo:"Charlotte Lee",
     task: [
       { id: 701, taskName: "Outdoor Activities", assignedTo: "Andrew King" },
       { id: 702, taskName: "Lodging Arrangements", assignedTo: "Monica Bell" },
@@ -811,6 +817,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-08-05",
     endDate: "2024-08-07",
     status: "Not Started",
+    assignedTo:"William Phillips",
     task: [
       { id: 801, taskName: "Model Selection", assignedTo: "Olivia Martin" },
       { id: 802, taskName: "Runway Setup", assignedTo: "Isabella Thomas" },
@@ -830,6 +837,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-09-01",
     endDate: "2024-09-03",
     status: "Not Started",
+    assignedTo:"Lucas Harris",
     task: [
       { id: 901, taskName: "Item Collection", assignedTo: "Chloe Brown" },
       { id: 902, taskName: "Bid Management", assignedTo: "David White" },
@@ -906,6 +914,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-11-20",
     endDate: "2024-11-22",
     status: "Ongoing",
+    assignedTo:"Lucas Harris",
     task: [
       { id: 1301, taskName: "Invitations", assignedTo: "Oliver King" },
       { id: 1302, taskName: "Venue Decoration", assignedTo: "Sophia Taylor" },
