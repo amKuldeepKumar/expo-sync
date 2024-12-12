@@ -121,7 +121,7 @@ export const TaskDetails = () => {
         <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item  xs={12}>
+              <Grid item md={8} xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -135,7 +135,8 @@ export const TaskDetails = () => {
               <Grid
                 item
                 xs={12}
-                sx={{ display: "flex", justifyContent: "end" }}
+                md={4}
+                sx={{ marginTop:1 }}
               >
                 <Button variant="contained">Save</Button>
               </Grid>

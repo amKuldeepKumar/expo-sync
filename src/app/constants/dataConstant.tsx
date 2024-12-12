@@ -738,6 +738,7 @@ export const EVENTS_DATA = [
     beginDate: "2024-04-20",
     endDate: "2024-04-22",
     status: "Pending",
+    assignedTo:"Sophia Miller",
     task: [
       { id: 401, taskName: "Team Registration", assignedTo: "Nancy Davis" },
       { id: 402, taskName: "Equipment Setup", assignedTo: "Mike Taylor" },
@@ -1163,7 +1164,7 @@ export const TASK_DATA = [
     dueDate: "05/16/24",
     status: "Pending",
     vendor: "Kumar Printing Press",
-    client: "Godrej",
+    client: "Videocon",
     event: "Product Launch",
   },
   {
