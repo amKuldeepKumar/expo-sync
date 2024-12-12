@@ -179,7 +179,7 @@ export const ClientDetails = () => {
             </Grid>
 
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }}>
-              <Button variant="contained">Update</Button>
+              <Button variant="contained">Save</Button>
             </Grid>
           </Grid>
         </Grid>

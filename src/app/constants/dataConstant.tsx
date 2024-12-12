@@ -634,19 +634,20 @@ export const events_columns = [
     width: 180,
     editable: true,
   },
+  
+  { field: "organizer", headerName: "Client", width: 150 },
+  { field: "location", headerName: "Location", width: 150 },
+  { field: "type", headerName: "Type", width: 120 },
+  { field: "status", headerName: "Status", width: 120 },
+  { field: "assignedTo", headerName: "Assigned To", width: 100 },
   {
     field: "eventDate",
     headerName: "Event Date",
     width: 120,
     type: "string",
   },
-  { field: "location", headerName: "Location", width: 150 },
-  { field: "organizer", headerName: "Client", width: 150 },
-  { field: "type", headerName: "Type", width: 120 },
-  { field: "status", headerName: "Status", width: 120 },
   { field: "beginDate", headerName: "Begin Date", width: 100 },
   { field: "endDate", headerName: "End Date", width: 100 },
-  { field: "assignedTo", headerName: "Assigned To", width: 100 },
 ];
 
 export const task_columns = [
@@ -669,6 +670,7 @@ export const EVENTS_DATA = [
   {
     id: 1,
     eventName: "Annual Meeting",
+    eventDetails: 'This is the annual meeting of the organization to discuss the year\'s progress and future goals.',
     eventDate: "2024-01-10",
     location: "New York",
     organizer: "Godrej",
@@ -687,6 +689,7 @@ export const EVENTS_DATA = [
   {
     id: 2,
     eventName: "Tech Conference",
+    eventDetails: 'A conference showcasing the latest developments in technology, bringing together industry leaders and innovators.',
     eventDate: "2024-02-15",
     location: "San Francisco",
     organizer: "Capita Tech",
@@ -695,11 +698,7 @@ export const EVENTS_DATA = [
     endDate: "2024-01-20",
     status: "Ongoing",
     task: [
-      {
-        id: 201,
-        taskName: "Speaker Coordination",
-        assignedTo: "Pardeep Singh",
-      },
+      { id: 201, taskName: "Speaker Coordination", assignedTo: "Pardeep Singh" },
       { id: 202, taskName: "Tech Setup", assignedTo: "Ravi Kumar" },
       { id: 203, taskName: "Catering", assignedTo: "Shivani Gupta" },
       { id: 204, taskName: "Venue Decoration", assignedTo: "Sandeep Yadav" },
@@ -709,19 +708,16 @@ export const EVENTS_DATA = [
   {
     id: 3,
     eventName: "Charity Gala",
+    eventDetails: 'A fundraising event featuring a lavish dinner and entertainment to support various charitable causes.',
     eventDate: "2024-03-20",
     location: "Chicago",
     organizer: "Videocon",
     type: "Gala",
     beginDate: "2024-03-15",
     endDate: "2024-03-16",
-    status: "No Started",
+    status: "Not Started",
     task: [
-      {
-        id: 301,
-        taskName: "Sponsorship Management",
-        assignedTo: "Ellen Green",
-      },
+      { id: 301, taskName: "Sponsorship Management", assignedTo: "Ellen Green" },
       { id: 302, taskName: "Auction Setup", assignedTo: "George King" },
       { id: 303, taskName: "Guest Registration", assignedTo: "Linda Carter" },
       { id: 304, taskName: "Food Catering", assignedTo: "Simon Powell" },
@@ -731,6 +727,7 @@ export const EVENTS_DATA = [
   {
     id: 4,
     eventName: "Sports Day",
+    eventDetails: 'A day of outdoor sports and friendly competition designed to boost team spirit and fitness.',
     eventDate: "2024-04-25",
     location: "Los Angeles",
     organizer: "Intel",
@@ -743,16 +740,13 @@ export const EVENTS_DATA = [
       { id: 402, taskName: "Equipment Setup", assignedTo: "Mike Taylor" },
       { id: 403, taskName: "Food and Drinks", assignedTo: "Rachel Moore" },
       { id: 404, taskName: "Crowd Control", assignedTo: "Tom Harris" },
-      {
-        id: 405,
-        taskName: "Scoreboard Management",
-        assignedTo: "Daniel Foster",
-      },
+      { id: 405, taskName: "Scoreboard Management", assignedTo: "Daniel Foster" },
     ],
   },
   {
     id: 5,
     eventName: "Product Launch",
+    eventDetails: 'A highly anticipated product launch event to unveil a new groundbreaking product to the market.',
     eventDate: "2024-05-05",
     location: "Boston",
     organizer: "AMD",
@@ -762,11 +756,7 @@ export const EVENTS_DATA = [
     status: "Not Started",
     task: [
       { id: 501, taskName: "Product Demo", assignedTo: "Harry Collins" },
-      {
-        id: 502,
-        taskName: "Social Media Promotion",
-        assignedTo: "Sophie Scott",
-      },
+      { id: 502, taskName: "Social Media Promotion", assignedTo: "Sophie Scott" },
       { id: 503, taskName: "Venue Setup", assignedTo: "Liam Martin" },
       { id: 504, taskName: "Guest Invitations", assignedTo: "Olivia Harris" },
       { id: 505, taskName: "Logistics", assignedTo: "Lucas Young" },
@@ -775,6 +765,7 @@ export const EVENTS_DATA = [
   {
     id: 6,
     eventName: "Annual Awards Ceremony",
+    eventDetails: 'A prestigious event recognizing the achievements of employees and celebrating the year\'s successes.',
     eventDate: "2024-06-15",
     location: "Los Angeles",
     organizer: "Tech Mahindra",
@@ -793,6 +784,7 @@ export const EVENTS_DATA = [
   {
     id: 7,
     eventName: "Team Building Retreat",
+    eventDetails: 'A retreat designed for team bonding, with activities that promote collaboration and communication.',
     eventDate: "2024-07-20",
     location: "Miami",
     organizer: "Capita Tech",
@@ -811,6 +803,7 @@ export const EVENTS_DATA = [
   {
     id: 8,
     eventName: "Fashion Show",
+    eventDetails: 'An exciting fashion event where top designers showcase their latest collections.',
     eventDate: "2024-08-10",
     location: "Paris",
     organizer: "AMD",
@@ -829,6 +822,7 @@ export const EVENTS_DATA = [
   {
     id: 9,
     eventName: "Charity Auction",
+    eventDetails: 'An event where attendees can bid on exclusive items, with proceeds going to charity.',
     eventDate: "2024-09-05",
     location: "London",
     organizer: "Tach Mahindra",
@@ -847,6 +841,7 @@ export const EVENTS_DATA = [
   {
     id: 10,
     eventName: "Film Premiere",
+    eventDetails: 'A glamorous premiere event to showcase a newly released film.',
     eventDate: "2024-10-15",
     location: "Hollywood",
     organizer: "Videocon",
@@ -862,6 +857,63 @@ export const EVENTS_DATA = [
       { id: 1005, taskName: "Security", assignedTo: "Nathan Clark" },
     ],
   },
+  {
+    id: 11,
+    eventName: "Marketing Summit",
+    eventDetails: 'A summit focusing on the latest trends and strategies in digital marketing.',
+    eventDate: "2024-11-10",
+    location: "New York",
+    organizer: "Tech Innovators",
+    type: "Summit",
+    beginDate: "2024-11-05",
+    endDate: "2024-11-07",
+    status: "Not Started",
+    task: [
+      { id: 1101, taskName: "Keynote Speaker Coordination", assignedTo: "Alice White" },
+      { id: 1102, taskName: "Venue Booking", assignedTo: "John Green" },
+      { id: 1103, taskName: "Marketing Collateral", assignedTo: "Samantha Black" },
+      { id: 1104, taskName: "Audience Engagement", assignedTo: "David Brown" },
+      { id: 1105, taskName: "Live Streaming Setup", assignedTo: "Olivia Smith" },
+    ],
+  },
+  {
+    id: 12,
+    eventName: "Music Festival",
+    eventDetails: 'A multi-day music festival featuring performances from popular artists.',
+    eventDate: "2024-12-05",
+    location: "Austin",
+    organizer: "Soundwaves",
+    type: "Festival",
+    beginDate: "2024-12-01",
+    endDate: "2024-12-04",
+    status: "Not Started",
+    task: [
+      { id: 1201, taskName: "Artist Coordination", assignedTo: "Emily Johnson" },
+      { id: 1202, taskName: "Stage Setup", assignedTo: "Liam Davis" },
+      { id: 1203, taskName: "Ticketing", assignedTo: "Robert Lee" },
+      { id: 1204, taskName: "Security", assignedTo: "Grace Martinez" },
+      { id: 1205, taskName: "Catering", assignedTo: "James Wilson" },
+    ],
+  },
+  {
+    id: 13,
+    eventName: "Gala Dinner",
+    eventDetails: 'A formal dinner with entertainment, where key individuals are honored for their contributions.',
+    eventDate: "2024-11-25",
+    location: "London",
+    organizer: "Royal Events",
+    type: "Gala",
+    beginDate: "2024-11-20",
+    endDate: "2024-11-22",
+    status: "Ongoing",
+    task: [
+      { id: 1301, taskName: "Invitations", assignedTo: "Oliver King" },
+      { id: 1302, taskName: "Venue Decoration", assignedTo: "Sophia Taylor" },
+      { id: 1303, taskName: "Catering", assignedTo: "Ella Scott" },
+      { id: 1304, taskName: "Entertainment", assignedTo: "Michael Harris" },
+      { id: 1305, taskName: "Guest Speakers", assignedTo: "Lucy Walker" },
+    ],
+  }
 ];
 
 export const VENDORS_DATA = [
@@ -945,7 +997,7 @@ export const VENDORS_DATA = [
     email: "evergreenpack@gmail.com",
     categories: "Packaging",
     workType: "Box Packaging",
-    headOffice: "Delhi",
+    headOffice: "",
     tasks: [
       {
         id: 101,
@@ -1111,7 +1163,7 @@ export const TASK_DATA = [
     assignedTo: "Alice Brown",
     dueDate: "05/17/24",
     status: "In Progress",
-    vendor: "Elite Garments Pvt Ltd",
+    vendor: "",
     client: "Godrej",
     event: "Meeting",
   },
@@ -1121,9 +1173,9 @@ export const TASK_DATA = [
     assignedTo: "Bob White",
     dueDate: "05/18/24",
     status: "Not Started",
-    vendor: "Kumar Printing Press",
+    vendor: "",
     client: "Tech Mahindra",
-    event: "Product Launch",
+    event: "",
   },
   {
     id: 105,

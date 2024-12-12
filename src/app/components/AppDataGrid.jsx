@@ -165,6 +165,7 @@ const AppDataGrid = ({
                 borderRadius: "50px",
               },
               margin: "normal",
+              width: "500px",
             }}
           />
         </Box>

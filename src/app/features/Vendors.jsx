@@ -137,7 +137,7 @@ const Vendors = () => {
                   xs={12}
                   sx={{ display: "flex", justifyContent: "end" }}
                 >
-                  <Button variant="contained">Add</Button>
+                  <Button variant="contained">Save</Button>
                 </Grid>
               </Grid>
             </CardContent>

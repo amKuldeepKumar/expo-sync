@@ -107,6 +107,9 @@ export const TaskDetails = () => {
             renderInput={(params) => <TextField {...params} label="Vendor" />}
           />
         </Grid>
+        <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }}>
+          <Button variant="contained">Save</Button>
+        </Grid>
       </Grid>
 
       <Card sx={{ mb: 2 }}>
@@ -118,7 +121,7 @@ export const TaskDetails = () => {
         <Collapse in={isCardVisible} timeout="auto" unmountOnExit>
           <CardContent>
             <Grid container spacing={2}>
-              <Grid item md={4} sm={4} xs={12}>
+              <Grid item  xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -134,7 +137,7 @@ export const TaskDetails = () => {
                 xs={12}
                 sx={{ display: "flex", justifyContent: "end" }}
               >
-                <Button variant="contained">Create</Button>
+                <Button variant="contained">Save</Button>
               </Grid>
             </Grid>
           </CardContent>

@@ -45,15 +45,9 @@ export const VendorView = () => {
       editable: false,
     },
     {
-      field: "allocationDate",
-      headerName: "Allocation Date",
+      field: "client",
+      headerName: "Client",
       width: 190,
-      editable: false,
-    },
-    {
-      field: "deliveryDate",
-      headerName: "Delivery Date",
-      width: 130,
       editable: false,
     },
     {
@@ -65,6 +59,18 @@ export const VendorView = () => {
     {
       field: "status",
       headerName: "Status",
+      width: 130,
+      editable: false,
+    },
+    {
+      field: "allocationDate",
+      headerName: "Allocation Date",
+      width: 190,
+      editable: false,
+    },
+    {
+      field: "deliveryDate",
+      headerName: "Delivery Date",
       width: 130,
       editable: false,
     },
@@ -257,7 +263,7 @@ export const VendorView = () => {
                     xs={12}
                     sx={{ display: "flex", justifyContent: "end" }}
                   >
-                    <Button variant="contained">Create</Button>
+                    <Button variant="contained">Save</Button>
                   </Grid>
                 </Grid>
               </CardContent>

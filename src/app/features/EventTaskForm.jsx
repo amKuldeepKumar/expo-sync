@@ -119,7 +119,7 @@ export const EventTaskForm = ({
 
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "end" }}>
               <Button variant="contained" onClick={onCreate}>
-                Create
+                Save
               </Button>
             </Grid>
           </Grid>
