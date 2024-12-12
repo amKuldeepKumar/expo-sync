@@ -93,7 +93,7 @@ const AppDataGrid = ({
           <DeleteIcon fontSize="small" />
         </IconButton>
         {commentIcon && (
-          <StyledBadge badgeContent={5} color="primary">
+          <StyledBadge badgeContent={Math.floor(Math.random() * 20) < 2 ? 0 : Math.floor(Math.random() * 10)} color="primary">
             <IconButton size="small" variant="text" color="secondary">
               <CommentIcon fontSize="small" />
             </IconButton>
