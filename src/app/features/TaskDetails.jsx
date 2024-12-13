@@ -96,7 +96,7 @@ export const TaskDetails = () => {
         <Grid item md={4} sm={4} xs={12}>
           <Autocomplete
             defaultValue={taskDetails.status}
-            options={["Ongoing", "Not Started", "Completed", "Pending"]}
+            options={["Not Started", "In Progress", "Pending", "Completed"]}
             renderInput={(params) => <TextField {...params} label="Status" />}
           />
         </Grid>
@@ -132,12 +132,7 @@ export const TaskDetails = () => {
                 />
               </Grid>
 
-              <Grid
-                item
-                xs={12}
-                md={4}
-                sx={{ marginTop:1 }}
-              >
+              <Grid item xs={12} md={4} sx={{ marginTop: 1 }}>
                 <Button variant="contained">Save</Button>
               </Grid>
             </Grid>

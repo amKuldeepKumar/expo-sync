@@ -265,8 +265,18 @@ export default function AppDrawer() {
               key={e.title}
               disablePadding
               sx={{
+                position: "relative",
                 backgroundColor: currentTab.includes(e.to) ? "#ED3237" : "",
                 color: currentTab.includes(e.to) ? "white" : "black",
+                backgroundImage:
+                  "linear-gradient(to right, #ED3237, #ED3237 50%, transparent 50%)",
+                backgroundSize: "200% 100%",
+                backgroundPosition: "100% 0",
+                transition: "background-position 0.3s ease-in-out",
+                "&:hover": {
+                  backgroundPosition: "0 0",
+                  color: "white",
+                },
               }}
               onClick={() => onItemClick(e)}
             >
