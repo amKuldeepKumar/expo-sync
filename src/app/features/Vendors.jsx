@@ -2,6 +2,7 @@
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
+  Autocomplete,
   Button,
   Card,
   CardContent,
@@ -14,11 +15,36 @@ import React, { useEffect, useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import AppDataGrid from "../components/AppDataGrid";
 import { VENDORS_DATA } from "../constants/dataConstant";
+
+const operationalCities = [
+  "Mumbai",
+  "Delhi",
+  "Bangalore",
+  "Hyderabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Surat",
+  "Chandigarh",
+  "Gurgaon",
+  "Noida",
+  "Indore",
+  "Nashik",
+  "Nagpur",
+  "Baramulla",
+  "Kulgam",
+  "PehalGam",
+  "Ghaziabad",
+  "Faridabad",
+];
+
 const Vendors = () => {
   const navigate = useNavigate();
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [tasksData, setTasksData] = useState([]);
-  const [operationalCities, setOoperationalCities] = useState([]);
 
   const toggleCardVisibility = () => {
     setIsCardVisible(!isCardVisible);
@@ -26,14 +52,12 @@ const Vendors = () => {
 
   useEffect(() => {
     setTasksData(VENDORS_DATA[0].tasks);
-    setOoperationalCities(VENDORS_DATA[0].operationalCities);
   }, []);
 
   const handleVendorClick = (row) => {
     const data = VENDORS_DATA.filter((e) => e.id === row.id);
 
     setTasksData(data[0].tasks);
-    setOoperationalCities(data[0].operationalCities);
     navigate({
       pathname: "/vendors-details",
       search: createSearchParams({
@@ -70,6 +94,15 @@ const Vendors = () => {
     {
       field: "headOffice",
       headerName: "Head Office",
+      width: 150,
+      editable: false,
+    },
+    {
+      field: "oc",
+      headerName: "Operational Cities",
+      renderCell: ({ row }) => {
+        return row.operationalCities?.map((c) => c?.name)?.join(", ");
+      },
       width: 150,
       editable: false,
     },
@@ -130,6 +163,16 @@ const Vendors = () => {
                     fullWidth
                     id="outlined-required-5"
                     label="Address"
+                  />
+                </Grid>
+                <Grid item md={4} sm={4} xs={12}>
+                  <Autocomplete
+                    multiple
+                    options={operationalCities}
+                    getOptionLabel={(option) => option}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Operational Cities" />
+                    )}
                   />
                 </Grid>
                 <Grid
