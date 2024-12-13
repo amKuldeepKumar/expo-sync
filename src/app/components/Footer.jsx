@@ -1,4 +1,5 @@
 import { BottomNavigation, Link, Paper, Typography } from "@mui/material";
+import { INSONIX } from "../../assets/SvgIcons";
 
 export const Footer = () => {
   return (
@@ -17,28 +18,24 @@ export const Footer = () => {
           background: "#4b4a4b",
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <Typography color="whitesmoke">
-          Powered By
-          <Link
-            href="https://www.insonix.com"
-            target="_blank"
-            underline="none"
-            sx={{
-              cursor: "pointer",
-              color: "whitesmoke",
-              fontWeight: 600,
-              ml: 0.5,
-              fontFamily: "'Noto Sans', sans-serif",
-              ":hover": {
-                opacity: 0.6,
-              },
-            }}
-          >
-            INSONIX
-          </Link>
-        </Typography>
+        <Typography color="whitesmoke">Powered By</Typography>
+        <Link
+          href="https://www.insonix.com"
+          target="_blank"
+          underline="none"
+          sx={{
+            cursor: "pointer",
+            mt: 0.7,
+            ":hover": {
+              opacity: 0.6,
+            },
+          }}
+        >
+          <INSONIX />
+        </Link>
       </BottomNavigation>
     </Paper>
   );
