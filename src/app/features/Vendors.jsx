@@ -175,6 +175,23 @@ const Vendors = () => {
                     )}
                   />
                 </Grid>
+                <Grid item md={4} sm={4} xs={12}>
+                    <Autocomplete
+                      options={["Category 1", "Category 2"]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Work Category" />
+                      )}
+                    />
+                  </Grid>
+
+                  <Grid item md={4} sm={4} xs={12}>
+                    <Autocomplete
+                      options={["Type 1", "Type 2"]}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Work Type" />
+                      )}
+                    />
+                  </Grid>
                 <Grid
                   item
                   xs={12}
