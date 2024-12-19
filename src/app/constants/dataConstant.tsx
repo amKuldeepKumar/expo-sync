@@ -980,7 +980,7 @@ export const VENDORS_DATA = [
     companyName: "Kumar Printing Press",
     telephone: "41518412154",
     email: "kumarpress@gmail.com",
-    categories: "Bulk",
+    categories: "Printing",
     workType: "Shirts Printing",
     headOffice: "Jammu",
     tasks: [
@@ -1098,7 +1098,7 @@ export const VENDORS_DATA = [
     companyName: "Elite Garments Pvt Ltd",
     telephone: "41618412156",
     email: "elitegarments@gmail.com",
-    categories: "Clothing",
+    categories: "Garments",
     workType: "Garments Manufacturing",
     headOffice: "Mumbai",
     tasks: [

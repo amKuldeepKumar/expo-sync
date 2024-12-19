@@ -92,6 +92,18 @@ const Vendors = () => {
       editable: false,
     },
     {
+      field: "categories",
+      headerName: "Work Category",
+      width: 130,
+      editable: false,
+    },
+    {
+      field: "workType",
+      headerName: "Work Type",
+      width: 150,
+      editable: false,
+    },
+    {
       field: "headOffice",
       headerName: "Head Office",
       width: 150,
@@ -176,22 +188,22 @@ const Vendors = () => {
                   />
                 </Grid>
                 <Grid item md={4} sm={4} xs={12}>
-                    <Autocomplete
-                      options={["Category 1", "Category 2"]}
-                      renderInput={(params) => (
-                        <TextField {...params} label="Work Category" />
-                      )}
-                    />
-                  </Grid>
+                  <Autocomplete
+                    options={["Category 1", "Category 2"]}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Work Category" />
+                    )}
+                  />
+                </Grid>
 
-                  <Grid item md={4} sm={4} xs={12}>
-                    <Autocomplete
-                      options={["Type 1", "Type 2"]}
-                      renderInput={(params) => (
-                        <TextField {...params} label="Work Type" />
-                      )}
-                    />
-                  </Grid>
+                <Grid item md={4} sm={4} xs={12}>
+                  <Autocomplete
+                    options={["Type 1", "Type 2"]}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Work Type" />
+                    )}
+                  />
+                </Grid>
                 <Grid
                   item
                   xs={12}

@@ -95,18 +95,6 @@ export const VendorView = () => {
       width: 200,
       editable: false,
     },
-    {
-      field: "workCategory",
-      headerName: "Work Category",
-      width: 130,
-      editable: false,
-    },
-    {
-      field: "workType",
-      headerName: "Work Type",
-      width: 150,
-      editable: false,
-    },
   ];
 
   const operationalCities = [
@@ -196,6 +184,29 @@ export const VendorView = () => {
             defaultValue={vendorDetails.operationalCities.map((c) => c.name)}
             renderInput={(params) => (
               <TextField {...params} label="Operational Cities" />
+            )}
+          />
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            defaultValue={vendorDetails.categories}
+            options={["Printing", "Packaging", "Garments"]}
+            renderInput={(params) => (
+              <TextField {...params} label="Work Category" />
+            )}
+          />
+        </Grid>
+
+        <Grid item md={4} sm={4} xs={12}>
+          <Autocomplete
+            defaultValue={vendorDetails.workType}
+            options={[
+              "Shirts Printing",
+              "Box Packaging",
+              "Garments Manufacturing",
+            ]}
+            renderInput={(params) => (
+              <TextField {...params} label="Work Type" />
             )}
           />
         </Grid>
