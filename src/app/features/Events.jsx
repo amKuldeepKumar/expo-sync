@@ -35,7 +35,7 @@ const Events = () => {
     <Grid container spacing={3}>
       <Grid item md={12}>
         <Typography fontWeight={700} fontSize={25} color="primary">
-          Events
+        Activities
         </Typography>
       </Grid>
 
@@ -43,7 +43,7 @@ const Events = () => {
         <EventTaskForm
           isVisible={isCardVisible}
           toggleVisibility={() => setIsCardVisible(!isCardVisible)}
-          formType="event"
+          formType="Activities"
           onCreate={handleCreateEvent}
         />
       </Grid>
@@ -52,7 +52,7 @@ const Events = () => {
         <AppDataGrid
           rows={EVENTS_DATA}
           columns={events_columns}
-          label="Events"
+          label="Activities"
           pageSize={10}
           showSearching={true}
           height={500}
@@ -65,30 +65,6 @@ const Events = () => {
           defaultSelectedRow={EVENTS_DATA[0].id}
         />
       </Grid>
-
-      {/* <Grid item md={12} sm={12}>
-        <EventTaskForm
-          isVisible={isCardVisible1}
-          toggleVisibility={() => setIsCardVisible1(!isCardVisible1)}
-          formType="task"
-          onCreate={handleCreateTask}
-        />
-      </Grid> */}
-
-      {/* <Grid item md={12} sm={12}>
-        <AppDataGrid
-          rows={tasksData}
-          columns={task_columns}
-          label="Tasks"
-          pageSize={10}
-          pageSizeOptions={[5, 10, 20]}
-          checkboxSelection
-          showAction
-          disableRowSelectionOnClick
-          onEditRow={handleEditRow}
-          onDeleteRow={handleDeleteRow}
-        />
-      </Grid> */}
     </Grid>
   );
 };

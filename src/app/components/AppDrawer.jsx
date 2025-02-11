@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import BadgeIcon from "@mui/icons-material/Badge";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -37,14 +36,14 @@ import { Tasks } from "../features/Tasks";
 import { TeamView } from "../features/TeamView";
 import Vendors from "../features/Vendors";
 import { VendorView } from "../features/VendorView";
-import HelpDrawer from "./HelpDrawer";
 import { Footer } from "./Footer";
+import HelpDrawer from "./HelpDrawer";
 
 const drawerWidth = 240;
 const pages = [
   { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
-  { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
-  { label: "Events", to: "/events", icon: <EventAvailableIcon /> },
+  // { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
+  { label: "Activities", to: "/events", icon: <EventAvailableIcon /> },
   { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
   { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
   { label: "Internals", to: "/internals", icon: <BadgeIcon /> },

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import {
@@ -85,7 +84,7 @@ export const EventTaskForm = ({
     <Card>
       <Button onClick={toggleVisibility}>
         {isVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-        {formType === "event" && !isVisible && "Create Event"}
+        {formType === "Activities" && !isVisible && "Create Activities"}
         {formType === "task" && !isVisible && "Create Task"}
       </Button>
 
