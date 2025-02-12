@@ -406,10 +406,11 @@ export const VendorView = () => {
               />
             </Grid>
 
-            <Grid item md={12} sm={12} xs={12}>
-              <Typography textAlign={"left"}> KYC Documents</Typography>
-            </Grid>
             <Grid item md={4} sm={4} xs={12}>
+              <Typography textAlign={"left"} mb={1}>
+                {" "}
+                KYC Documents
+              </Typography>
               <TextField
                 required
                 fullWidth
@@ -429,14 +430,18 @@ export const VendorView = () => {
                 type="text"
                 name="gstNo"
                 defaultValue={vendorDetails.gstNo}
+                sx={{ mt: { xs: 0, md: 4, sm: 4 } }}
               />
             </Grid>
 
             <Grid item md={4} sm={4} xs={12}>
+              <Typography textAlign={"left"} mb={1}>
+                Upload KYC Documents
+              </Typography>
               <Tooltip title="Upload Documents">
                 <Button
                   fullWidth
-                  sx={{ height: "55px" }}
+                  sx={{ height: "56px", borderColor: "#0000003b" }}
                   variant="outlined"
                   component="label"
                   onClick={() => setOpenUploadModal(true)}
@@ -616,7 +621,26 @@ export const VendorView = () => {
         </Grid>
 
         <Grid container spacing={2}>
-          <Grid md={12}>
+          <Grid item md={12} mb={3}>
+            <AppDataGrid
+              commentIcon
+              rows={vendorDetails.tasks}
+              columns={taskColumnsVendors}
+              pageSize={10}
+              label="Activities Allocated"
+              pageSizeOptions={[5, 10, 20]}
+              showAction={true}
+              onRowClick={(row) =>
+                navigate({
+                  pathname: "/sub-activity-details",
+                  search: createSearchParams({
+                    taskId: row.id,
+                  }).toString(),
+                })
+              }
+            />
+          </Grid>
+          <Grid md={12} mt={2}>
             <Card>
               <Button onClick={toggleCardVisibility}>
                 {isCardVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}{" "}
@@ -664,7 +688,7 @@ export const VendorView = () => {
               </Collapse>
             </Card>
           </Grid>
-          <Grid item md={12} mb={3}>
+          <Grid item md={12}>
             <AppDataGrid
               rows={vendorDetails.vendorEmployees}
               columns={employeesColumn}
@@ -672,25 +696,6 @@ export const VendorView = () => {
               label="Employees"
               pageSizeOptions={[5, 10, 20]}
               showAction={true}
-            />
-          </Grid>
-          <Grid item md={12}>
-            <AppDataGrid
-              commentIcon
-              rows={vendorDetails.tasks}
-              columns={taskColumnsVendors}
-              pageSize={10}
-              label="Activities Allocated"
-              pageSizeOptions={[5, 10, 20]}
-              showAction={true}
-              onRowClick={(row) =>
-                navigate({
-                  pathname: "/sub-activity-details",
-                  search: createSearchParams({
-                    taskId: row.id,
-                  }).toString(),
-                })
-              }
             />
           </Grid>
         </Grid>

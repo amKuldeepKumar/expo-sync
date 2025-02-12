@@ -1295,7 +1295,7 @@ export const COMMENTS_ROWS = [
 
 export const USER_COLUMNS = [
   { field: "name", headerName: "Name", width: 150 },
-  { field: "role", headerName: "Role", width: 150 },
+  // { field: "role", headerName: "Role", width: 150 },
   { field: "email", headerName: "Email", width: 200 },
   { field: "contact", headerName: "Contact", width: 150 },
   { field: "designation", headerName: "Designation", width: 150 },

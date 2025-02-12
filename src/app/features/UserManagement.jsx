@@ -49,14 +49,14 @@ export const UserManagement = () => {
                   )}
                 />
               </Grid>
-              <Grid item md={4} sm={4} xs={12}>
+              {/* <Grid item md={4} sm={4} xs={12}>
                 <Autocomplete
                   options={["Manager", "Team Lead", "Executive"]}
                   renderInput={(params) => (
                     <TextField {...params} label="Role" />
                   )}
                 />
-              </Grid>
+              </Grid> */}
               <Grid
                 item
                 xs={12}
