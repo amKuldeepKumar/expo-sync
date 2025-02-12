@@ -43,7 +43,7 @@ export const TaskDetails = () => {
   return (
     <Box>
       <Typography variant="h2" mb={2}>
-        Task Details
+        Sub Activity Details
       </Typography>
 
       <Grid container spacing={2} my={2}>
@@ -143,7 +143,7 @@ export const TaskDetails = () => {
         showAction
         rows={COMMENTS_ROWS}
         columns={COMMENTS_COLUMNS}
-        label="Tasks Comments"
+        label="Comments"
         pageSize={10}
         height={350}
         pageSizeOptions={[5, 10, 20]}

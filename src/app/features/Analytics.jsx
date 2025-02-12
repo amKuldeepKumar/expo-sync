@@ -154,14 +154,14 @@ const Analytics = () => {
             onEditRow={handleEditRow}
             onRowClick={(row) =>
               navigate({
-                pathname: "/events-details",
+                pathname: "/activity-details",
                 search: createSearchParams({
                   eventId: row.id,
                 }).toString(),
               })
             }
             height={300}
-            moreLink={"/events"}
+            moreLink={"/activity"}
             onDeleteRow={handleDeleteRow}
           />
         </Grid>
@@ -172,11 +172,11 @@ const Analytics = () => {
             columns={columns1}
             height={300}
             pageSize={10}
-            moreLink={"/tasks"}
+            moreLink={"/sub-activity"}
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>
               navigate({
-                pathname: "/tasks-details",
+                pathname: "/sub-activity-details",
                 search: createSearchParams({
                   taskId: row.id,
                 }).toString(),

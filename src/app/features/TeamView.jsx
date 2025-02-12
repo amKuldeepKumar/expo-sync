@@ -135,7 +135,14 @@ export const TeamView = () => {
               <Grid
                 item
                 xs={12}
-                sx={{ display: "flex", justifyContent: "end", position: "sticky", bottom: 0, right: 0, background: "white" }}
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  position: "sticky",
+                  bottom: 0,
+                  right: 0,
+                  background: "white",
+                }}
               >
                 <Button variant="contained">Save</Button>
               </Grid>
@@ -161,13 +168,13 @@ export const TeamView = () => {
             showAction
             rows={TASK_DATA}
             columns={TASK_COLUMNS}
-            label="Task"
+            label="Sub Activities"
             pageSize={10}
             height={350}
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>
               navigate({
-                pathname: "/tasks-details",
+                pathname: "/sub-activity-details",
                 search: createSearchParams({
                   taskId: row.id,
                 }).toString(),

@@ -24,7 +24,7 @@ const Events = () => {
 
   const handleEventClick = (row) => {
     navigate({
-      pathname: "/events-details",
+      pathname: "/activity-details",
       search: createSearchParams({
         eventId: row.id,
       }).toString(),

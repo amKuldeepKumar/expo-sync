@@ -38,7 +38,7 @@ export const EventDetails = () => {
 
   const handleTaskClick = (row) => {
     navigate({
-      pathname: "/tasks-details",
+      pathname: "/sub-activity-details",
       search: createSearchParams({
         taskId: row.id,
       }).toString(),
@@ -48,7 +48,7 @@ export const EventDetails = () => {
   return (
     <Box>
       <Typography variant="h2" mb={3}>
-        Event Details
+        Activity Details
       </Typography>
       <Grid container spacing={2}>
         <Grid item md={4} sm={4} xs={12}>
@@ -170,7 +170,7 @@ export const EventDetails = () => {
             commentIcon
             rows={TASK_DATA}
             columns={TASK_COLUMNS}
-            label="Tasks"
+            label="Sub Activities"
             showSearching={true}
             pageSize={10}
             pageSizeOptions={[5, 10, 20]}

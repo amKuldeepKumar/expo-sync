@@ -200,7 +200,7 @@ export const ClientDetails = () => {
 
   const handleEventClick = (row) => {
     navigate({
-      pathname: "/events-details",
+      pathname: "/activity-details",
       search: createSearchParams({
         eventId: row.id,
       }).toString(),
@@ -339,11 +339,11 @@ export const ClientDetails = () => {
             rows={taskRows}
             columns={taskColumns}
             pageSize={10}
-            label="Tasks"
+            label="Activities"
             pageSizeOptions={[5, 10, 20]}
             onRowClick={(row) =>
               navigate({
-                pathname: "/tasks-details",
+                pathname: "/sub-activity-details",
                 search: createSearchParams({
                   taskId: row.id,
                 }).toString(),
@@ -358,7 +358,7 @@ export const ClientDetails = () => {
             rows={eventRows}
             columns={eventColumns}
             pageSize={10}
-            label="Events"
+            label="Sub Activities"
             pageSizeOptions={[5, 10, 20]}
             onRowClick={handleEventClick}
           />

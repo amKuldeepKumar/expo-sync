@@ -35,7 +35,7 @@ export const Tasks = () => {
 
   const handleTaskClick = (row) => {
     navigate({
-      pathname: "/tasks-details",
+      pathname: "/sub-activity-details",
       search: createSearchParams({
         taskId: row.id,
       }).toString(),

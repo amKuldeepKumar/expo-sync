@@ -5,12 +5,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {
   Autocomplete,
-  Badge,
   Box,
   Button,
   Card,
   CardContent,
   Collapse,
+  Dialog,
   Divider,
   Grid,
   IconButton,
@@ -22,10 +22,8 @@ import {
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import imageIcon from "../../../public/noImage.webp";
 
 import { useMemo, useState } from "react";
-import { Carousel } from "react-responsive-carousel";
 import {
   createSearchParams,
   useNavigate,
@@ -34,6 +32,11 @@ import {
 import AppDataGrid from "../components/AppDataGrid";
 import { VENDORS_DATA } from "../constants/dataConstant";
 
+const docTypeOptions = [
+  { label: "Adhaar", value: "aadharcardimage" },
+  { label: "GST", value: "gstinimage" },
+];
+
 export const VendorView = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -41,35 +44,11 @@ export const VendorView = () => {
 
   const [isCardVisible, setIsCardVisible] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [adharCard, setAdharCard] = useState(null);
 
-  const handleAdharUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setAdharCard(reader.result);
-    };
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+  const [openUploadModal, setOpenUploadModal] = useState(false);
 
-  const handleGstUpload = (event) => {
-    const files = event.target.files;
-    const imagesArray = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        imagesArray.push(e.target.result);
-        if (imagesArray.length === files.length) {
-          setgstFiles({ ...gstFiles, documents: imagesArray });
-        }
-        // setOpenModal(true);
-      };
-      reader.readAsDataURL(files[i]);
-    }
-  };
+  const [docType, setDocType] = useState(docTypeOptions[0]);
+  const [previewFile, setPreviewFile] = useState(null);
 
   const vendorDetails = useMemo(() => {
     const id = searchParams.get("vendorId");
@@ -82,7 +61,73 @@ export const VendorView = () => {
     setIsCardVisible(!isCardVisible);
   };
 
- 
+  // const [selection, setSelection] = useState({
+  //   aadhar: false,
+  //   gstin: false,
+  // });
+
+  const [uploadedFiles, setUploadedFiles] = useState({
+    aadharcardimage: null,
+    gstinimage: null,
+  });
+
+  // const handleSelection = (event) => {
+  //   const { name, checked } = event.target;
+  //   setSelection((prev) => ({
+  //     ...prev,
+  //     [name]: checked,
+  //   }));
+  // };
+
+  const handleFileUpload = (event) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const docType = event.target.name; // "aadhar" or "gstinimage"
+
+    if (docType === "gstinimage") {
+      const readFiles = Array.from(files).map((file) => {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            resolve({
+              name: file.name,
+              data: e.target?.result,
+              size: file.size,
+              type: file.type,
+            });
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+
+      Promise.all(readFiles).then((filesArray) => {
+        setUploadedFiles((prev) => ({
+          ...prev,
+          gstinimage: filesArray,
+        }));
+      });
+    } else {
+      // Aadhar allows only one file
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUploadedFiles((prev) => ({
+          ...prev,
+          [docType]: {
+            name: file.name,
+            data: e.target?.result,
+            size: file.size,
+            type: file.type,
+          },
+        }));
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  console.log(uploadedFiles);
+
   const taskColumnsVendors = [
     {
       field: "taskName",
@@ -195,7 +240,7 @@ export const VendorView = () => {
             flexDirection: "column",
           }}
         >
-          {/* Title Section with Close Button */}
+          {/* {/ Title Section with Close Button /} */}
           <Box
             sx={{
               display: "flex",
@@ -218,7 +263,7 @@ export const VendorView = () => {
             </IconButton>
           </Box>
 
-          {/* Body Content */}
+          {/* {/ Body Content /} */}
           <Box
             sx={{
               overflowY: "auto",
@@ -364,13 +409,15 @@ export const VendorView = () => {
               />
             </Grid>
 
-            {/* <Grid item md={8} sm={8} xs={12}></Grid> */}
+            <Grid item md={12} sm={12} xs={12}>
+              <Typography textAlign={"left"}> KYC Documents</Typography>
+            </Grid>
             <Grid item md={4} sm={4} xs={12}>
               <TextField
                 required
                 fullWidth
                 id="adharNo"
-                label="Adhar Number"
+                label="Aadhar Number"
                 type="number"
                 name="adharNo"
                 defaultValue={vendorDetails.adharNo}
@@ -381,181 +428,188 @@ export const VendorView = () => {
                 required
                 fullWidth
                 id="gstNo"
-                label="GSIN Number"
+                label="GSTIN Number"
                 type="text"
                 name="gstNo"
                 defaultValue={vendorDetails.gstNo}
               />
             </Grid>
-            <Grid item md={4} sm={4} xs={6}>
-              <Grid container>
-                <Grid item md={12} sm={12} xs={6}>
-                  <Tooltip title="Upload GSTIN Documents">
-                    <Button
-                      fullWidth
-                      sx={{ height: "60px" }}
-                      variant="outlined"
-                      component="label"
-                      onClick={
-                        // gstFiles?.documents?.length > 0
-                          // ? () => setOpenModal(true):
-                          () => {}
-                      }
-                    >
-                      <input
-                        style={{ width: "100%" }}
-                        onChange={handleGstUpload}
-                        accept="image/*"
-                        name="documents"
-                        multiple
-                        type="file"
-                        hidden
-                        required
-                      />
-
-                      <Badge
-                        bac
-                        color="primary"
-                        badgeContent={gstFiles?.documents?.length || 0}
-                      >
-                        <BackupIcon
-                          style={{
-                            fontSize: "60px",
-                            color: "#bdbdbd",
-                            width: "100%",
-                          }}
-                        />
-                      </Badge>
-                    </Button>
-                  </Tooltip>
-                </Grid>
-                <Grid item md={12} sm={12} xs={12}>
-                  <Typography textAlign={"center"} sx={{ marginLeft: "0px" }}>
-                    GSTIN
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
 
             <Grid item md={4} sm={4} xs={12}>
-              <Grid container>
-                <Grid item md={12} sm={12} xs={12}>
-                  <Tooltip title="Upload Adhar Card">
-                    <Button fullWidth variant="outlined" component="label">
-                      <img
-                        onClick={() => {}}
-                        style={{
-                          cursor: "pointer",
-                          borderRadius: "10px",
-                          backgroundPosition: "cover",
-                        }}
-                        src={adharCard ? adharCard : imageIcon}
-                        height={"300px"}
-                        width={"100%"}
-                        alt="upload"
+              <Tooltip title="Upload Documents">
+                <Button
+                  fullWidth
+                  sx={{ height: "55px" }}
+                  variant="outlined"
+                  component="label"
+                  onClick={() => setOpenUploadModal(true)}
+                >
+                  <BackupIcon
+                    style={{
+                      fontSize: "60px",
+                      color: "#bdbdbd",
+                      width: "100%",
+                    }}
+                  />
+                </Button>
+              </Tooltip>
+            </Grid>
+            {uploadedFiles?.aadharcardimage && (
+              <Grid item md={4} sm={4} xs={12}>
+                <Typography textAlign={"left"} mb={1}>
+                  Adhaar Document
+                </Typography>
+
+                <Box mt={1} display="flex">
+                  <Typography
+                    variant="body2"
+                    mr={1}
+                    sx={{ cursor: "pointer" }}
+                    onClick={() =>
+                      setPreviewFile(uploadedFiles?.aadharcardimage)
+                    }
+                  >
+                    📄 {uploadedFiles?.aadharcardimage.name} (
+                    {(
+                      Number(uploadedFiles?.aadharcardimage.size) / 1024
+                    ).toFixed(2)}
+                    KB)
+                  </Typography>
+                  <DeleteForeverIcon
+                    style={{ cursor: "pointer", color: "red" }}
+                    onClick={() =>
+                      setUploadedFiles({
+                        ...uploadedFiles,
+                        aadharcardimage: null,
+                      })
+                    }
+                  />
+                </Box>
+              </Grid>
+            )}
+
+            {!!uploadedFiles?.gstinimage?.length && (
+              <Grid item md={4} sm={4} xs={12}>
+                <Typography textAlign={"left"} mb={1}>
+                  GST Documents
+                </Typography>
+
+                {uploadedFiles?.gstinimage.map((file, index) => (
+                  <Box
+                    key={index}
+                    mt={1}
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => setPreviewFile(file)}
+                    >
+                      📄 {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                    </Typography>
+                    <DeleteForeverIcon
+                      onClick={() => {
+                        const updatedFiles = uploadedFiles?.gstinimage.filter(
+                          (_, i) => i !== index
+                        );
+                        setUploadedFiles((prev) => ({
+                          ...prev,
+                          gstinimage: updatedFiles,
+                        }));
+                      }}
+                      style={{ cursor: "pointer", color: "red" }}
+                    />
+                  </Box>
+                ))}
+              </Grid>
+            )}
+
+            {/* {uploadedFiles?.aadharcardimage && (
+              <Grid item md={6} sm={6} xs={12} mt={2}>
+                <Grid item md={12} sm={12} xs={12} mt={2}>
+                  <Tooltip title="Aadhar Card">
+                    <img
+                      src={uploadedFiles?.aadharcardimage.data}
+                      width={"300px"}
+                      style={{ backgroundPosition: "cover" }}
+                    />
+                    <br></br>
+                    <Typography marginLeft={"20px"}>
+                      {uploadedFiles?.aadharcardimage.name}
+                    </Typography>
+                    <Typography marginLeft={"120px"}>
+                      <DeleteForeverIcon
+                        style={{ cursor: "pointer", color: "red" }}
+                        onClick={() =>
+                          setUploadedFiles({
+                            ...uploadedFiles,
+                            aadharcardimage: null,
+                          })
+                        }
                       />
-                      <input
-                        onChange={handleAdharUpload}
-                        accept="image/*"
-                        name="mainImage"
-                        type="file"
-                        hidden
-                        required
-                      />
-                    </Button>
+                    </Typography>
                   </Tooltip>
                 </Grid>
-                <Grid item md={12} sm={12} xs={12}>
-                  <Typography textAlign={"center"}>Adhar Card</Typography>
-                </Grid>
               </Grid>
-            </Grid>
+            )} */}
 
-            <Grid item md={8} sm={8} xs={12}>
-              <Box onClick={ () => {}}  sx={{ border: "1px solid red" }} height={"300px"}>
-                <Carousel  showThumbs={false} infiniteLoop useKeyboardArrows>
-                  {gstFiles?.documents?.length > 0 ? (
-                    gstFiles?.documents?.map((e, index) => (
-                      <div key={index}>
+            {/* {uploadedFiles?.gstinimage?.length > 0 && (
+              <Grid item md={6} sm={6} xs={12} mt={2}>
+                {uploadedFiles?.gstinimage.map((file, index) => (
+                  <Grid key={index} item md={12} sm={12} xs={12} mt={2}>
+                    <Tooltip title="GSTIN Document">
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
                         <img
-                          src={e ? e : imageIcon}
-                          alt={`document-${index}`}
-                          style={{ height: "300px", objectFit: "cover",cursor:'pointer' }}
-                         
+                          src={
+                            file.type === "application/pdf"
+                              ? "https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png"
+                              : file.data
+                          }
+                          width="100px"
+                          style={{ objectFit: "cover", borderRadius: "5px" }}
+                          alt={file.name}
                         />
-                         <input
-                        style={{ width: "100%" }}
-                        onChange={handleGstUpload}
-                        accept="image/*"
-                        name="documents"
-                        multiple
-                        type="file"
-                        hidden
-                        required
-                      />
-                        <p
-                          className="legend"
-                          style={{
-                            backgroundPosition: "cover",
-                            background: "transparent",
-                            boxShadow: "none",
-                          }}
-                        >
-                          <Button
-                            variant="outlined"
-                            sx={{ color: "white" }}
-                            onClick={() => {
-                              const updatedImages = [...gstFiles.documents];
-                              if (updatedImages.length > 1) {
-                                updatedImages.splice(index, 1);
-                                setgstFiles({
-                                  ...gstFiles,
-                                  documents: updatedImages,
-                                });
-                              }
-                            }}
-                          >
-                            <DeleteForeverIcon color="secondary" />
-                          </Button>
-                        </p>
+                        <Typography>{file.name}</Typography>
                       </div>
-                    ))
-                  ) : (
-                    <Button
-                      fullWidth
-                      sx={{ height: "100%" }}
-                      
-                      component="label"
-                      onClick={
-                        // gstFiles?.documents?.length > 0
-                        //   ? () => setOpenModal(true): 
-                        () => {}
-                      }
+                    </Tooltip>
+
+                    <Grid
+                      item
+                      md={12}
+                      sm={12}
+                      xs={12}
+                      mt={2}
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
                     >
-                      <input
-                        style={{ width: "100%" }}
-                        onChange={handleGstUpload}
-                        accept="image/*"
-                        name="documents"
-                        multiple
-                        type="file"
-                        hidden
-                        required
+                      <DeleteForeverIcon
+                        onClick={() => {
+                          const updatedFiles = uploadedFiles?.gstinimage.filter(
+                            (_, i) => i !== index
+                          );
+                          setUploadedFiles((prev) => ({
+                            ...prev,
+                            gstinimage: updatedFiles,
+                          }));
+                        }}
+                        style={{ cursor: "pointer", color: "red" }}
                       />
-                       <BackupIcon
-                          style={{
-                            fontSize: "60px",
-                            color: "#bdbdbd",
-                            width: "100%",
-                          }}
-                        />
-                    </Button>
-                  )}
-                </Carousel>
-              </Box>
-                <Typography textAlign={"center"} sx={{ marginLeft: "40px" }}>
-                  GSTIN Documents
-                </Typography>
+                    </Grid>
+                  </Grid>
+                ))}
+              </Grid>
+            )} */}
+
+            <Grid item md={6} sm={6} xs={12}>
+              <Tooltip title="Gstin Documents"></Tooltip>
             </Grid>
           </>
 
@@ -629,12 +683,12 @@ export const VendorView = () => {
               rows={vendorDetails.tasks}
               columns={taskColumnsVendors}
               pageSize={10}
-              label="Tasks Allocated"
+              label="Activities Allocated"
               pageSizeOptions={[5, 10, 20]}
               showAction={true}
               onRowClick={(row) =>
                 navigate({
-                  pathname: "/tasks-details",
+                  pathname: "/sub-activity-details",
                   search: createSearchParams({
                     taskId: row.id,
                   }).toString(),
@@ -645,6 +699,246 @@ export const VendorView = () => {
         </Grid>
       </Box>
       {ImageModal()}
+
+      <Modal
+        open={Boolean(openUploadModal)}
+        onClose={() => setOpenUploadModal(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Box
+          sx={{
+            padding: "20px",
+            backgroundColor: "white",
+            borderRadius: "8px",
+            boxShadow: 24,
+            display: "flex",
+            flexDirection: "column",
+            minWidth: "600px",
+          }}
+        >
+          <Typography>Upload KYC Documents</Typography>
+          <Grid container spacing={2} my={2}>
+            <Grid item md={6} sm={6} xs={12}>
+              <Autocomplete
+                options={docTypeOptions}
+                value={docType}
+                getOptionLabel={(option) => option.label}
+                renderInput={(params) => (
+                  <TextField {...params} label="Document Type" />
+                )}
+                onChange={(_e, value) => {
+                  setDocType(value);
+                }}
+              />
+            </Grid>
+            {/* {/ Aadhar Section /} */}
+            {docType && (
+              <Grid item md={6} sm={6} xs={12}>
+                {/* <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={selection.aadhar}
+                    onChange={handleSelection}
+                    name="aadhar"
+                    disabled={uploadedFiles?.aadharcardimage !== null} // Disable after file upload
+                  />
+                }
+                label="Aadhar Card"
+              /> */}
+                {docType && docType?.value === "aadharcardimage" ? (
+                  <TextField
+                    type="file"
+                    inputProps={{ accept: ".png, .jpg, .jpeg" }}
+                    fullWidth
+                    name="aadharcardimage"
+                    disabled={uploadedFiles?.aadharcardimage !== null} // Disable after file upload
+                    onChange={(e) => handleFileUpload(e, "aadharcardimage")}
+                  />
+                ) : (
+                  <TextField
+                    type="file"
+                    fullWidth
+                    inputProps={{
+                      accept: ".pdf, .png, .jpg, .jpeg",
+                      multiple: true, // Allow multiple files
+                    }}
+                    name="gstinimage"
+                    onChange={(e) => handleFileUpload(e, "gstinimage")}
+                  />
+                )}
+              </Grid>
+            )}
+            <Grid item md={6} sm={6} xs={12}>
+              {/* {/ Display Aadhar File Details /} */}
+              {docType && docType?.value === "aadharcardimage"
+                ? uploadedFiles?.aadharcardimage && (
+                    <Box mt={1} display="flex">
+                      <Typography variant="body2" mr={1}>
+                        📄 {uploadedFiles?.aadharcardimage.name} (
+                        {(
+                          Number(uploadedFiles?.aadharcardimage.size) / 1024
+                        ).toFixed(2)}
+                        KB)
+                      </Typography>
+                      <DeleteForeverIcon
+                        style={{ cursor: "pointer", color: "red" }}
+                        onClick={() =>
+                          setUploadedFiles({
+                            ...uploadedFiles,
+                            aadharcardimage: null,
+                          })
+                        }
+                      />
+                    </Box>
+                  )
+                : docType &&
+                  uploadedFiles?.gstinimage?.length > 0 &&
+                  uploadedFiles?.gstinimage.map((file, index) => (
+                    <Box
+                      key={index}
+                      mt={1}
+                      display="flex"
+                      justifyContent="space-between"
+                    >
+                      <Typography variant="body2">
+                        📄 {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                      </Typography>
+                      <DeleteForeverIcon
+                        onClick={() => {
+                          const updatedFiles = uploadedFiles?.gstinimage.filter(
+                            (_, i) => i !== index
+                          );
+                          setUploadedFiles((prev) => ({
+                            ...prev,
+                            gstinimage: updatedFiles,
+                          }));
+                        }}
+                        style={{ cursor: "pointer", color: "red" }}
+                      />
+                    </Box>
+                  ))}
+            </Grid>
+
+            {/* {/ GSTIN Section /} */}
+            {/* <Grid item md={6} sm={6} xs={12}> */}
+            {/* <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={
+                      uploadedFiles?.aadharcardimage?.data ? true : false
+                    }
+                    onChange={handleSelection}
+                    name="gstin"
+                    disabled={
+                      !uploadedFiles?.aadharcardimage ||
+                      uploadedFiles?.gstinimage?.length > 0 || // Disable after upload
+                      !selection.gstin
+                    }
+                  />
+                }
+                label="GSTIN Document"
+              /> */}
+            {/* <TextField
+                type="file"
+                fullWidth
+                inputProps={{
+                  accept: ".pdf, .png, .jpg, .jpeg",
+                  multiple: true, // Allow multiple files
+                }}
+                name="gstinimage"
+                disabled={
+                  uploadedFiles?.gstinimage?.length > 1 ||
+                  !uploadedFiles?.aadharcardimage
+                }
+                onChange={(e) => handleFileUpload(e, "gstinimage")}
+              /> */}
+
+            {/* {/ Display GSTIN File Details /} */}
+            {/* {uploadedFiles?.gstinimage?.length > 0 &&
+                uploadedFiles?.gstinimage.map((file, index) => (
+                  <Box
+                    key={index}
+                    mt={1}
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    <Typography variant="body2">
+                      📄 {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                    </Typography>
+                    <DeleteForeverIcon
+                      onClick={() => {
+                        const updatedFiles = uploadedFiles?.gstinimage.filter(
+                          (_, i) => i !== index
+                        );
+                        setUploadedFiles((prev) => ({
+                          ...prev,
+                          gstinimage: updatedFiles,
+                        }));
+                      }}
+                      style={{ cursor: "pointer", color: "red" }}
+                    />
+                  </Box>
+                ))} */}
+            {/* </Grid> */}
+          </Grid>
+
+          <Typography textAlign={"center"}>
+            <Button
+              variant="contained"
+              onClick={() => setOpenUploadModal(false)}
+            >
+              Submit
+            </Button>
+          </Typography>
+        </Box>
+      </Modal>
+
+      {previewFile && (
+        <Dialog
+          fullScreen
+          open={!!previewFile}
+          sx={{
+            "& .MuiPaper-root": {
+              background: "grey",
+            },
+          }}
+        >
+          <Box p={2} pt={0}>
+            <Box
+              width="100%"
+              display="flex"
+              justifyContent="flex-end"
+              sx={{ position: "sticky", right: "20px", top: "20px" }}
+            >
+              <IconButton onClick={() => setPreviewFile(null)}>
+                <CloseIcon sx={{ color: "white" }} />
+              </IconButton>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <img
+                src={
+                  previewFile.type === "application/pdf"
+                    ? "https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_1280.png"
+                    : previewFile?.data
+                }
+                width="50%"
+              />
+            </Box>
+          </Box>
+        </Dialog>
+      )}
     </>
   );
 };

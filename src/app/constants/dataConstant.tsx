@@ -1554,7 +1554,7 @@ export const HELP_DRAWER_TIPS = {
     "Clicking on a vendor will redirect you to their Vendor Details page, where you can manage their specific details.",
     "Use this section to keep track of all vendor-related information.",
   ],
-  "/events": [
+  "/activity": [
     "The Events section allows you to manage all your events in one place.",
     "To add a new event, click on the 'Create Event' toggle button, which opens a form to add the event details.",
     "Once the event details are entered and submitted, the new event will be added to the event list below.",
@@ -1607,7 +1607,7 @@ export const HELP_DRAWER_TIPS = {
     "In the User List, you can Edit or Delete any user from the list.",
     "This section helps you maintain and manage your internal operations, including team structures and user management.",
   ],
-  "/tasks": [
+  "/sub-activity": [
     "The Tasks section allows you to manage all your tasks and their associated details.",
     "To add a new task, click on the 'Add' toggle button, which opens a form to input the task details.",
     "Once the task details are entered and submitted, the new task will be added to the task list below.",
@@ -1630,7 +1630,7 @@ export const HELP_DRAWER_TIPS = {
     "Click on an any event to view its detailed page with full information about the event.",
     "At the Top-right of the table of the Tasks and Events we have option of 'New' through this we can add new task and event",
   ],
-  "/events-details": [
+  "/activity-details": [
     "You are viewing details for the selected event.",
     "Review the event details, including date, location, type and etc, you can also update the event details.",
     "Toggle the 'Create Task' button to open the task creation form.",
@@ -1639,7 +1639,7 @@ export const HELP_DRAWER_TIPS = {
     "You can edit or delete any task from the task list.",
     "Clicking on a task will redirect you to the Task Details page for further actions.",
   ],
-  "/tasks-details": [
+  "/sub-activity-details": [
     "You are viewing the details of the selected task.",
     "In the Task Form section, you can assign the task to a team and select the team members responsible for the task.",
     "You can assign the task to a specific event and link it with the vendor for the task's needs.",

@@ -6,7 +6,6 @@ import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
-import SpaceDashboardIcon from "@mui/icons-material/SpaceDashboard";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
@@ -41,9 +40,9 @@ import HelpDrawer from "./HelpDrawer";
 
 const drawerWidth = 240;
 const pages = [
-  { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
-  // { label: "Tasks", to: "/tasks", icon: <AssignmentIcon /> },
-  { label: "Activities", to: "/events", icon: <EventAvailableIcon /> },
+  // { label: "DashBoard", to: "/analytics", icon: <SpaceDashboardIcon /> },
+  // { label: "Tasks", to: "/sub-activity", icon: <AssignmentIcon /> },
+  { label: "Activities", to: "/activity", icon: <EventAvailableIcon /> },
   { label: "Clients", to: "/clients", icon: <CorporateFareIcon /> },
   { label: "Vendors", to: "/vendors", icon: <StorefrontIcon /> },
   { label: "Internals", to: "/internals", icon: <BadgeIcon /> },
@@ -265,8 +264,10 @@ export default function AppDrawer() {
               disablePadding
               sx={{
                 position: "relative",
-                backgroundColor: currentTab.includes(e.to) ? "#ED3237" : "",
-                color: currentTab.includes(e.to) ? "white" : "black",
+                backgroundColor: currentTab.includes(e.to.replace("/", ""))
+                  ? "#ED3237"
+                  : "",
+                color: currentTab.includes(e.to.replace("/", "")) ? "white" : "black",
                 backgroundImage:
                   "linear-gradient(to right, #ED3237, #ED3237 50%, transparent 50%)",
                 backgroundSize: "200% 100%",
@@ -287,21 +288,24 @@ export default function AppDrawer() {
           ))}
         </List>
       </Drawer>
-      <Main open={open} sx={{ width: 100 }}>
+      <Main
+        open={open}
+        sx={{ width: 100, maxHeight: "calc(100vh - 60px)", overflow: "auto" }}
+      >
         <HelpDrawer />
         <DrawerHeader />
         <Routes>
-          <Route path="/events" element={<Events />} />
+          <Route path="/activity" element={<Events />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/vendors" element={<Vendors />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/internals" element={<Internals />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/events-details" element={<EventDetails />} />
+          <Route path="/sub-activity" element={<Tasks />} />
+          <Route path="/activity-details" element={<EventDetails />} />
           <Route path="/internals-teams-details" element={<TeamView />} />
           <Route path="/clients-details" element={<ClientDetails />} />
           <Route path="/vendors-details" element={<VendorView />} />
-          <Route path="/tasks-details" element={<TaskDetails />} />
+          <Route path="/sub-activity-details" element={<TaskDetails />} />
         </Routes>
       </Main>
       <Footer />
