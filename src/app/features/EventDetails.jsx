@@ -65,14 +65,14 @@ export const EventDetails = () => {
             required
             fullWidth
             id="outlined-required-1"
-            label="Event Detail"
+            label="Activity Detail"
             defaultValue={eventData.eventDetails}
           />
         </Grid>
         <Grid item md={4} sm={4} xs={12}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              label="Event Date"
+              label="Activity Date"
               sx={{ width: "100%" }}
               defaultValue={dayjs(eventData.eventDate)}
             />
@@ -108,7 +108,7 @@ export const EventDetails = () => {
               "Exhibitions",
             ]}
             renderInput={(params) => (
-              <TextField {...params} label="Event Type" />
+              <TextField {...params} label="Activity Type" />
             )}
           />
         </Grid>
@@ -144,7 +144,7 @@ export const EventDetails = () => {
               (e) => e.name
             )}
             renderInput={(params) => (
-              <TextField {...params} label="Assign Event To" />
+              <TextField {...params} label="Assign Activity To" />
             )}
           />
         </Grid>

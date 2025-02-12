@@ -24,7 +24,6 @@ import * as React from "react";
 import { useEffect, useMemo } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import logo from "../../assets/Logo_Final_PNG_Black-Text.png";
-import Analytics from "../features/Analytics";
 import { ClientDetails } from "../features/CilientDetails";
 import Clients from "../features/Clients";
 import { EventDetails } from "../features/EventDetails";
@@ -110,7 +109,7 @@ export default function AppDrawer() {
 
   useEffect(() => {
     if (location.pathname.length == 1) {
-      navigate("/analytics");
+      navigate("/activity");
     }
   }, [location.pathname]);
 
@@ -164,7 +163,7 @@ export default function AppDrawer() {
           {!open ? (
             <Typography
               sx={{ cursor: "pointer" }}
-              onClick={() => navigate("/analytics")}
+              onClick={() => navigate("/activity")}
               width={140}
               component="div"
             >
@@ -174,7 +173,7 @@ export default function AppDrawer() {
             <IconButton
               color="inherit"
               aria-label="open drawer"
-              onClick={() => navigate("/analytics")}
+              onClick={() => navigate("/activity")}
               edge="start"
             >
               <HomeIcon />
@@ -245,7 +244,7 @@ export default function AppDrawer() {
             src={logo}
             alt="Paella dish"
             style={{ cursor: "pointer" }}
-            onClick={() => navigate("/analytics")}
+            onClick={() => navigate("/activity")}
           ></img>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
@@ -267,7 +266,9 @@ export default function AppDrawer() {
                 backgroundColor: currentTab.includes(e.to.replace("/", ""))
                   ? "#ED3237"
                   : "",
-                color: currentTab.includes(e.to.replace("/", "")) ? "white" : "black",
+                color: currentTab.includes(e.to.replace("/", ""))
+                  ? "white"
+                  : "black",
                 backgroundImage:
                   "linear-gradient(to right, #ED3237, #ED3237 50%, transparent 50%)",
                 backgroundSize: "200% 100%",
@@ -290,7 +291,7 @@ export default function AppDrawer() {
       </Drawer>
       <Main
         open={open}
-        sx={{ width: 100, maxHeight: "calc(100vh - 60px)", overflow: "auto" }}
+        sx={{ width: 100, height: "calc(100vh - 60px)", overflow: "auto" }}
       >
         <HelpDrawer />
         <DrawerHeader />
@@ -298,7 +299,7 @@ export default function AppDrawer() {
           <Route path="/activity" element={<Events />} />
           <Route path="/clients" element={<Clients />} />
           <Route path="/vendors" element={<Vendors />} />
-          <Route path="/analytics" element={<Analytics />} />
+          {/* <Route path="/analytics" element={<Analytics />} /> */}
           <Route path="/internals" element={<Internals />} />
           <Route path="/sub-activity" element={<Tasks />} />
           <Route path="/activity-details" element={<EventDetails />} />
@@ -306,6 +307,19 @@ export default function AppDrawer() {
           <Route path="/clients-details" element={<ClientDetails />} />
           <Route path="/vendors-details" element={<VendorView />} />
           <Route path="/sub-activity-details" element={<TaskDetails />} />
+          <Route
+            path="*"
+            element={
+              <Box
+                height="80vh"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Typography variant="h2">Page not found</Typography>
+              </Box>
+            }
+          />
         </Routes>
       </Main>
       <Footer />

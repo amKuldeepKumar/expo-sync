@@ -25,7 +25,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElEvents, setAnchorElEvents] = React.useState(null); // For Event submenu
+  const [anchorElEvents, setAnchorElEvents] = React.useState(null); // For Activity submenu
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigate = useNavigate();
 

@@ -26,7 +26,7 @@ import {
 const eventColumns = [
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     editable: true,
     width: 170,
   },
@@ -63,7 +63,7 @@ const eventColumns = [
   },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     type: "string",
     width: 110,
   },
@@ -72,7 +72,7 @@ const eventColumns = [
 const taskColumns = [
   {
     field: "taskName",
-    headerName: "Task Name",
+    headerName: "Name",
     editable: true,
     width: 170,
   },
@@ -90,13 +90,13 @@ const taskColumns = [
   },
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     editable: true,
     width: 170,
   },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     type: "string",
     width: 110,
   },
@@ -119,7 +119,7 @@ const eventRows = [
     eventName: "Sports Day",
     eventDate: "2024-04-25",
     location: "Los Angeles",
-    type: "Sports Event",
+    type: "Sports Activity",
     beginDate: "2024-04-20",
     endDate: "2024-04-22",
     status: "Pending",
@@ -165,7 +165,7 @@ const taskRows = [
     id: 101,
     taskName: "Food Catering",
     organizer: "Godrej",
-    eventName: "Charity Event",
+    eventName: "Charity Activity",
     eventDate: "05/15/24",
     status: "In Progress",
     assignedTo: "Soravh Mishra",

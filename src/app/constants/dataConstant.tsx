@@ -625,13 +625,13 @@ export const CLIENT_DATA = [
 export const events_columns = [
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     width: 180,
     editable: true,
   },
   {
     field: "eventDetails",
-    headerName: "Event Details",
+    headerName: "Activity Details",
     width: 180,
     editable: true,
   },
@@ -643,7 +643,7 @@ export const events_columns = [
   { field: "assignedTo", headerName: "Assigned To", width: 100 },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     width: 120,
     type: "string",
   },
@@ -654,7 +654,7 @@ export const events_columns = [
 export const task_columns = [
   {
     field: "taskName",
-    headerName: "Task Name",
+    headerName: "Name",
     width: 180,
     editable: true,
   },
@@ -686,7 +686,7 @@ export const EVENTS_DATA = [
       { id: 102, taskName: "AV Setup", assignedTo: "John Smith" },
       { id: 103, taskName: "Seating Arrangement", assignedTo: "Alice Brown" },
       { id: 104, taskName: "Guest Invitations", assignedTo: "Bob White" },
-      { id: 105, taskName: "Event Documentation", assignedTo: "Charlie Black" },
+      { id: 105, taskName: "Activity Documentation", assignedTo: "Charlie Black" },
     ],
   },
   {
@@ -711,7 +711,7 @@ export const EVENTS_DATA = [
       { id: 202, taskName: "Tech Setup", assignedTo: "Ravi Kumar" },
       { id: 203, taskName: "Catering", assignedTo: "Shivani Gupta" },
       { id: 204, taskName: "Venue Decoration", assignedTo: "Sandeep Yadav" },
-      { id: 205, taskName: "Event Promotion", assignedTo: "Priya Sharma" },
+      { id: 205, taskName: "Activity Promotion", assignedTo: "Priya Sharma" },
     ],
   },
   {
@@ -747,7 +747,7 @@ export const EVENTS_DATA = [
     eventDate: "2024-04-25",
     location: "Los Angeles",
     organizer: "Intel",
-    type: "Sports Event",
+    type: "Sports Activity",
     beginDate: "2024-04-20",
     endDate: "2024-04-22",
     status: "Pending",
@@ -839,7 +839,7 @@ export const EVENTS_DATA = [
     eventDate: "2024-08-10",
     location: "Paris",
     organizer: "AMD",
-    type: "Fashion Event",
+    type: "Fashion Activity",
     beginDate: "2024-08-05",
     endDate: "2024-08-07",
     status: "Not Started",
@@ -1008,7 +1008,7 @@ export const VENDORS_DATA = [
       },
       {
         id: 105,
-        taskName: "Event Documentation",
+        taskName: "Activity Documentation",
         assignedTo: "Charlie Black",
         dueDate: "05/19/24",
         allocationDate: "05/03/24",
@@ -1063,7 +1063,7 @@ export const VENDORS_DATA = [
         deliveryDate: "05/18/24",
         status: "In Progress",
         client: "Godrej",
-        event: "Charity Event",
+        event: "Charity Activity",
       },
     ],
     operationalCities: [
@@ -1144,7 +1144,7 @@ export const VENDORS_DATA = [
 export const TASK_COLUMNS = [
   {
     field: "taskName",
-    headerName: "Task Name",
+    headerName: "Name",
     width: 180,
     editable: true,
   },
@@ -1162,7 +1162,7 @@ export const TASK_COLUMNS = [
   },
   {
     field: "event",
-    headerName: "Event",
+    headerName: "Activity",
     width: 180,
     editable: true,
   },
@@ -1195,7 +1195,7 @@ export const TASK_DATA = [
     status: "In Progress",
     vendor: "Evergreen Pack",
     client: "Godrej",
-    event: "Charity Event",
+    event: "Charity Activity",
   },
   {
     id: 102,
@@ -1229,7 +1229,7 @@ export const TASK_DATA = [
   },
   {
     id: 105,
-    taskName: "Event Documentation",
+    taskName: "Activity Documentation",
     assignedTo: "Charlie Black",
     dueDate: "05/19/24",
     status: "Pending",
@@ -1556,13 +1556,13 @@ export const HELP_DRAWER_TIPS = {
   ],
   "/activity": [
     "The Events section allows you to manage all your events in one place.",
-    "To add a new event, click on the 'Create Event' toggle button, which opens a form to add the event details.",
+    "To add a new event, click on the 'Create Activity' toggle button, which opens a form to add the event details.",
     "Once the event details are entered and submitted, the new event will be added to the event list below.",
     "In the event list table, you can view all the events you have added.",
     "Each event record in the list can be edited or deleted as needed.",
     "To edit and delete an event, click on the 'Edit' or 'Delete' icon next to the event record. You can update and delete the event information from the table.",
-    "Clicking on any record in the event list will redirect you to the Event Details page for the selected event.",
-    "The Event Details page provides a detailed view of the event and allows you to manage event-specific information.",
+    "Clicking on any record in the event list will redirect you to the Activity Details page for the selected event.",
+    "The Activity Details page provides a detailed view of the event and allows you to manage event-specific information.",
   ],
   "/analytics": [
     "The dashboard displays three key grids: Upcoming Events, Pending Tasks, and Follow-ups.",
@@ -1615,8 +1615,8 @@ export const HELP_DRAWER_TIPS = {
     "Each task record in the list can be edited, deleted, or have comment icon.",
     "To edit and delete a task, click on the 'Edit' or 'Delete' icon next to the task record. You can update and delete the task information from the table.",
     "Each task in the list shows how many comments are associated with it. in the comment icon This helps you track discussions and updates for the task.",
-    "Clicking on any task record in the list will redirect you to the Task Details page for the selected task.",
-    "The Task Details page provides a detailed view of the task and allows you to manage task-specific information, including comments.",
+    "Clicking on any task record in the list will redirect you to the Sub Activity Details page for the selected task.",
+    "The Sub Activity Details page provides a detailed view of the task and allows you to manage task-specific information, including comments.",
     "This section is essential for organizing, tracking, and managing tasks, including the ability to add, edit, and delete tasks.",
   ],
   "/clients-details": [
@@ -1633,21 +1633,21 @@ export const HELP_DRAWER_TIPS = {
   "/activity-details": [
     "You are viewing details for the selected event.",
     "Review the event details, including date, location, type and etc, you can also update the event details.",
-    "Toggle the 'Create Task' button to open the task creation form.",
-    "The 'Task List' table below shows all tasks associated with this event.",
+    "Toggle the 'Create Sub Activity' button to open the task creation form.",
+    "The 'Sub Activity List' table below shows all tasks associated with this event.",
     "Click on any task in the list to view more details and manage it.",
     "You can edit or delete any task from the task list.",
-    "Clicking on a task will redirect you to the Task Details page for further actions.",
+    "Clicking on a task will redirect you to the Sub Activity Details page for further actions.",
   ],
   "/sub-activity-details": [
     "You are viewing the details of the selected task.",
-    "In the Task Form section, you can assign the task to a team and select the team members responsible for the task.",
+    "In the Sub Activity Form section, you can assign the task to a team and select the team members responsible for the task.",
     "You can assign the task to a specific event and link it with the vendor for the task's needs.",
     "Below the task form, you will find the Add Comment section.",
     "Click the Add Comment toggle button to open the form for adding comments related to the task.",
     "You can add your comments to keep track of updates or discussions on the task.",
     "Once the comment is added, it will be displayed in the Tasks Comments table below.",
-    "In the Task Comments table, you can edit or delete any comment for better task tracking.",
+    "In the Sub Activity Comments table, you can edit or delete any comment for better task tracking.",
   ],
   "/vendors-details": [
     "The Vendor Details page allows you to view and manage information related to a specific vendor.",
@@ -1657,9 +1657,9 @@ export const HELP_DRAWER_TIPS = {
     "You can specify employee details and assign the work that corresponds to the vendor’s operations or needs.",
     "The Employee List table below shows all employees associated with this vendor.",
     "In this table, you can Edit or Delete any employee record.",
-    "Below the Employee List table, you'll find the Task Allocated List table.",
+    "Below the Employee List table, you'll find the Sub Activity Allocated List table.",
     "In this table, you can Edit or Delete tasks related to this vendor.",
-    "Clicking on any task record will redirect you to the Task Details page for that specific task.",
+    "Clicking on any task record will redirect you to the Sub Activity Details page for that specific task.",
     "You can manage employees and tasks related to the vendor directly from the Vendor Details page.",
   ],
   "/internals-teams-details": [
@@ -1667,9 +1667,9 @@ export const HELP_DRAWER_TIPS = {
     "you can also edit the details of the team through the form that provided",
     "The Team Members table at right shows all team members assigned to the current team.",
     "You can edit or remove any team member from this table.",
-    "Below the team members table, you will find the Task table.",
-    "In the Task table, you can see all Task related to the team.",
-    "You can edit or delete any Task from the Task table.",
+    "Below the team members table, you will find the Sub Activity table.",
+    "In the Sub Activity table, you can see all Sub Activity related to the team.",
+    "You can edit or delete any Sub Activity from the Sub Activity table.",
   ],
 };
 

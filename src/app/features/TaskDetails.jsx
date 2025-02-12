@@ -52,7 +52,7 @@ export const TaskDetails = () => {
             required
             fullWidth
             id="outlined-required-1"
-            label="Task"
+            label="Sub Activity"
             defaultValue={taskDetails.taskName}
           />
         </Grid>
@@ -70,7 +70,7 @@ export const TaskDetails = () => {
             disabled
             fullWidth
             id="outlined-required-1"
-            label="Event"
+            label="Activity"
             defaultValue={taskDetails.event}
           />
         </Grid>

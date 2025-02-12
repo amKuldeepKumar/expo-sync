@@ -126,12 +126,11 @@ export const VendorView = () => {
       reader.readAsDataURL(file);
     }
   };
-  console.log(uploadedFiles);
 
   const taskColumnsVendors = [
     {
       field: "taskName",
-      headerName: "Task Name",
+      headerName: "Name",
       width: 250,
       editable: false,
     },
@@ -143,7 +142,7 @@ export const VendorView = () => {
     },
     {
       field: "event",
-      headerName: "Event",
+      headerName: "Activity",
       width: 130,
       editable: false,
     },
@@ -212,8 +211,6 @@ export const VendorView = () => {
     "Ghaziabad",
     "Faridabad",
   ];
-
-  console.log(gstFiles);
 
   const ImageModal = () => {
     return (

@@ -22,7 +22,7 @@ import {
   VENDORS_DATA,
 } from "../constants/dataConstant";
 
-// Reusable Form Component for Event/Task creation
+// Reusable Form Component for Activity/Sub Activity creation
 export const EventTaskForm = ({
   isVisible,
   toggleVisibility,
@@ -31,11 +31,11 @@ export const EventTaskForm = ({
 }) => {
   const fields = [
     {
-      label: `${formType === "event" ? "Event" : "Task"} Name`,
+      label: `${formType === "event" ? "Activity" : "Sub Activity"} Name`,
       required: true,
     },
     {
-      label: `${formType === "event" ? "Event" : "Task"} Description`,
+      label: `${formType === "event" ? "Activity" : "Sub Activity"} Description`,
       required: true,
     },
   ];
@@ -85,7 +85,7 @@ export const EventTaskForm = ({
       <Button onClick={toggleVisibility}>
         {isVisible ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
         {formType === "Activities" && !isVisible && "Create Activities"}
-        {formType === "task" && !isVisible && "Create Task"}
+        {formType === "task" && !isVisible && "Create Sub Activity"}
       </Button>
 
       <Collapse in={isVisible} timeout="auto" unmountOnExit>

@@ -11,7 +11,7 @@ const Events = () => {
   const [isCardVisible, setIsCardVisible] = useState(false);
 
   const handleCreateEvent = () => {
-    console.log("Event created");
+    console.log("Activity created");
   };
 
   const handleEditRow = (row) => {

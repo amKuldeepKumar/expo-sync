@@ -33,7 +33,7 @@ function App() {
         <AppDrawer />
       ) : (
         <Routes>
-          <Route path="/" element={<Auth />} />
+          {/* <Route path="/" element={<Auth />} /> */}
 
           <Route path="/auth" element={<Auth />} />
         </Routes>

@@ -78,7 +78,7 @@ export const Tasks = () => {
                 <Autocomplete
                   options={EVENTS_DATA.map((e) => e.eventName)}
                   renderInput={(params) => (
-                    <TextField {...params} label="Assign To Event" />
+                    <TextField {...params} label="Assign To Activity" />
                   )}
                 />
               </Grid>

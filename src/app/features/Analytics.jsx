@@ -6,12 +6,12 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 const columns = [
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     editable: true,
   },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     type: "string",
   },
   { field: "location", headerName: "Location" },
@@ -21,17 +21,17 @@ const columns = [
 const columns1 = [
   {
     field: "taskName",
-    headerName: "Task Name",
+    headerName: "Name",
     editable: true,
   },
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     editable: true,
   },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     type: "string",
   },
   { field: "organizer", headerName: "Client" },
@@ -40,12 +40,12 @@ const columns1 = [
 const columns2 = [
   {
     field: "eventName",
-    headerName: "Event Name",
+    headerName: "Name",
     editable: true,
   },
   {
     field: "eventDate",
-    headerName: "Event Date",
+    headerName: "Activity Date",
     type: "string",
   },
   { field: "location", headerName: "Location" },
