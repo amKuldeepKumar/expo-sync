@@ -719,12 +719,12 @@ export const VendorView = () => {
             boxShadow: 24,
             display: "flex",
             flexDirection: "column",
-            minWidth: "600px",
+            minWidth: "350px",
           }}
         >
           <Typography>Upload KYC Documents</Typography>
           <Grid container spacing={2} my={2}>
-            <Grid item md={6} sm={6} xs={12}>
+            <Grid item md={docType ? 6 : 12} sm={docType ? 6 : 12} xs={12}>
               <Autocomplete
                 options={docTypeOptions}
                 value={docType}
@@ -888,7 +888,7 @@ export const VendorView = () => {
             {/* </Grid> */}
           </Grid>
 
-          <Typography textAlign={"center"}>
+          <Typography textAlign="right">
             <Button
               variant="contained"
               onClick={() => setOpenUploadModal(false)}
