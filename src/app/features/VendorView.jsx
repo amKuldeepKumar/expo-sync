@@ -464,7 +464,7 @@ export const VendorView = () => {
                   <Typography
                     variant="body2"
                     mr={1}
-                    sx={{ cursor: "pointer" }}
+                    sx={{ cursor: "pointer", ":hover": { opacity: 0.5 } }}
                     onClick={() =>
                       setPreviewFile(uploadedFiles?.aadharcardimage)
                     }
@@ -503,7 +503,7 @@ export const VendorView = () => {
                   >
                     <Typography
                       variant="body2"
-                      sx={{ cursor: "pointer" }}
+                      sx={{ cursor: "pointer", ":hover": { opacity: 0.5 } }}
                       onClick={() => setPreviewFile(file)}
                     >
                       📄 {file.name} ({(file.size / 1024).toFixed(2)} KB)
